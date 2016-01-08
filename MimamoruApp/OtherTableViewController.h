@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  OtherTableViewController.h
 //  MimamoruApp
 //
 //  Created by totyu3 on 16/1/7.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface OtherTableViewController : UITableViewController
 
 @end
-

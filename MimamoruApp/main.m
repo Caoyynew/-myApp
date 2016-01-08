@@ -2,7 +2,7 @@
 //  main.m
 //  MimamoruApp
 //
-//  Created by totyu3 on 16/1/8.
+//  Created by totyu3 on 16/1/7.
 //  Copyright © 2016年 totyu3. All rights reserved.
 //
 
