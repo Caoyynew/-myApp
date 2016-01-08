@@ -1,0 +1,519 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E99E971E1C3FBE340019D2CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E99E971D1C3FBE340019D2CC /* main.m */; };
+		E99E97211C3FBE340019D2CC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E99E97201C3FBE340019D2CC /* AppDelegate.m */; };
+		E99E97241C3FBE340019D2CC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99E97231C3FBE340019D2CC /* ViewController.m */; };
+		E99E97271C3FBE340019D2CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E99E97251C3FBE340019D2CC /* Main.storyboard */; };
+		E99E97291C3FBE340019D2CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E99E97281C3FBE340019D2CC /* Assets.xcassets */; };
+		E99E972C1C3FBE340019D2CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E99E972A1C3FBE340019D2CC /* LaunchScreen.storyboard */; };
+		E99E97371C3FBE340019D2CC /* MimamoruAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E99E97361C3FBE340019D2CC /* MimamoruAppTests.m */; };
+		E99E97421C3FBE340019D2CC /* MimamoruAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E99E97411C3FBE340019D2CC /* MimamoruAppUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E99E97331C3FBE340019D2CC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E99E97111C3FBE340019D2CC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E99E97181C3FBE340019D2CC;
+			remoteInfo = MimamoruApp;
+		};
+		E99E973E1C3FBE340019D2CC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E99E97111C3FBE340019D2CC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E99E97181C3FBE340019D2CC;
+			remoteInfo = MimamoruApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E99E97191C3FBE340019D2CC /* MimamoruApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MimamoruApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E99E971D1C3FBE340019D2CC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E99E971F1C3FBE340019D2CC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E99E97201C3FBE340019D2CC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E99E97221C3FBE340019D2CC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		E99E97231C3FBE340019D2CC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		E99E97261C3FBE340019D2CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E99E97281C3FBE340019D2CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E99E972B1C3FBE340019D2CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E99E972D1C3FBE340019D2CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E99E97321C3FBE340019D2CC /* MimamoruAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MimamoruAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E99E97361C3FBE340019D2CC /* MimamoruAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MimamoruAppTests.m; sourceTree = "<group>"; };
+		E99E97381C3FBE340019D2CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E99E973D1C3FBE340019D2CC /* MimamoruAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MimamoruAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E99E97411C3FBE340019D2CC /* MimamoruAppUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MimamoruAppUITests.m; sourceTree = "<group>"; };
+		E99E97431C3FBE340019D2CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E99E97161C3FBE340019D2CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E99E972F1C3FBE340019D2CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E99E973A1C3FBE340019D2CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E99E97101C3FBE340019D2CC = {
+			isa = PBXGroup;
+			children = (
+				E99E971B1C3FBE340019D2CC /* MimamoruApp */,
+				E99E97351C3FBE340019D2CC /* MimamoruAppTests */,
+				E99E97401C3FBE340019D2CC /* MimamoruAppUITests */,
+				E99E971A1C3FBE340019D2CC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E99E971A1C3FBE340019D2CC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E99E97191C3FBE340019D2CC /* MimamoruApp.app */,
+				E99E97321C3FBE340019D2CC /* MimamoruAppTests.xctest */,
+				E99E973D1C3FBE340019D2CC /* MimamoruAppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E99E971B1C3FBE340019D2CC /* MimamoruApp */ = {
+			isa = PBXGroup;
+			children = (
+				E99E971F1C3FBE340019D2CC /* AppDelegate.h */,
+				E99E97201C3FBE340019D2CC /* AppDelegate.m */,
+				E99E97221C3FBE340019D2CC /* ViewController.h */,
+				E99E97231C3FBE340019D2CC /* ViewController.m */,
+				E99E97251C3FBE340019D2CC /* Main.storyboard */,
+				E99E97281C3FBE340019D2CC /* Assets.xcassets */,
+				E99E972A1C3FBE340019D2CC /* LaunchScreen.storyboard */,
+				E99E972D1C3FBE340019D2CC /* Info.plist */,
+				E99E971C1C3FBE340019D2CC /* Supporting Files */,
+			);
+			path = MimamoruApp;
+			sourceTree = "<group>";
+		};
+		E99E971C1C3FBE340019D2CC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E99E971D1C3FBE340019D2CC /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E99E97351C3FBE340019D2CC /* MimamoruAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				E99E97361C3FBE340019D2CC /* MimamoruAppTests.m */,
+				E99E97381C3FBE340019D2CC /* Info.plist */,
+			);
+			path = MimamoruAppTests;
+			sourceTree = "<group>";
+		};
+		E99E97401C3FBE340019D2CC /* MimamoruAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E99E97411C3FBE340019D2CC /* MimamoruAppUITests.m */,
+				E99E97431C3FBE340019D2CC /* Info.plist */,
+			);
+			path = MimamoruAppUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E99E97181C3FBE340019D2CC /* MimamoruApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E99E97461C3FBE340019D2CC /* Build configuration list for PBXNativeTarget "MimamoruApp" */;
+			buildPhases = (
+				E99E97151C3FBE340019D2CC /* Sources */,
+				E99E97161C3FBE340019D2CC /* Frameworks */,
+				E99E97171C3FBE340019D2CC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MimamoruApp;
+			productName = MimamoruApp;
+			productReference = E99E97191C3FBE340019D2CC /* MimamoruApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E99E97311C3FBE340019D2CC /* MimamoruAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E99E97491C3FBE340019D2CC /* Build configuration list for PBXNativeTarget "MimamoruAppTests" */;
+			buildPhases = (
+				E99E972E1C3FBE340019D2CC /* Sources */,
+				E99E972F1C3FBE340019D2CC /* Frameworks */,
+				E99E97301C3FBE340019D2CC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E99E97341C3FBE340019D2CC /* PBXTargetDependency */,
+			);
+			name = MimamoruAppTests;
+			productName = MimamoruAppTests;
+			productReference = E99E97321C3FBE340019D2CC /* MimamoruAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E99E973C1C3FBE340019D2CC /* MimamoruAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E99E974C1C3FBE340019D2CC /* Build configuration list for PBXNativeTarget "MimamoruAppUITests" */;
+			buildPhases = (
+				E99E97391C3FBE340019D2CC /* Sources */,
+				E99E973A1C3FBE340019D2CC /* Frameworks */,
+				E99E973B1C3FBE340019D2CC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E99E973F1C3FBE340019D2CC /* PBXTargetDependency */,
+			);
+			name = MimamoruAppUITests;
+			productName = MimamoruAppUITests;
+			productReference = E99E973D1C3FBE340019D2CC /* MimamoruAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E99E97111C3FBE340019D2CC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = totyu3;
+				TargetAttributes = {
+					E99E97181C3FBE340019D2CC = {
+						CreatedOnToolsVersion = 7.1;
+					};
+					E99E97311C3FBE340019D2CC = {
+						CreatedOnToolsVersion = 7.1;
+						TestTargetID = E99E97181C3FBE340019D2CC;
+					};
+					E99E973C1C3FBE340019D2CC = {
+						CreatedOnToolsVersion = 7.1;
+						TestTargetID = E99E97181C3FBE340019D2CC;
+					};
+				};
+			};
+			buildConfigurationList = E99E97141C3FBE340019D2CC /* Build configuration list for PBXProject "MimamoruApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E99E97101C3FBE340019D2CC;
+			productRefGroup = E99E971A1C3FBE340019D2CC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E99E97181C3FBE340019D2CC /* MimamoruApp */,
+				E99E97311C3FBE340019D2CC /* MimamoruAppTests */,
+				E99E973C1C3FBE340019D2CC /* MimamoruAppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E99E97171C3FBE340019D2CC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E99E972C1C3FBE340019D2CC /* LaunchScreen.storyboard in Resources */,
+				E99E97291C3FBE340019D2CC /* Assets.xcassets in Resources */,
+				E99E97271C3FBE340019D2CC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E99E97301C3FBE340019D2CC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E99E973B1C3FBE340019D2CC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E99E97151C3FBE340019D2CC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E99E97241C3FBE340019D2CC /* ViewController.m in Sources */,
+				E99E97211C3FBE340019D2CC /* AppDelegate.m in Sources */,
+				E99E971E1C3FBE340019D2CC /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E99E972E1C3FBE340019D2CC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E99E97371C3FBE340019D2CC /* MimamoruAppTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E99E97391C3FBE340019D2CC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E99E97421C3FBE340019D2CC /* MimamoruAppUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E99E97341C3FBE340019D2CC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E99E97181C3FBE340019D2CC /* MimamoruApp */;
+			targetProxy = E99E97331C3FBE340019D2CC /* PBXContainerItemProxy */;
+		};
+		E99E973F1C3FBE340019D2CC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E99E97181C3FBE340019D2CC /* MimamoruApp */;
+			targetProxy = E99E973E1C3FBE340019D2CC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E99E97251C3FBE340019D2CC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E99E97261C3FBE340019D2CC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E99E972A1C3FBE340019D2CC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E99E972B1C3FBE340019D2CC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E99E97441C3FBE340019D2CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		E99E97451C3FBE340019D2CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E99E97471C3FBE340019D2CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MimamoruApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = wu.MimamoruApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E99E97481C3FBE340019D2CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MimamoruApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = wu.MimamoruApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		E99E974A1C3FBE340019D2CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = MimamoruAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = wu.MimamoruAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MimamoruApp.app/MimamoruApp";
+			};
+			name = Debug;
+		};
+		E99E974B1C3FBE340019D2CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = MimamoruAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = wu.MimamoruAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MimamoruApp.app/MimamoruApp";
+			};
+			name = Release;
+		};
+		E99E974D1C3FBE340019D2CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = MimamoruAppUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = wu.MimamoruAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = MimamoruApp;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		E99E974E1C3FBE340019D2CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = MimamoruAppUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = wu.MimamoruAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = MimamoruApp;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E99E97141C3FBE340019D2CC /* Build configuration list for PBXProject "MimamoruApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E99E97441C3FBE340019D2CC /* Debug */,
+				E99E97451C3FBE340019D2CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E99E97461C3FBE340019D2CC /* Build configuration list for PBXNativeTarget "MimamoruApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E99E97471C3FBE340019D2CC /* Debug */,
+				E99E97481C3FBE340019D2CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E99E97491C3FBE340019D2CC /* Build configuration list for PBXNativeTarget "MimamoruAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E99E974A1C3FBE340019D2CC /* Debug */,
+				E99E974B1C3FBE340019D2CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E99E974C1C3FBE340019D2CC /* Build configuration list for PBXNativeTarget "MimamoruAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E99E974D1C3FBE340019D2CC /* Debug */,
+				E99E974E1C3FBE340019D2CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E99E97111C3FBE340019D2CC /* Project object */;
+}
