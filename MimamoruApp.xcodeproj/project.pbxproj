@@ -194,6 +194,77 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E9453D8A1C43379100210852 /* support */ = {
+			isa = PBXGroup;
+			children = (
+				E99E976F1C3FC0340019D2CC /* item-image */,
+				E99E979C1C3FC0350019D2CC /* worry-0.png */,
+				E99E979D1C3FC0350019D2CC /* worry-0@2x.png */,
+				E99E979E1C3FC0350019D2CC /* worry.png */,
+				E99E979F1C3FC0350019D2CC /* worry@2x.png */,
+				E99E977F1C3FC0340019D2CC /* main.m */,
+				E99E97671C3FC0340019D2CC /* emergency-0.png */,
+				E99E97681C3FC0340019D2CC /* emergency-0@2x.png */,
+				E99E97691C3FC0340019D2CC /* emergency.png */,
+				E99E976A1C3FC0340019D2CC /* emergency@2x.png */,
+				E99E976B1C3FC0340019D2CC /* emergencybtn.png */,
+				E99E976E1C3FC0340019D2CC /* Info.plist */,
+				E99E97841C3FC0340019D2CC /* setting-0.png */,
+				E99E97851C3FC0340019D2CC /* setting-0@2x.png */,
+				E99E97861C3FC0340019D2CC /* setting.png */,
+				E99E97871C3FC0340019D2CC /* setting@2x.png */,
+				E99E978A1C3FC0340019D2CC /* test.plist */,
+				E99E978B1C3FC0340019D2CC /* testdata1.plist */,
+				E99E978C1C3FC0340019D2CC /* testdata2.plist */,
+			);
+			name = support;
+			sourceTree = "<group>";
+		};
+		E9453D8B1C4337E900210852 /* OtherGroup */ = {
+			isa = PBXGroup;
+			children = (
+				E99E975A1C3FC0340019D2CC /* ContentTableViewController.h */,
+				E99E975B1C3FC0340019D2CC /* ContentTableViewController.m */,
+				E99E97611C3FC0340019D2CC /* DetailTableViewController.h */,
+				E99E97621C3FC0340019D2CC /* DetailTableViewController.m */,
+				E99E97631C3FC0340019D2CC /* DetailViewController.h */,
+				E99E97641C3FC0340019D2CC /* DetailViewController.m */,
+				E99E97801C3FC0340019D2CC /* MessageViewController.h */,
+				E99E97811C3FC0340019D2CC /* MessageViewController.m */,
+				E99E97821C3FC0340019D2CC /* OtherTableViewController.h */,
+				E99E97831C3FC0340019D2CC /* OtherTableViewController.m */,
+			);
+			name = OtherGroup;
+			sourceTree = "<group>";
+		};
+		E9453D8C1C43385F00210852 /* EmergencyGroup */ = {
+			isa = PBXGroup;
+			children = (
+				E99E97501C3FC0340019D2CC /* ABFillButton.h */,
+				E99E97511C3FC0340019D2CC /* ABFillButton.m */,
+				E99E977D1C3FC0340019D2CC /* LeafNotification.h */,
+				E99E977E1C3FC0340019D2CC /* LeafNotification.m */,
+				E99E97651C3FC0340019D2CC /* EgySettingTableViewController.h */,
+				E99E97661C3FC0340019D2CC /* EgySettingTableViewController.m */,
+				E99E976C1C3FC0340019D2CC /* EmergencyViewController.h */,
+				E99E976D1C3FC0340019D2CC /* EmergencyViewController.m */,
+			);
+			name = EmergencyGroup;
+			sourceTree = "<group>";
+		};
+		E9453D8D1C4338A800210852 /* LifeGroup */ = {
+			isa = PBXGroup;
+			children = (
+				E99E978D1C3FC0340019D2CC /* UUChart */,
+				E99E975C1C3FC0340019D2CC /* DashBoardTableViewCell.h */,
+				E99E975D1C3FC0340019D2CC /* DashBoardTableViewCell.m */,
+				E99E975E1C3FC0340019D2CC /* DashBoardTableViewCell.xib */,
+				E99E975F1C3FC0340019D2CC /* DashboardTableViewController.h */,
+				E99E97601C3FC0340019D2CC /* DashboardTableViewController.m */,
+			);
+			name = LifeGroup;
+			sourceTree = "<group>";
+		};
 		E99E97101C3FBE340019D2CC = {
 			isa = PBXGroup;
 			children = (
@@ -235,59 +306,20 @@
 		E99E974F1C3FC0340019D2CC /* MimamoruApp */ = {
 			isa = PBXGroup;
 			children = (
-				E99E97501C3FC0340019D2CC /* ABFillButton.h */,
-				E99E97511C3FC0340019D2CC /* ABFillButton.m */,
+				E9453D8D1C4338A800210852 /* LifeGroup */,
+				E9453D8C1C43385F00210852 /* EmergencyGroup */,
+				E9453D8B1C4337E900210852 /* OtherGroup */,
 				E99E97521C3FC0340019D2CC /* ABFillButtonExample-Prefix.pch */,
 				E99E97531C3FC0340019D2CC /* AppDelegate.h */,
 				E99E97541C3FC0340019D2CC /* AppDelegate.m */,
-				E99E97551C3FC0340019D2CC /* Assets.xcassets */,
-				E99E97561C3FC0340019D2CC /* LaunchScreen.storyboard */,
-				E99E97581C3FC0340019D2CC /* Main.storyboard */,
-				E99E975A1C3FC0340019D2CC /* ContentTableViewController.h */,
-				E99E975B1C3FC0340019D2CC /* ContentTableViewController.m */,
-				E99E975C1C3FC0340019D2CC /* DashBoardTableViewCell.h */,
-				E99E975D1C3FC0340019D2CC /* DashBoardTableViewCell.m */,
-				E99E975E1C3FC0340019D2CC /* DashBoardTableViewCell.xib */,
-				E99E975F1C3FC0340019D2CC /* DashboardTableViewController.h */,
-				E99E97601C3FC0340019D2CC /* DashboardTableViewController.m */,
-				E99E97611C3FC0340019D2CC /* DetailTableViewController.h */,
-				E99E97621C3FC0340019D2CC /* DetailTableViewController.m */,
-				E99E97631C3FC0340019D2CC /* DetailViewController.h */,
-				E99E97641C3FC0340019D2CC /* DetailViewController.m */,
-				E99E97651C3FC0340019D2CC /* EgySettingTableViewController.h */,
-				E99E97661C3FC0340019D2CC /* EgySettingTableViewController.m */,
-				E99E97671C3FC0340019D2CC /* emergency-0.png */,
-				E99E97681C3FC0340019D2CC /* emergency-0@2x.png */,
-				E99E97691C3FC0340019D2CC /* emergency.png */,
-				E99E976A1C3FC0340019D2CC /* emergency@2x.png */,
-				E99E976B1C3FC0340019D2CC /* emergencybtn.png */,
-				E99E976C1C3FC0340019D2CC /* EmergencyViewController.h */,
-				E99E976D1C3FC0340019D2CC /* EmergencyViewController.m */,
-				E99E976E1C3FC0340019D2CC /* Info.plist */,
-				E99E976F1C3FC0340019D2CC /* item-image */,
-				E99E977D1C3FC0340019D2CC /* LeafNotification.h */,
-				E99E977E1C3FC0340019D2CC /* LeafNotification.m */,
-				E99E977F1C3FC0340019D2CC /* main.m */,
-				E99E97801C3FC0340019D2CC /* MessageViewController.h */,
-				E99E97811C3FC0340019D2CC /* MessageViewController.m */,
-				E99E97821C3FC0340019D2CC /* OtherTableViewController.h */,
-				E99E97831C3FC0340019D2CC /* OtherTableViewController.m */,
-				E99E97841C3FC0340019D2CC /* setting-0.png */,
-				E99E97851C3FC0340019D2CC /* setting-0@2x.png */,
-				E99E97861C3FC0340019D2CC /* setting.png */,
-				E99E97871C3FC0340019D2CC /* setting@2x.png */,
 				E99E97881C3FC0340019D2CC /* TabBarViewController.h */,
 				E99E97891C3FC0340019D2CC /* TabBarViewController.m */,
-				E99E978A1C3FC0340019D2CC /* test.plist */,
-				E99E978B1C3FC0340019D2CC /* testdata1.plist */,
-				E99E978C1C3FC0340019D2CC /* testdata2.plist */,
-				E99E978D1C3FC0340019D2CC /* UUChart */,
 				E99E979A1C3FC0350019D2CC /* ViewController.h */,
 				E99E979B1C3FC0350019D2CC /* ViewController.m */,
-				E99E979C1C3FC0350019D2CC /* worry-0.png */,
-				E99E979D1C3FC0350019D2CC /* worry-0@2x.png */,
-				E99E979E1C3FC0350019D2CC /* worry.png */,
-				E99E979F1C3FC0350019D2CC /* worry@2x.png */,
+				E99E97581C3FC0340019D2CC /* Main.storyboard */,
+				E99E97551C3FC0340019D2CC /* Assets.xcassets */,
+				E99E97561C3FC0340019D2CC /* LaunchScreen.storyboard */,
+				E9453D8A1C43379100210852 /* support */,
 			);
 			path = MimamoruApp;
 			sourceTree = "<group>";
