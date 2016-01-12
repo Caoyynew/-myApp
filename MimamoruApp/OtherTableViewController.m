@@ -23,8 +23,8 @@
     if (!Arr) {
         Arr = [[NSMutableArray alloc]init];
     }
-    NSString *title1 = @"緊急通報の設定";
-    NSString *title2 = @"ログアウト";
+    NSString *title1 = @"◆緊急通報の設定";
+    NSString *title2 = @"◇ログアウト";
     [Arr addObject:title1];
     [Arr addObject:title2];
     

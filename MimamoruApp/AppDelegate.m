@@ -18,7 +18,7 @@
 @synthesize latitude,longitude,span,type;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:161.0/255.0 green:199.0/255.0 blue:166.0/255.0 alpha:1]];
     _locationManager = [[CLLocationManager alloc]init];
     _locationManager.delegate = self;
     _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
