@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DashboardTableViewController"/>
@@ -14,18 +15,21 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hpd-1d-zrA">
-                        <rect key="frame" x="8" y="8" width="160" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F0D-Z0-NIG">
+                        <rect key="frame" x="8" y="8" width="304" height="133"/>
+                    </scrollView>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="F0D-Z0-NIG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="MYG-zU-9uE"/>
+                    <constraint firstItem="F0D-Z0-NIG" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="Sjz-OI-5Xs"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="F0D-Z0-NIG" secondAttribute="trailing" id="ZKS-ja-4p8"/>
+                    <constraint firstItem="F0D-Z0-NIG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="kN5-Ka-LU4"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="itemLabel" destination="Hpd-1d-zrA" id="oRZ-ec-N0z"/>
+                <outlet property="scrollview" destination="F0D-Z0-NIG" id="Hja-rv-2YE"/>
             </connections>
-            <point key="canvasLocation" x="440" y="403"/>
+            <point key="canvasLocation" x="164" y="403"/>
         </tableViewCell>
     </objects>
 </document>

@@ -67,6 +67,11 @@
                                 <state key="normal" title="ログイン">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="loginAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eKo-1Z-EF3"/>
                                 </connections>
@@ -276,6 +281,7 @@ hA
                                 <segment title="週"/>
                                 <segment title="月"/>
                             </segments>
+                            <color key="tintColor" red="0.63211862664473684" green="0.77775493421052633" blue="0.64627878289473684" alpha="1" colorSpace="calibratedRGB"/>
                         </segmentedControl>
                         <connections>
                             <outlet property="dataSource" destination="OJJ-We-Egq" id="c4p-jm-sB9"/>
@@ -300,13 +306,39 @@ hA
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <segmentedControl key="tableHeaderView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="E3h-U0-Qp5">
+                            <rect key="frame" x="0.0" y="64" width="320" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="日"/>
+                                <segment title="週"/>
+                                <segment title="月"/>
+                            </segments>
+                            <color key="tintColor" red="0.63211862659999996" green="0.77775493419999997" blue="0.64627878289999996" alpha="1" colorSpace="calibratedRGB"/>
+                        </segmentedControl>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="160" id="cBA-cW-Gy5">
-                                <rect key="frame" x="0.0" y="92" width="320" height="160"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="tDe-IY-8qW" detailTextLabel="fwF-4R-DBo" rowHeight="160" style="IBUITableViewCellStyleSubtitle" id="cBA-cW-Gy5">
+                                <rect key="frame" x="0.0" y="122" width="320" height="160"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cBA-cW-Gy5" id="8Jh-j4-d4h">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="159"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tDe-IY-8qW">
+                                            <rect key="frame" x="15" y="60" width="36" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fwF-4R-DBo">
+                                            <rect key="frame" x="15" y="82" width="50" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -317,6 +349,9 @@ hA
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="XkO-qq-L7Y"/>
+                    <connections>
+                        <outlet property="segment" destination="E3h-U0-Qp5" id="Uw8-WW-Y0e"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aZI-7M-3mt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -411,6 +446,11 @@ hA
                                 <state key="normal" title="保存">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="saveAction:" destination="in0-ME-cbJ" eventType="touchUpInside" id="p6u-gW-5DG"/>
                                 </connections>
@@ -764,6 +804,11 @@ hA
                                                     <state key="normal" title="保存">
                                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="saveContent:" destination="N5Y-nQ-ggS" eventType="touchUpInside" id="Ibg-p9-8Gq"/>
                                                     </connections>
@@ -824,7 +869,7 @@ hA
         <scene sceneID="keE-ZN-2Jv">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1Xh-Cf-ieP" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="生活タプ" image="worry.png" selectedImage="worry.png" id="97H-W4-K4h"/>
+                    <tabBarItem key="tabBarItem" title="生活タプ" image="graph.png" selectedImage="graph-0.png" id="97H-W4-K4h"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="h7v-1G-aNN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -881,7 +926,8 @@ hA
     <resources>
         <image name="emergency.png" width="50" height="50"/>
         <image name="emergencybtn.png" width="128" height="128"/>
+        <image name="graph-0.png" width="50" height="50"/>
+        <image name="graph.png" width="50" height="50"/>
         <image name="setting.png" width="50" height="50"/>
-        <image name="worry.png" width="50" height="50"/>
     </resources>
 </document>

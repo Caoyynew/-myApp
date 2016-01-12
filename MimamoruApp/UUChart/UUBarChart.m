@@ -53,9 +53,10 @@
             }
         }
     }
-    if (max < 5) {
-        max = 5;
+    if (max <= 1) {
+        max = 1;
     }
+    
     if (self.showRange) {
         _yValueMin = (int)min;
     }else{
@@ -68,11 +69,12 @@
         _yValueMin = _chooseRange.min;
     }
 
-    float level = (_yValueMax-_yValueMin) /4.0;
+    float level = (_yValueMax-_yValueMin) /2.0;
+    //float level = (_yValueMax-_yValueMin);
     CGFloat chartCavanHeight = self.frame.size.height - UULabelHeight*3;
-    CGFloat levelHeight = chartCavanHeight /4.0;
+    CGFloat levelHeight = chartCavanHeight /2.0;
     
-    for (int i=0; i<5; i++) {
+    for (int i=0; i<60; i++) {
         UUChartLabel * label = [[UUChartLabel alloc] initWithFrame:CGRectMake(0.0,chartCavanHeight-i*levelHeight+5, UUYLabelwidth, UULabelHeight)];
 		label.text = [NSString stringWithFormat:@"%.1f",level * i+_yValueMin];
 		[self addSubview:label];

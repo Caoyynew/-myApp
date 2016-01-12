@@ -9,7 +9,7 @@
 #import "DashBoardTableViewCell.h"
 #import "UUChart.h"
 
-@interface DashBoardTableViewCell()<UUChartDataSource>{
+@interface DashBoardTableViewCell()<UUChartDataSource,UIScrollViewDelegate>{
     NSIndexPath *path;
     int type;
     int xnum; //0:1~24時 1:1~7日 2:１〜３０日 　3:１〜１２月
@@ -24,6 +24,7 @@
     NSArray *yeararr2;
 }
 
+@property (strong , nonatomic) UIScrollView *scrollview;
 @end
 
 @implementation DashBoardTableViewCell
@@ -32,7 +33,7 @@
     
 }
 
--(void)configUI:(NSIndexPath*)indexPath type:(int)styletype unit:(int)segmentunitnum day:(NSArray*)day week:(NSArray*)week month:(NSArray*)month year:(NSArray*)year{
+-(void)configUI:(NSIndexPath*)indexPath type:(int)styletype unit:(int)segmentunitnum day:(NSArray*)day week:(NSArray*)week month:(NSArray*)month {
     if (!dayarr) {
         dayarr = [[NSArray alloc]init];
     }
@@ -41,9 +42,6 @@
     }
     if (!montharr) {
         montharr = [[NSArray alloc]init];
-    }
-    if (!yeararr) {
-        yeararr = [[NSArray alloc]init];
     }
     if (!dayarr2) {
         dayarr2 = [[NSArray alloc]init];
@@ -54,9 +52,6 @@
     if (!montharr2) {
         montharr2 = [[NSArray alloc]init];
     }
-    if (!yeararr2) {
-        yeararr2 = [[NSArray alloc]init];
-    }
     
     if (chartview) {
         [chartview removeFromSuperview];
@@ -65,23 +60,36 @@
     path = indexPath;
     type = styletype;
     xnum = segmentunitnum;
-//    if (indexPath.section == 0) {
         dayarr = day;
         weekarr = week;
         montharr = month;
-        yeararr =year;
-//    }else if(indexPath.section ==1){
-//        dayarr2 = day;
-//        weekarr2 = week;
-//        montharr2 = month;
-//        yeararr2 =year;
-//    }
-
     
-    chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(10, 10, [UIScreen mainScreen].bounds.size.width-20
-                                                                   , 150) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle];
-     [chartview showInView:self.contentView];
+    
+    if (indexPath.section == 0) {
+        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(10, 10, [UIScreen mainScreen].bounds.size.width-25
+                                                                           , 140) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle];
+    }else if (indexPath.section == 1){
+        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(10, 10, [UIScreen mainScreen].bounds.size.width-25
+                                                                   , 140) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle];
+    }else if (indexPath.section == 2){
+        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(10,10, [UIScreen mainScreen].bounds.size.width-25
+                                                                       , 140) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
+    }else if (indexPath.section == 3){
+        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(10, 10, [UIScreen mainScreen].bounds.size.width-25
+                                                                       , 140) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
+    }
+    
+//    self.scrollview = [[UIScrollView alloc]initWithFrame:self.bounds];
+//    [chartview showInView:self.scrollview];
+//    self.scrollview.canCancelContentTouches = YES;
+//    self.scrollview.delegate = self;
+//    [self addSubview:self.scrollview];
+    [chartview showInView:self];
 }
+
+
+
+
 
 
 -(NSArray*)getXTitles:(int)num{
@@ -104,8 +112,6 @@
                 return [self getXTitles:7];
             case 2:
                 return [self getXTitles:30];
-            case 3:
-                return [self getXTitles:12];
             default:
                 break;
         }
@@ -138,9 +144,6 @@
               
             case 2:
                 return @[montharr];
-             
-            case 3:
-                return @[yeararr];
               
             default:
                 break;
