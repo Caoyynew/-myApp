@@ -24,18 +24,31 @@
     NSArray *weekarr2;
     NSArray *montharr2;
     NSArray *yeararr2;
+    
+    UIPageControl* _page;
 }
 
-@property (strong , nonatomic) UIScrollView *scrollview;
+
+
+
+
 @end
 
 @implementation DashBoardTableViewCell
 
+
 - (void)awakeFromNib {
+    _scoll.userInteractionEnabled = YES;
+    _scoll.showsHorizontalScrollIndicator = NO;
+    _scoll.bounces = NO;
+    _scoll.delegate = self;
     
 }
 
--(void)configUI:(NSIndexPath*)indexPath type:(int)styletype unit:(int)segmentunitnum day:(NSArray*)day week:(NSArray*)week month:(NSArray*)month {
+
+
+
+-(void)configUI:(NSIndexPath*)indexPath type:(int)styletype unit:(int)segmentunitnum day:(NSArray*)day week:(NSArray*)week month:(NSArray*)month{
     if (!dayarr) {
         dayarr = [[NSArray alloc]init];
     }
@@ -45,6 +58,9 @@
     if (!montharr) {
         montharr = [[NSArray alloc]init];
     }
+//    if (!yeararr) {
+//        yeararr = [[NSArray alloc]init];
+//    }
     if (!dayarr2) {
         dayarr2 = [[NSArray alloc]init];
     }
@@ -54,6 +70,9 @@
     if (!montharr2) {
         montharr2 = [[NSArray alloc]init];
     }
+//    if (!yeararr2) {
+//        yeararr2 = [[NSArray alloc]init];
+//    }
     
     if (chartview) {
         [chartview removeFromSuperview];
@@ -62,41 +81,126 @@
     path = indexPath;
     type = styletype;
     xnum = segmentunitnum;
+//    if (indexPath.section == 0) {
         dayarr = day;
         weekarr = week;
         montharr = month;
-    chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(10, 10, [UIScreen mainScreen].bounds.size.width-25,140) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle];
-    chartview2 = [[UUChart alloc]initwithUUChartDataFrame:CGRectMake(10, 330, [UIScreen mainScreen].bounds.size.width-25,140) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle];
-    chartview3 = [[UUChart alloc]initwithUUChartDataFrame:CGRectMake(10, 550, [UIScreen mainScreen].bounds.size.width-25,140) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle];
-    
-    
-//    if (indexPath.section == 0) {
-//        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(10, 10, [UIScreen mainScreen].bounds.size.width-25
-//                                                                           , 140) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle];
-//    }else if (indexPath.section == 1){
-//        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(10, 10, [UIScreen mainScreen].bounds.size.width-25
-//                                                                   , 140) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle];
-//    }else if (indexPath.section == 2){
-//        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(10,10, [UIScreen mainScreen].bounds.size.width-25
-//                                                                       , 140) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
-//    }else if (indexPath.section == 3){
-//        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(10, 10, [UIScreen mainScreen].bounds.size.width-25
-//                                                                       , 140) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
+//        yeararr =year;
+//    }else if(indexPath.section ==1){
+//        dayarr2 = day;
+//        weekarr2 = week;
+//        montharr2 = month;
+//        yeararr2 =year;
 //    }
     
-//    self.scrollview = [[UIScrollView alloc]initWithFrame:self.bounds];
-//    [chartview showInView:self.scrollview];
-//    self.scrollview.canCancelContentTouches = YES;
-//    self.scrollview.delegate = self;
-//    [self addSubview:self.scrollview];
+    //200x3＋5＋10＋10＋5＝630
+    if ([self.hhh isEqualToString:@"ドア"]) {
+    chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 15, [UIScreen mainScreen].bounds.size.width-20
+                                                                   , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
     
-    [chartview showInView:self.scrollview];
-    [chartview2 showInView:self.scrollview];
-    [chartview3 showInView:self.scrollview];
+    chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+10, 15, [UIScreen mainScreen].bounds.size.width-20
+                                                                   , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
+    
+    chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width-10)*2+35, 15, [UIScreen mainScreen].bounds.size.width-20
+                                                                    , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
+    }else if([self.hhh isEqualToString:@"電気使用量"]){
+        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 15, [UIScreen mainScreen].bounds.size.width-20
+                                                                       , 130) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle];
+        
+        chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+10, 15, [UIScreen mainScreen].bounds.size.width-20
+                                                                        , 130) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle];
+        
+        chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width-10)*2+35, 15, [UIScreen mainScreen].bounds.size.width-20
+                                                                        , 130) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle];
+    }else if([self.hhh isEqualToString:@"マット"]){
+        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 15, [UIScreen mainScreen].bounds.size.width-20
+                                                                       , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
+        
+        chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+10, 15, [UIScreen mainScreen].bounds.size.width-20
+                                                                        , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
+        
+        chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width-10)*2+35, 15, [UIScreen mainScreen].bounds.size.width-20
+                                                                        , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
+    }
+//    if ([self.hhh isEqualToString:@"ドア"]) {
+//        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 15, [UIScreen mainScreen].bounds.size.width-20
+//                                                                       , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
+//        
+//        chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+10, 15, [UIScreen mainScreen].bounds.size.width-20
+//                                                                        , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
+//        
+//        chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width-10)*2+35, 15, [UIScreen mainScreen].bounds.size.width-20
+//                                                                        , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
+//    }else if([self.hhh isEqualToString:@"電気使用量"]){
+//        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 15, [UIScreen mainScreen].bounds.size.width-20
+//                                                                       , 130) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle];
+//        
+//        chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+10, 15, [UIScreen mainScreen].bounds.size.width-20
+//                                                                        , 130) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle];
+//        
+//        chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width-10)*2+35, 15, [UIScreen mainScreen].bounds.size.width-20
+//                                                                        , 130) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle];
+//    }
+//    UILabel*dfd = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 60, 30)];
+//    dfd.backgroundColor = [UIColor blackColor];
+    //[chartview3 addSubview:dfd];
+    [chartview showInView:_scoll];
+    [chartview2 showInView:_scoll];
+    [chartview3 showInView:_scoll];
+
+    [_scoll setShowsHorizontalScrollIndicator:NO];
+    _scoll.contentSize = CGSizeMake(([UIScreen mainScreen].bounds.size.width-20)*3.25, 150);
+    _scoll.contentOffset =CGPointMake(([UIScreen mainScreen].bounds.size.width-20)*2.17, 0) ;
+    _scoll.pagingEnabled =YES;
+    
+    [self.contentView addSubview:_scoll];
 }
 
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 
-
+{
+    
+    int currentPage = (_scoll.contentOffset.x - _scoll.frame.size.width
+                       
+                       / (5)) / _scoll.frame.size.width + 1;
+    
+    
+    if (currentPage==0) {
+        if (xnum == 0) {
+            _fff.text = @"おととい";
+        }else if(xnum == 1){
+            _fff.text = @"先先週";
+        }else if(xnum == 2){
+            _fff.text = @"先先月";
+        }
+        
+        
+    }
+    
+    else if (currentPage== 1) {
+        
+        if (xnum == 0) {
+            _fff.text = @"昨日";
+        }else if(xnum == 1){
+            _fff.text = @"先週";
+        }else if(xnum == 2){
+            _fff.text = @"先月";
+        }
+        
+    }else if (currentPage== 2) {
+        
+        
+        if (xnum == 0) {
+            _fff.text = @"今日";
+        }else if(xnum == 1){
+            _fff.text = @"今週";
+        }else if(xnum == 2){
+            _fff.text = @"今月";
+        }
+        
+    }
+    
+}
 
 
 
@@ -120,6 +224,7 @@
                 return [self getXTitles:7];
             case 2:
                 return [self getXTitles:30];
+
             default:
                 break;
         }
@@ -152,7 +257,7 @@
               
             case 2:
                 return @[montharr];
-              
+             
             default:
                 break;
         }

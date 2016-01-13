@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface DashboardTableViewController : UITableViewController
+@property NSString * namee;
 
 @end

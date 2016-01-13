@@ -7,15 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-@protocol UIScrollViewTouchDelegate
-
--(void)scrollViewTouchs:(NSSet *)touchs withEvent:(UIEvent*)event whichView:(id)scrollView;
-@end
 
 
 @interface DashBoardTableViewCell : UITableViewCell
--(void)configUI:(NSIndexPath*)indexPath type:(int)styletype unit:(int)segmentunitnum day:(NSArray*)day week:(NSArray*)week month:(NSArray*)month;
-@property (strong, nonatomic) IBOutlet UILabel *itemLabel;
+-(void)configUI:(NSIndexPath*)indexPath type:(int)styletype unit:(int)segmentunitnum day:(NSArray*)day week:(NSArray*)week month:(NSArray*)month ;
 
-@property(nonatomic,strong)id<UIScrollViewDelegate>delegate;
+
+@property (weak, nonatomic) IBOutlet UILabel *fff;
+@property NSString *hhh;
+@property (weak, nonatomic) IBOutlet UIScrollView *scoll;
 @end

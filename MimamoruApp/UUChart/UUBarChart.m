@@ -69,10 +69,10 @@
         _yValueMin = _chooseRange.min;
     }
 
-    float level = (_yValueMax-_yValueMin) /2.0;
+    float level = (_yValueMax-_yValueMin) /1.0;
     //float level = (_yValueMax-_yValueMin);
     CGFloat chartCavanHeight = self.frame.size.height - UULabelHeight*3;
-    CGFloat levelHeight = chartCavanHeight /2.0;
+    CGFloat levelHeight = chartCavanHeight /1.0;
     
     for (int i=0; i<3; i++) {
         UUChartLabel * label = [[UUChartLabel alloc] initWithFrame:CGRectMake(0.0,chartCavanHeight-i*levelHeight+5, UUYLabelwidth, UULabelHeight)];
@@ -90,13 +90,8 @@
     
     _xLabels = xLabels;
     NSInteger num;
-//    if (xLabels.count>=8) {
-//        num = 8;
-//    }else if (xLabels.count<=4){
-//        num = 4;
-//    }else{
+
         num = xLabels.count;
- //   }
     _xLabelWidth = myScrollView.frame.size.width/num;
     
     for (int i=0; i<xLabels.count; i++) {
