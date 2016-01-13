@@ -81,15 +81,15 @@
     
     //200x3＋5＋10＋10＋5＝630
     if ([self.ppp isEqualToString:@"ドア"]) {
-        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 15, [UIScreen mainScreen].bounds.size.width-20
+        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(10, 10, [UIScreen mainScreen].bounds.size.width-20
                                                                        , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
         
     }else if([self.ppp isEqualToString:@"電気使用量"]){
-        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 15, [UIScreen mainScreen].bounds.size.width-20
+        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(10, 10, 300
                                                                        , 130) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle];
         
     }else if([self.ppp isEqualToString:@"マット"]){
-        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 15, [UIScreen mainScreen].bounds.size.width-20
+        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(10, 10, [UIScreen mainScreen].bounds.size.width-20
                                                                        , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
         
     }
