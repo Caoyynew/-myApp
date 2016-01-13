@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E948403D1C45EBD500E8C760 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E948403C1C45EBD400E8C760 /* CoreLocation.framework */; };
 		E949328C1C44904700A71605 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E949328B1C44904700A71605 /* Security.framework */; };
 		E949328E1C4490A100A71605 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E949328D1C4490A100A71605 /* CFNetwork.framework */; };
 		E94932CB1C44BA0400A71605 /* libMailCore-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E94932BC1C44B9EE00A71605 /* libMailCore-ios.a */; };
@@ -152,6 +153,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E948403C1C45EBD400E8C760 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E949328B1C44904700A71605 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E949328D1C4490A100A71605 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		E94932AE1C44B9ED00A71605 /* mailcore2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = mailcore2.xcodeproj; path = "../../second/mailcore2-master/build-mac/mailcore2.xcodeproj"; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E948403D1C45EBD500E8C760 /* CoreLocation.framework in Frameworks */,
 				E94932CB1C44BA0400A71605 /* libMailCore-ios.a in Frameworks */,
 				E949328E1C4490A100A71605 /* CFNetwork.framework in Frameworks */,
 				E949328C1C44904700A71605 /* Security.framework in Frameworks */,
@@ -346,6 +349,7 @@
 		E99E97101C3FBE340019D2CC = {
 			isa = PBXGroup;
 			children = (
+				E948403C1C45EBD400E8C760 /* CoreLocation.framework */,
 				E949328D1C4490A100A71605 /* CFNetwork.framework */,
 				E949328B1C44904700A71605 /* Security.framework */,
 				E99E974F1C3FC0340019D2CC /* MimamoruApp */,

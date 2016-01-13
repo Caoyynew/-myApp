@@ -44,7 +44,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [self reloadContact];
-    //[self settingEmail];
+    [self settingEmail];
 }
 
 
@@ -142,14 +142,14 @@
     MCOAddress *tAdress = [MCOAddress addressWithMailbox:tEmail];
     NSMutableArray *tArr = [[NSMutableArray alloc]init];
     [tArr addObject:tAdress];
-    [[builder header]setTo:tArr];
-    // [[builder header]setTo:to];
+   // [[builder header]setTo:tArr];
+     [[builder header]setTo:to];
 
     //メールのタイトル
     [[builder header]setSubject:@"!!「見守りアプリ」の緊急通報メールです"];
     //メールの本体
     NSString *urlStr = [NSString stringWithFormat:@"http://maps.loco.yahoo.co.jp/maps?lat=%@&%@&ei=utf-8&v=2&sc=3&datum=wgs&gov=13108.30#",latitude,longitude];
-    [builder setTextBody:[NSString stringWithFormat:@"▼メッセージ:\n \n　　%@ \n \n▼送信者の位置情報はこちらで確認できる⇨\n　%@\n\n *.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.\n◎＜見守りアプリ＞で緊急ボタンが押されてメール送信しました。\n \n＊このメールには返信しないでください。\n\n＊このメールに覚えがない場合は、お手数ですが削除してください。",mes,urlStr]];
+    [builder setTextBody:[NSString stringWithFormat:@"▼メッセージ:\n \n%@ \n \n▼送信者の位置情報はこちらで確認できる⇨\n　%@\n\n *.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.\n◎＜見守りアプリ＞で緊急ボタンが押されてメール送信しました。\n \n＊このメールには返信しないでください。\n\n＊このメールに覚えがない場合は、お手数ですが削除してください。",mes,urlStr]];
 
     //send mail
     NSData *rfc822Data=[builder data];
@@ -204,6 +204,26 @@
 
 -(void)buttonIsEmpty:(ABFillButton *)button{
     NSLog(@"button is pressedd");
+    NSMutableDictionary *myInfo;
+    NSDictionary *myDict = [[NSUserDefaults standardUserDefaults]valueForKey:@"personal"];
+    if (myDict==nil) {
+        myInfo = [[NSMutableDictionary alloc]init];
+        [LeafNotification showInController:self withText:@"個人情報を入力してください" type:LeafNotificationTypeSuccess];
+        return;
+    }else{
+        myInfo = [[NSMutableDictionary alloc]initWithDictionary:myDict];
+    }
+    NSString *name = [myInfo valueForKey:@"name"];
+    NSString * sex = [myInfo valueForKey:@"sex"];
+    NSString * birday = [myInfo valueForKey:@"birthday"];
+    NSString *adress = [myInfo valueForKey:@"adress"];
+    NSString *doctor = [myInfo valueForKey:@"doctor"];
+    NSString *kusili = [myInfo valueForKey:@"kusili"];
+    NSString *health = [myInfo valueForKey:@"health"];
+    NSString *otherthing = [myInfo valueForKey:@"other"];
+    NSString *contentFirst = [myInfo valueForKey:@"contentfirst"];
+    message = [NSString stringWithFormat:@"   氏名：%@\n   性别：%@ \n   誕生日：%@\n   現住所：%@\n   かかりつけ医：%@\n   服薬情報：%@\n   健康診断結果情報：%@\n   その他お願い事項：%@\n   緊急通報メール宛先：%@\n",name,sex,birday,adress,doctor,kusili,health,otherthing,contentFirst];
+
     [self sendEmail:message];
 }
 

@@ -107,28 +107,29 @@
     if (cell ==nil) {
         [[[NSBundle mainBundle]loadNibNamed:@"DashBoardTableViewCell" owner:nil options:nil]firstObject];
     }
-    if (indexPath.section == 0) {
-        [cell configUI:indexPath type:2 unit:xNum day:dayarray week:weekarray month:montharray];
-    }else if(indexPath.section ==1 ){
-        [cell configUI:indexPath type:2 unit:xNum day:dayarray week:weekarray month:montharray];
-    }else if(indexPath.section ==2 ){
-        [cell configUI:indexPath type:2 unit:xNum day:dayarray2 week:weekarray2 month:montharray2];
-    }else if(indexPath.section ==3 ){
-        [cell configUI:indexPath type:2 unit:xNum day:dayarray2 week:weekarray2 month:montharray2];
-    }
+    [cell configUI:indexPath type:2 unit:xNum day:dayarray week:weekarray month:montharray];
+//    if (indexPath.section == 0) {
+//        [cell configUI:indexPath type:2 unit:xNum day:dayarray week:weekarray month:montharray];
+//    }else if(indexPath.section ==1 ){
+//        [cell configUI:indexPath type:2 unit:xNum day:dayarray week:weekarray month:montharray];
+//    }else if(indexPath.section ==2 ){
+//        [cell configUI:indexPath type:2 unit:xNum day:dayarray2 week:weekarray2 month:montharray2];
+//    }else if(indexPath.section ==3 ){
+//        [cell configUI:indexPath type:2 unit:xNum day:dayarray2 week:weekarray2 month:montharray2];
+//    }
     return cell;
 }
 
-//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-//    CGRect frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 20);
-//    UILabel *label = [[UILabel alloc]initWithFrame:frame];
-//    label.font = [UIFont systemFontOfSize:18];
-//    label.backgroundColor = [[UIColor lightGrayColor]colorWithAlphaComponent:0.3];
-//    label.text = sectionArr[section];
-//    label.textColor = [UIColor colorWithRed:0.257 green:0.650 blue:0.478 alpha:1.000];
-//    label.textAlignment = NSTextAlignmentCenter;
-//    return label;
-//}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    CGRect frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 20);
+    UILabel *label = [[UILabel alloc]initWithFrame:frame];
+    label.font = [UIFont systemFontOfSize:18];
+    label.backgroundColor = [[UIColor lightGrayColor]colorWithAlphaComponent:0.3];
+    label.text = sectionArr[section];
+    label.textColor = [UIColor colorWithRed:0.257 green:0.650 blue:0.478 alpha:1.000];
+    label.textAlignment = NSTextAlignmentCenter;
+    return label;
+}
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UIStoryboard *main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];

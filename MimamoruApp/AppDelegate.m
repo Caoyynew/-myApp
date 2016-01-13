@@ -58,6 +58,7 @@
     CLLocation *currLocation = [locations lastObject];
     latitude = [NSString stringWithFormat:@"%3.6f",currLocation.coordinate.latitude];
     longitude = [NSString stringWithFormat:@"%3.6f",currLocation.coordinate.longitude];
+    
 }
 
 @end

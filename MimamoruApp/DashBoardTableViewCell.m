@@ -14,6 +14,8 @@
     int type;
     int xnum; //0:1~24時 1:1~7日 2:１〜３０日 　3:１〜１２月
     UUChart *chartview;
+    UUChart *chartview2;
+    UUChart *chartview3;
     NSArray *dayarr;
     NSArray *weekarr;
     NSArray *montharr;
@@ -63,28 +65,34 @@
         dayarr = day;
         weekarr = week;
         montharr = month;
+    chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(10, 10, [UIScreen mainScreen].bounds.size.width-25,140) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle];
+    chartview2 = [[UUChart alloc]initwithUUChartDataFrame:CGRectMake(10, 330, [UIScreen mainScreen].bounds.size.width-25,140) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle];
+    chartview3 = [[UUChart alloc]initwithUUChartDataFrame:CGRectMake(10, 550, [UIScreen mainScreen].bounds.size.width-25,140) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle];
     
     
-    if (indexPath.section == 0) {
-        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(10, 10, [UIScreen mainScreen].bounds.size.width-25
-                                                                           , 140) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle];
-    }else if (indexPath.section == 1){
-        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(10, 10, [UIScreen mainScreen].bounds.size.width-25
-                                                                   , 140) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle];
-    }else if (indexPath.section == 2){
-        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(10,10, [UIScreen mainScreen].bounds.size.width-25
-                                                                       , 140) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
-    }else if (indexPath.section == 3){
-        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(10, 10, [UIScreen mainScreen].bounds.size.width-25
-                                                                       , 140) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
-    }
+//    if (indexPath.section == 0) {
+//        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(10, 10, [UIScreen mainScreen].bounds.size.width-25
+//                                                                           , 140) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle];
+//    }else if (indexPath.section == 1){
+//        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(10, 10, [UIScreen mainScreen].bounds.size.width-25
+//                                                                   , 140) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle];
+//    }else if (indexPath.section == 2){
+//        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(10,10, [UIScreen mainScreen].bounds.size.width-25
+//                                                                       , 140) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
+//    }else if (indexPath.section == 3){
+//        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(10, 10, [UIScreen mainScreen].bounds.size.width-25
+//                                                                       , 140) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
+//    }
     
 //    self.scrollview = [[UIScrollView alloc]initWithFrame:self.bounds];
 //    [chartview showInView:self.scrollview];
 //    self.scrollview.canCancelContentTouches = YES;
 //    self.scrollview.delegate = self;
 //    [self addSubview:self.scrollview];
-    [chartview showInView:self];
+    
+    [chartview showInView:self.scrollview];
+    [chartview2 showInView:self.scrollview];
+    [chartview3 showInView:self.scrollview];
 }
 
 
