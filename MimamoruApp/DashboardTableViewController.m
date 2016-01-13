@@ -8,7 +8,7 @@
 
 #import "DashboardTableViewController.h"
 #import "DashBoardTableViewCell.h"
-#import "img2TableViewController.h"
+#import "DetailTableViewController.h"
 @interface DashboardTableViewController (){
     int xNum;//0:1~24時 1:1~7日 2:１〜３０日 　3:１〜１２月
     NSArray *dayarray;
@@ -188,8 +188,8 @@
     CGPoint point = [sender locationInView:self.tableView];
     NSIndexPath * indexPath = [self.tableView indexPathForRowAtPoint:point];
     
-        //这里获得了indexpath.row
     machNameself = sectionArr[indexPath.section];
+   
     [self performSegueWithIdentifier:@"img2Push" sender:self];
 
     
@@ -201,7 +201,6 @@
     UILabel *label = [[UILabel alloc]initWithFrame:frame];
     label.font = [UIFont systemFontOfSize:18];
     label.backgroundColor = [[UIColor lightGrayColor]colorWithAlphaComponent:0.3];
-    //    label.text = section ?@"おばあちゃん - ベッド":@"おじいちゃん - 電気使用量";
     label.text = sectionArr[section];
     label.textColor = [UIColor colorWithRed:0.257 green:0.650 blue:0.478 alpha:1.000];
     label.textAlignment = NSTextAlignmentCenter;
@@ -231,9 +230,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqualToString:@"img2Push"])
     {
-        img2TableViewController *editimg2TableView = segue.destinationViewController;
-        editimg2TableView.tempname = machNameself;
-        editimg2TableView.username = _namee;
+        DetailTableViewController *detail = segue.destinationViewController;
+        detail.titlename = machNameself;
     }
 }
 

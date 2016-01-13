@@ -58,9 +58,9 @@
     if (!montharr) {
         montharr = [[NSArray alloc]init];
     }
-//    if (!yeararr) {
-//        yeararr = [[NSArray alloc]init];
-//    }
+    //    if (!yeararr) {
+    //        yeararr = [[NSArray alloc]init];
+    //    }
     if (!dayarr2) {
         dayarr2 = [[NSArray alloc]init];
     }
@@ -70,9 +70,9 @@
     if (!montharr2) {
         montharr2 = [[NSArray alloc]init];
     }
-//    if (!yeararr2) {
-//        yeararr2 = [[NSArray alloc]init];
-//    }
+    //    if (!yeararr2) {
+    //        yeararr2 = [[NSArray alloc]init];
+    //    }
     
     if (chartview) {
         [chartview removeFromSuperview];
@@ -81,76 +81,55 @@
     path = indexPath;
     type = styletype;
     xnum = segmentunitnum;
-//    if (indexPath.section == 0) {
-        dayarr = day;
-        weekarr = week;
-        montharr = month;
-//        yeararr =year;
-//    }else if(indexPath.section ==1){
-//        dayarr2 = day;
-//        weekarr2 = week;
-//        montharr2 = month;
-//        yeararr2 =year;
-//    }
+    //    if (indexPath.section == 0) {
+    dayarr = day;
+    weekarr = week;
+    montharr = month;
+    //        yeararr =year;
+    //    }else if(indexPath.section ==1){
+    //        dayarr2 = day;
+    //        weekarr2 = week;
+    //        montharr2 = month;
+    //        yeararr2 =year;
+    //    }
     
     //200x3＋5＋10＋10＋5＝630
     if ([self.hhh isEqualToString:@"ドア"]) {
-    chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 15, [UIScreen mainScreen].bounds.size.width-20
-                                                                   , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
-    
-    chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+10, 15, [UIScreen mainScreen].bounds.size.width-20
-                                                                   , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
-    
-    chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width-10)*2+35, 15, [UIScreen mainScreen].bounds.size.width-20
-                                                                    , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
+        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 15, [UIScreen mainScreen].bounds.size.width-20
+                                                                       , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
+        
+        chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+5, 15, [UIScreen mainScreen].bounds.size.width-20
+                                                                        , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
+        
+        chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width)*2+5, 15, [UIScreen mainScreen].bounds.size.width-20
+                                                                        , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
     }else if([self.hhh isEqualToString:@"電気使用量"]){
         chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 15, [UIScreen mainScreen].bounds.size.width-20
                                                                        , 130) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle];
         
-        chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+10, 15, [UIScreen mainScreen].bounds.size.width-20
+        chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+5, 15, [UIScreen mainScreen].bounds.size.width-20
                                                                         , 130) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle];
         
-        chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width-10)*2+35, 15, [UIScreen mainScreen].bounds.size.width-20
+        chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width)*2+5, 15, [UIScreen mainScreen].bounds.size.width-20
                                                                         , 130) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle];
     }else if([self.hhh isEqualToString:@"マット"]){
         chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 15, [UIScreen mainScreen].bounds.size.width-20
                                                                        , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
         
-        chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+10, 15, [UIScreen mainScreen].bounds.size.width-20
+        chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+5, 15, [UIScreen mainScreen].bounds.size.width-20
                                                                         , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
         
-        chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width-10)*2+35, 15, [UIScreen mainScreen].bounds.size.width-20
+        chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width)*2+5, 15, [UIScreen mainScreen].bounds.size.width-20
                                                                         , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
     }
-//    if ([self.hhh isEqualToString:@"ドア"]) {
-//        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 15, [UIScreen mainScreen].bounds.size.width-20
-//                                                                       , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
-//        
-//        chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+10, 15, [UIScreen mainScreen].bounds.size.width-20
-//                                                                        , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
-//        
-//        chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width-10)*2+35, 15, [UIScreen mainScreen].bounds.size.width-20
-//                                                                        , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
-//    }else if([self.hhh isEqualToString:@"電気使用量"]){
-//        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 15, [UIScreen mainScreen].bounds.size.width-20
-//                                                                       , 130) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle];
-//        
-//        chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+10, 15, [UIScreen mainScreen].bounds.size.width-20
-//                                                                        , 130) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle];
-//        
-//        chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width-10)*2+35, 15, [UIScreen mainScreen].bounds.size.width-20
-//                                                                        , 130) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle];
-//    }
-//    UILabel*dfd = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 60, 30)];
-//    dfd.backgroundColor = [UIColor blackColor];
-    //[chartview3 addSubview:dfd];
+
     [chartview showInView:_scoll];
     [chartview2 showInView:_scoll];
     [chartview3 showInView:_scoll];
-
+    
     [_scoll setShowsHorizontalScrollIndicator:NO];
-    _scoll.contentSize = CGSizeMake(([UIScreen mainScreen].bounds.size.width-20)*3.25, 150);
-    _scoll.contentOffset =CGPointMake(([UIScreen mainScreen].bounds.size.width-20)*2.17, 0) ;
+    _scoll.contentSize = CGSizeMake(([UIScreen mainScreen].bounds.size.width)*3, 150);
+    _scoll.contentOffset =CGPointMake(([UIScreen mainScreen].bounds.size.width)*2, 0) ;
     _scoll.pagingEnabled =YES;
     
     [self.contentView addSubview:_scoll];
@@ -216,69 +195,69 @@
 }
 
 - (NSArray *)UUChart_xLableArray:(UUChart *)chart{
-//    if (path.section ==0) {
-        switch (xnum) {
-            case 0:
-                return [self getXTitles:24];
-            case 1:
-                return [self getXTitles:7];
-            case 2:
-                return [self getXTitles:30];
-
-            default:
-                break;
-        }
-//    }else{
-//        switch (xnum) {
-//            case 0:
-//                return [self getXTitles:24];
-//            case 1:
-//                return [self getXTitles:7];
-//            case 2:
-//                return [self getXTitles:30];
-//            case 3:
-//                return [self getXTitles:12];
-//            default:
-//                break;
-//        }
-//    }
+    //    if (path.section ==0) {
+    switch (xnum) {
+        case 0:
+            return [self getXTitles:24];
+        case 1:
+            return [self getXTitles:7];
+        case 2:
+            return [self getXTitles:30];
+            
+        default:
+            break;
+    }
+    //    }else{
+    //        switch (xnum) {
+    //            case 0:
+    //                return [self getXTitles:24];
+    //            case 1:
+    //                return [self getXTitles:7];
+    //            case 2:
+    //                return [self getXTitles:30];
+    //            case 3:
+    //                return [self getXTitles:12];
+    //            default:
+    //                break;
+    //        }
+    //    }
     return [self getXTitles:12];
 }
 
 
 - (NSArray *)UUChart_yValueArray:(UUChart *)chart{
-//    if (path.section ==0) {
-        switch (xnum) {
-            case 0:
-                return @[dayarr];
-              
-            case 1:
-                return @[weekarr];
-              
-            case 2:
-                return @[montharr];
-             
-            default:
-                break;
-        }
-//    }else if (path.section ==1){
-//        switch (xnum) {
-//            case 0:
-//                return @[dayarr2];
-//                
-//            case 1:
-//                return @[weekarr2];
-//                
-//            case 2:
-//                return @[montharr2];
-//                
-//            case 3:
-//                return @[yeararr2];
-//                
-//            default:
-//                break;
-//        }
-//    }
+    //    if (path.section ==0) {
+    switch (xnum) {
+        case 0:
+            return @[dayarr];
+            
+        case 1:
+            return @[weekarr];
+            
+        case 2:
+            return @[montharr];
+            
+        default:
+            break;
+    }
+    //    }else if (path.section ==1){
+    //        switch (xnum) {
+    //            case 0:
+    //                return @[dayarr2];
+    //
+    //            case 1:
+    //                return @[weekarr2];
+    //
+    //            case 2:
+    //                return @[montharr2];
+    //
+    //            case 3:
+    //                return @[yeararr2];
+    //                
+    //            default:
+    //                break;
+    //        }
+    //    }
     return @[dayarr];
 }
 
