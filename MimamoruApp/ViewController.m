@@ -30,7 +30,7 @@
     NSString *type= [[NSUserDefaults standardUserDefaults]valueForKey:@"type"];
     if ([type isEqualToString:@"logout"]) {
         _passWord.text = @"";
-        //return;
+        
     }else{
         [self performSegueWithIdentifier:@"gotomain" sender:self];
     }

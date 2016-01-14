@@ -19,7 +19,7 @@
         [self setLineBreakMode:NSLineBreakByWordWrapping];
         [self setMinimumScaleFactor:5.0f];
         [self setNumberOfLines:1];
-        [self setFont:[UIFont boldSystemFontOfSize:9.0f]];
+        [self setFont:[UIFont boldSystemFontOfSize:8.0f]];//显示横纵坐标上数字的大小
         [self setTextColor: UUDeepGrey];
         self.backgroundColor = [UIColor clearColor];
         [self setTextAlignment:NSTextAlignmentCenter];

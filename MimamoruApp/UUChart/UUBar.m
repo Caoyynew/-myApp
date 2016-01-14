@@ -22,8 +22,9 @@
 		_chartLine.lineWidth   = self.frame.size.width;
 		_chartLine.strokeEnd   = 0.0;
 		self.clipsToBounds = YES;
+        
 		[self.layer addSublayer:_chartLine];
-		self.layer.cornerRadius = 2.0;
+		
     }
     return self;
 }

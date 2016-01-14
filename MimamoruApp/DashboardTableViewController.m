@@ -27,7 +27,10 @@
     
     NSString*machNameself;
     
+    
+    NSString *dataname;
 }
+
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 
 @end
@@ -36,11 +39,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //_title2.text = _tempname;
+    NSString * login = @"login";
+    [[NSUserDefaults standardUserDefaults]setObject:login forKey:@"type"];
+    
+    
+    CGRect farme = self.segmentControl.frame;
+    farme.size.height = 40;
+    self.segmentControl.frame = farme;
     [self.tableView registerNib:[UINib nibWithNibName:@"DashBoardTableViewCell" bundle:nil] forCellReuseIdentifier:@"dashboardCell"];
     xNum = 0;
     //Get test data from plist files
     [_segmentControl addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
+    
+    NSDate *pickerDate = [NSDate date];
+    NSDateFormatter *pickerFormatter = [[NSDateFormatter alloc] init];
+    [pickerFormatter setDateFormat:@"yyyy年MM月dd日"];
+    dataname = [pickerFormatter stringFromDate:pickerDate];
+    
     [self getPlistWithName:@"testdata1"];
     [self getPlistWithName:@"testdata2"];
     
@@ -81,40 +96,12 @@
     [sectionArr addObject:t2];
     [sectionArr addObject:t3];
     
-//    NSMutableDictionary*machineuse3=[[NSMutableDictionary alloc]initWithDictionary:[[NSUserDefaults standardUserDefaults]objectForKey:@"machineuse"]];
-//    NSArray* allkey2 = [machineuse3 allKeys];
-//
-//    for (int i = 0; i<allkey2.count; i++) {
-//        NSArray *array = [allkey2[i] componentsSeparatedByString:@":"];
-//        if([array[1]isEqualToString:_namee]){
-//        NSDictionary *tempDict = [machineuse3 objectForKey:allkey2[i]];
-//        
-//        [sectionArr addObject:[tempDict valueForKey:@"machName"]];
-//        }
-//    }
-    
-    
-    
-    //NSDictionary *tempDict = [machineuse3 objectForKey:_namee];
-    
-    
-//    [sectionArr addObject:@"2121"];
-//    [sectionArr addObject:@"44"];
-//    [sectionArr addObject:@"456"];
-    //    [sectionArr addObject:t2];
-    //    NSArray *temp = [[NSUserDefaults standardUserDefaults]objectForKey:@"group8"];
-    //    if (temp) {
-    //        for (NSDictionary *tmp in temp) {
-    //            [sectionArr addObject:[tmp valueForKey:@"groupname"]];
-    //        }
-    //    }
 }
 
 -(void)getServiceItem{
     NSDictionary *tmp = [[NSUserDefaults standardUserDefaults]objectForKey:@"anybody"];
     if (tmp) {
         itemDict = [[NSMutableDictionary alloc]initWithDictionary:tmp];
-        //NSLog(@"itemdict-> %@",itemDict);
     }
     [self.tableView reloadData];
 }
@@ -127,13 +114,10 @@
         dayarray =[[NSArray alloc]initWithArray:[dict objectForKey:@"day"]];
         weekarray = [[NSArray alloc]initWithArray:[dict objectForKey:@"week"]];
         montharray = [[NSArray alloc]initWithArray:[dict objectForKey:@"month"]];
-        //yeararray = [[NSArray alloc]initWithArray:[dict objectForKey:@"year"]];
     }else if([name isEqualToString:@"testdata2"]){
         dayarray2=[[NSArray alloc]initWithArray:[dict objectForKey:@"day"]];
         weekarray2 = [[NSArray alloc]initWithArray:[dict objectForKey:@"week"]];
         montharray2 = [[NSArray alloc]initWithArray:[dict objectForKey:@"month"]];
-        //yeararray2 = [[NSArray alloc]initWithArray:[dict objectForKey:@"year"]];
-        //NSLog(@"dayarr->%@",dayarray2);
     }
     
 }
@@ -146,16 +130,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    //    NSDictionary *tmp = [itemDict objectForKey:sectionArr[section]];
-    //    return tmp.allKeys.count;
     return 1;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    //if (tableView == _img2tableciew) {
-    
-    
+ 
     cell = [tableView dequeueReusableCellWithIdentifier:@"dashboardCell"];
     if (cell ==nil) {
         [[[NSBundle mainBundle]loadNibNamed:@"DashBoardTableViewCell" owner:nil options:nil]firstObject];
@@ -174,7 +154,7 @@
     [cell.scoll addGestureRecognizer:singleTap1];
     
     if (xNum == 0) {
-        cell.fff.text = @"今日";
+        cell.fff.text = dataname;
     }else if(xNum == 1){
         cell.fff.text = @"今週";
     }else if(xNum == 2){

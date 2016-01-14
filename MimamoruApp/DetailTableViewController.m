@@ -26,9 +26,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     contactsArr = [[NSMutableArray alloc]init];
     
     xikiArr = [[NSMutableArray alloc]init];
+    
     [self.tableView registerNib:[UINib nibWithNibName:@"DetailTableViewCell" bundle:nil] forCellReuseIdentifier:@"detailcell"];
     [self getPlistWithName:@"testdata1"];
     [self getPlistWithName:@"testdata2"];

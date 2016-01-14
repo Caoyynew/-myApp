@@ -12,7 +12,7 @@
 
 @interface UUBarChart ()
 {
-    UIScrollView *myScrollView;
+    UIView *myScrollView;
 }
 @end
 
@@ -26,7 +26,10 @@
     if (self) {
         // Initialization code
         self.clipsToBounds = YES;
+        
         myScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(UUYLabelwidth, 0, frame.size.width-UUYLabelwidth, frame.size.height)];
+//        myScrollView.layer.shouldRasterize = YES;
+//        myScrollView.layer.rasterizationScale = [UIScreen mainScreen].scale;
         [self addSubview:myScrollView];
     }
     return self;
@@ -53,9 +56,10 @@
             }
         }
     }
-    if (max <= 1) {
-        max = 1;
-    }
+    
+    
+    
+    
     
     if (self.showRange) {
         _yValueMin = (int)min;
@@ -63,20 +67,20 @@
         _yValueMin = 0;
     }
     _yValueMax = (int)max;
-    
-    if (_chooseRange.max!=_chooseRange.min) {
-        _yValueMax = _chooseRange.max;
-        _yValueMin = _chooseRange.min;
-    }
-
-    float level = (_yValueMax-_yValueMin) /1.0;
-    //float level = (_yValueMax-_yValueMin);
     CGFloat chartCavanHeight = self.frame.size.height - UULabelHeight*3;
-    CGFloat levelHeight = chartCavanHeight /1.0;
+    CGFloat level;
+    CGFloat levelHeight;
+    if (max<10) {
+        level = 1;
+        levelHeight = chartCavanHeight/max;
+    }else{
+        level = _yValueMax/4.0;
+        levelHeight = chartCavanHeight/4.0;
+    }
     
-    for (int i=0; i<3; i++) {
-        UUChartLabel * label = [[UUChartLabel alloc] initWithFrame:CGRectMake(0.0,chartCavanHeight-i*levelHeight+5, UUYLabelwidth, UULabelHeight)];
-		label.text = [NSString stringWithFormat:@"%.1f",level * i+_yValueMin];
+    for (int i=0; i<=max; i++) {
+        UUChartLabel * label = [[UUChartLabel alloc] initWithFrame:CGRectMake(0.0,chartCavanHeight-i*levelHeight+5, UUYLabelwidth, UULabelHeight+10)];
+		label.text = [NSString stringWithFormat:@"%.f",level * i+_yValueMin];
 		[self addSubview:label];
     }
 	
@@ -102,10 +106,10 @@
         [_chartLabelsForX addObject:label];
     }
     
-    float max = (([xLabels count]-1)*_xLabelWidth + chartMargin)+_xLabelWidth;
-    if (myScrollView.frame.size.width < max-10) {
-        myScrollView.contentSize = CGSizeMake(max, self.frame.size.height);
-    }
+  //  float max = (([xLabels count]-1)*_xLabelWidth + chartMargin)+_xLabelWidth;
+//    if (myScrollView.frame.size.width < max-10) {
+//        myScrollView.contentSize = CGSizeMake(max, self.frame.size.height);
+//    }
 }
 
 -(void)setColors:(NSArray *)colors
@@ -131,12 +135,11 @@
             NSString *valueString = childAry[j];
             float value = [valueString floatValue];
             float grade = ((float)value-_yValueMin) / ((float)_yValueMax-_yValueMin);
-            
-            UUBar * bar = [[UUBar alloc] initWithFrame:CGRectMake((j+(_yValues.count==1?0.1:0.05))*_xLabelWidth +i*_xLabelWidth * 0.47, UULabelHeight, _xLabelWidth * (_yValues.count==1?0.8:0.45), chartCavanHeight)];
+            //显示柱状的位置
+            UUBar * bar = [[UUBar alloc] initWithFrame:CGRectMake((j+(_yValues.count==1?0.1:0.05))*_xLabelWidth +i*_xLabelWidth * 0.46, UULabelHeight, _xLabelWidth * (_yValues.count==1?0.8:0.45), chartCavanHeight)];
             bar.barColor = [_colors objectAtIndex:i];
             bar.grade = grade;
             [myScrollView addSubview:bar];
-            
         }
     }
 }

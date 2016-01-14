@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E943A6B81C474BA700014389 /* SenserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E943A6B61C474BA700014389 /* SenserTableViewCell.m */; };
+		E943A6B91C474BA700014389 /* SenserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E943A6B71C474BA700014389 /* SenserTableViewCell.xib */; };
+		E943A6C31C474BD500014389 /* SenserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E943A6C21C474BD500014389 /* SenserTableViewController.m */; };
 		E948403D1C45EBD500E8C760 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E948403C1C45EBD400E8C760 /* CoreLocation.framework */; };
 		E948405C1C45EFCD00E8C760 /* DashBoardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E948404A1C45EFCD00E8C760 /* DashBoardTableViewCell.m */; };
 		E948405D1C45EFCD00E8C760 /* DashBoardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E948404B1C45EFCD00E8C760 /* DashBoardTableViewCell.xib */; };
@@ -154,6 +157,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E943A6B51C474BA700014389 /* SenserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SenserTableViewCell.h; sourceTree = "<group>"; };
+		E943A6B61C474BA700014389 /* SenserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SenserTableViewCell.m; sourceTree = "<group>"; };
+		E943A6B71C474BA700014389 /* SenserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SenserTableViewCell.xib; sourceTree = "<group>"; };
+		E943A6C11C474BD500014389 /* SenserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SenserTableViewController.h; sourceTree = "<group>"; };
+		E943A6C21C474BD500014389 /* SenserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SenserTableViewController.m; sourceTree = "<group>"; };
 		E948403C1C45EBD400E8C760 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E94840491C45EFCD00E8C760 /* DashBoardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashBoardTableViewCell.h; sourceTree = "<group>"; };
 		E948404A1C45EFCD00E8C760 /* DashBoardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashBoardTableViewCell.m; sourceTree = "<group>"; };
@@ -353,6 +361,11 @@
 				E94840491C45EFCD00E8C760 /* DashBoardTableViewCell.h */,
 				E948404A1C45EFCD00E8C760 /* DashBoardTableViewCell.m */,
 				E948404B1C45EFCD00E8C760 /* DashBoardTableViewCell.xib */,
+				E943A6C11C474BD500014389 /* SenserTableViewController.h */,
+				E943A6C21C474BD500014389 /* SenserTableViewController.m */,
+				E943A6B51C474BA700014389 /* SenserTableViewCell.h */,
+				E943A6B61C474BA700014389 /* SenserTableViewCell.m */,
+				E943A6B71C474BA700014389 /* SenserTableViewCell.xib */,
 				E94840A21C46101700E8C760 /* DetailTableViewController.h */,
 				E94840A31C46101700E8C760 /* DetailTableViewController.m */,
 				E94840A51C46187300E8C760 /* DetailTableViewCell.h */,
@@ -635,6 +648,7 @@
 				E94840841C45FF1B00E8C760 /* graph-0@2x.png in Resources */,
 				E94840831C45FF1B00E8C760 /* graph-0.png in Resources */,
 				E99E97CB1C3FC0350019D2CC /* testdata2.plist in Resources */,
+				E943A6B91C474BA700014389 /* SenserTableViewCell.xib in Resources */,
 				E948408A1C45FF1B00E8C760 /* face@2x.png in Resources */,
 				E94840881C45FF1B00E8C760 /* face-0@2x.png in Resources */,
 				E94840861C45FF1B00E8C760 /* graph@2x.png in Resources */,
@@ -694,6 +708,7 @@
 				E94840A81C46187300E8C760 /* DetailTableViewCell.m in Sources */,
 				E99E97C81C3FC0350019D2CC /* TabBarViewController.m in Sources */,
 				E99E97CF1C3FC0350019D2CC /* UUChartLabel.m in Sources */,
+				E943A6C31C474BD500014389 /* SenserTableViewController.m in Sources */,
 				E99E97D11C3FC0350019D2CC /* UULineChart.m in Sources */,
 				E99E97C01C3FC0350019D2CC /* LeafNotification.m in Sources */,
 				E948405C1C45EFCD00E8C760 /* DashBoardTableViewCell.m in Sources */,
@@ -703,6 +718,7 @@
 				E99E97CC1C3FC0350019D2CC /* UUBar.m in Sources */,
 				E99E97A51C3FC0350019D2CC /* ContentTableViewController.m in Sources */,
 				E99E97CD1C3FC0350019D2CC /* UUBarChart.m in Sources */,
+				E943A6B81C474BA700014389 /* SenserTableViewCell.m in Sources */,
 				E94840A41C46101700E8C760 /* DetailTableViewController.m in Sources */,
 				E99E97CE1C3FC0350019D2CC /* UUChart.m in Sources */,
 				E94840691C45F15F00E8C760 /* DashboardTableViewController.m in Sources */,
