@@ -25,6 +25,13 @@
 
 @implementation ContentTableViewController
 @synthesize myInfo;
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSDictionary *myDict = [[NSUserDefaults standardUserDefaults]valueForKey:@"personal"];
@@ -32,21 +39,22 @@
         myInfo = [[NSMutableDictionary alloc]init];
     }else{
         myInfo = [[NSMutableDictionary alloc]initWithDictionary:myDict];
+        _name.text = [myInfo valueForKey:@"name"];
+        _sex.text = [myInfo valueForKey:@"sex"];
+        _birday.text = [myInfo valueForKey:@"birthday"];
+        _adress.text = [myInfo valueForKey:@"adress"];
+        _doctor.text = [myInfo valueForKey:@"doctor"];
+        _kusili.text = [myInfo valueForKey:@"kusili"];
+        _health.text = [myInfo valueForKey:@"health"];
+        _otherthing.text = [myInfo valueForKey:@"other"];
+        _contentFirst.text = [myInfo valueForKey:@"contentfirst"];
     }
-    _name.text = [myInfo valueForKey:@"name"];
-    _sex.text = [myInfo valueForKey:@"sex"];
-    _birday.text = [myInfo valueForKey:@"birthday"];
-    _adress.text = [myInfo valueForKey:@"adress"];
-    _doctor.text = [myInfo valueForKey:@"doctor"];
-    _kusili.text = [myInfo valueForKey:@"kusili"];
-    _health.text = [myInfo valueForKey:@"health"];
-    _otherthing.text = [myInfo valueForKey:@"other"];
-    _contentFirst.text = [myInfo valueForKey:@"contentfirst"];
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
 }
 - (IBAction)saveContent:(id)sender {
     [myInfo setValue:_name.text forKey:@"name"];
