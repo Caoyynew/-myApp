@@ -20,7 +20,7 @@
         [self setMinimumScaleFactor:5.0f];
         [self setNumberOfLines:1];
         [self setFont:[UIFont boldSystemFontOfSize:8.0f]];//显示横纵坐标上数字的大小
-        [self setTextColor: UUDeepGrey];
+        [self setTextColor: UUDarkBlue];
         self.backgroundColor = [UIColor clearColor];
         [self setTextAlignment:NSTextAlignmentCenter];
         self.userInteractionEnabled = YES;

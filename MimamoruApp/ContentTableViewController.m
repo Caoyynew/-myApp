@@ -17,7 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *kusili;
 @property (weak, nonatomic) IBOutlet UITextView *health;
 @property (weak, nonatomic) IBOutlet UITextView *otherthing;
-@property (weak, nonatomic) IBOutlet UITextView *contentFirst;
+
 
 
 @property (strong, nonatomic) NSMutableDictionary *myInfo;
@@ -47,7 +47,7 @@
         _kusili.text = [myInfo valueForKey:@"kusili"];
         _health.text = [myInfo valueForKey:@"health"];
         _otherthing.text = [myInfo valueForKey:@"other"];
-        _contentFirst.text = [myInfo valueForKey:@"contentfirst"];
+        
     }
     
 }
@@ -65,7 +65,7 @@
     [myInfo setValue:_kusili.text forKey:@"kusili"];
     [myInfo setValue:_health.text forKey:@"health"];
     [myInfo setValue:_otherthing.text forKey:@"other"];
-    [myInfo setValue:_contentFirst.text forKey:@"contentfirst"];
+    
     NSLog(@"%@",myInfo);
     [[NSUserDefaults standardUserDefaults]setValue:myInfo forKey:@"personal"];
     [self.navigationController popViewControllerAnimated:YES];

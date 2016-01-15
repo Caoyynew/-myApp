@@ -19,7 +19,7 @@
 
 -(UIImage *)imageFromColor:(UIColor*)color
 {
-    CGRect rect = CGRectMake(0, 0, 1, 1);
+    CGRect rect = CGRectMake(0, 0, 100, 100);
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(context,[color CGColor]);

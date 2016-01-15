@@ -26,8 +26,8 @@
     if (self) {
         // Initialization code
         self.clipsToBounds = YES;
-        
         myScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(UUYLabelwidth, 0, frame.size.width-UUYLabelwidth, frame.size.height)];
+  //      [myScrollView setBackgroundColor:UUGreen];
 //        myScrollView.layer.shouldRasterize = YES;
 //        myScrollView.layer.rasterizationScale = [UIScreen mainScreen].scale;
         [self addSubview:myScrollView];
@@ -56,11 +56,7 @@
             }
         }
     }
-    
-    
-    
-    
-    
+  
     if (self.showRange) {
         _yValueMin = (int)min;
     }else{
@@ -81,6 +77,7 @@
     for (int i=0; i<=max; i++) {
         UUChartLabel * label = [[UUChartLabel alloc] initWithFrame:CGRectMake(0.0,chartCavanHeight-i*levelHeight+5, UUYLabelwidth, UULabelHeight+10)];
 		label.text = [NSString stringWithFormat:@"%.f",level * i+_yValueMin];
+    //    label.backgroundColor = UUGreen;
 		[self addSubview:label];
     }
 	
@@ -106,10 +103,7 @@
         [_chartLabelsForX addObject:label];
     }
     
-  //  float max = (([xLabels count]-1)*_xLabelWidth + chartMargin)+_xLabelWidth;
-//    if (myScrollView.frame.size.width < max-10) {
-//        myScrollView.contentSize = CGSizeMake(max, self.frame.size.height);
-//    }
+
 }
 
 -(void)setColors:(NSArray *)colors
@@ -137,7 +131,9 @@
             float grade = ((float)value-_yValueMin) / ((float)_yValueMax-_yValueMin);
             //显示柱状的位置
             UUBar * bar = [[UUBar alloc] initWithFrame:CGRectMake((j+(_yValues.count==1?0.1:0.05))*_xLabelWidth +i*_xLabelWidth * 0.46, UULabelHeight, _xLabelWidth * (_yValues.count==1?0.8:0.45), chartCavanHeight)];
-            bar.barColor = [_colors objectAtIndex:i];
+            //bar.barColor = [_colors objectAtIndex:i];
+            //!!!!!!!!
+            bar.barColor = UUGreen;
             bar.grade = grade;
             [myScrollView addSubview:bar];
         }

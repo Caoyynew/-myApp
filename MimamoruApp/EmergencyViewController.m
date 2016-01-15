@@ -23,6 +23,8 @@
     NSString *message;
     NSString *latitude;
     NSString *longitude;
+    
+    int flag;
 }
 @property (weak, nonatomic) IBOutlet ABFillButton *button;
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
@@ -39,6 +41,11 @@
     [_button setEmptyButtonPressing:YES];
     _tableview.delegate = self;
     _tableview.dataSource = self;
+    
+    
+    UIView *clear = [[UIView alloc]init];
+    clear.backgroundColor = [UIColor clearColor];
+    [self.tableview setTableFooterView:clear];
     
 }
 
@@ -138,12 +145,12 @@
         [to addObject:newAddress];
     }
     //测试数据
-    NSString *tEmail = @"m18506823136@163.com";
-    MCOAddress *tAdress = [MCOAddress addressWithMailbox:tEmail];
-    NSMutableArray *tArr = [[NSMutableArray alloc]init];
-    [tArr addObject:tAdress];
-   // [[builder header]setTo:tArr];
-     [[builder header]setTo:to];
+//    NSString *tEmail = @"m18506823136@163.com";
+//    MCOAddress *tAdress = [MCOAddress addressWithMailbox:tEmail];
+//    NSMutableArray *tArr = [[NSMutableArray alloc]init];
+//    [tArr addObject:tAdress];
+//    [[builder header]setTo:tArr];
+    [[builder header]setTo:to];
 
     //メールのタイトル
     [[builder header]setSubject:@"!!「見守りアプリ」の緊急通報メールです"];
@@ -159,18 +166,33 @@
             NSLog(@"Error sending email:%@",error);
             dispatch_async(dispatch_get_main_queue(), ^{
                 [LeafNotification showInController:self withText:@"メール送信が失敗しました！"];
+                flag = 0;
             });
         }else{
             NSLog(@"Successfully send email!");
+//            static dispatch_once_t onceToken;
+//            dispatch_once(&onceToken, ^{
+//                
+//            });
             dispatch_async(dispatch_get_main_queue(), ^{
-               // [LeafNotification showInController:self withText:@"メール送信完了！！" type:LeafNotificationTypeSuccess];
-                [self performSegueWithIdentifier:@"gotodetail" sender:self];
+                if (flag ==1) {
+                    [self pushview];
+                }
             });
-
+            
+            
         }
     }];
 
 }
+//换面跳转的方法
+-(void)pushview{
+    flag = 0;
+    [self performSegueWithIdentifier:@"gotodetail" sender:self];
+    
+}
+
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
@@ -204,6 +226,7 @@
 
 -(void)buttonIsEmpty:(ABFillButton *)button{
     NSLog(@"button is pressedd");
+    flag =1;
     NSMutableDictionary *myInfo;
     NSDictionary *myDict = [[NSUserDefaults standardUserDefaults]valueForKey:@"personal"];
     if (myDict==nil) {

@@ -9,7 +9,7 @@
 #import "ABFillButton.h"
 
 #define ANIMATION_BUTTON_DURATION 0.2
-#define FILL_TIMER_SPEED 2 /*seconds*/
+#define FILL_TIMER_SPEED 1 /*seconds*/
 #define FILL_PERCENT 0.04 /*frame rate*/
 
 @interface ABFillButton ()

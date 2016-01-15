@@ -42,10 +42,27 @@
     NSString * login = @"login";
     [[NSUserDefaults standardUserDefaults]setObject:login forKey:@"type"];
     
+//    CGRect tablefram = self.tableView.frame;
+//    tablefram = CGRectMake(80, 0, self.view.bounds.size.width, self.view.bounds.size.height-80);
+//    self.tableView.frame = tablefram;
+//    
+//    
+//    
+//    self.navigationItem.titleView = [[UIView alloc]initWithFrame:CGRectMake(0, 0,self.tableView.bounds.size.width , 80)];
+//    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, 40)];
+//    title.text = @"生活タブ";
+//    title.textAlignment = UITextAlignmentCenter;
+//    [self.navigationItem.titleView addSubview:title];
+//    
+//    
     [self.segmentControl setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:20]} forState:UIControlStateNormal];
     CGRect farme = self.segmentControl.frame;
     farme.size.height = 40;
+//    farme.size.width = self.view.bounds.size.width;
     self.segmentControl.frame = farme;
+//    [self.navigationItem.titleView addSubview:self.segmentControl];
+    
+    
     [self.tableView registerNib:[UINib nibWithNibName:@"DashBoardTableViewCell" bundle:nil] forCellReuseIdentifier:@"dashboardCell"];
     xNum = 0;
     //Get test data from plist files

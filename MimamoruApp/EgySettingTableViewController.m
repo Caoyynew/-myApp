@@ -18,6 +18,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIView *clear = [[UIView alloc]init];
+    clear.backgroundColor = [UIColor clearColor];
+    [self.tableView setTableFooterView:clear];
     if (!Arr) {
         Arr = [[NSMutableArray alloc]init];
         NSString *t1 = @"◆緊急通報情報設定";

@@ -23,10 +23,14 @@
     if (!Arr) {
         Arr = [[NSMutableArray alloc]init];
     }
+    UIView *clear = [[UIView alloc]init];
+    clear.backgroundColor = [UIColor clearColor];
+    [self.tableView setTableFooterView:clear];
     NSString *title1 = @"◆緊急通報の設定";
     NSString *title2 = @"◇ログアウト";
     [Arr addObject:title1];
     [Arr addObject:title2];
+    
     
 }
 
@@ -67,7 +71,7 @@
 
 -(void)cancellation
 {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"ロゲアワトします,よろしいですが。" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"ログアウトしてよろしいですか？" preferredStyle:UIAlertControllerStyleAlert];
     [alert addAction:[UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSString *type = @"logout";
         [[NSUserDefaults standardUserDefaults]setObject:type forKey:@"type"];

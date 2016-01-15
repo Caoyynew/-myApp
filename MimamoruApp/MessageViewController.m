@@ -9,7 +9,7 @@
 #import "MessageViewController.h"
 #import <Contacts/Contacts.h>
 #import <ContactsUI/ContactsUI.h>
-#import "LeafNotification.h"
+//#import "LeafNotification.h"
 @interface MessageViewController ()<UITableViewDataSource,UITabBarDelegate,CNContactPickerDelegate>
 {
     UITableViewCell *cell;
@@ -45,8 +45,9 @@
 }
 - (IBAction)saveAction:(id)sender {
     
-    [LeafNotification showInController:self withText:@"保存完了!" type:LeafNotificationTypeSuccess];
+    //[LeafNotification showInController:self withText:@"保存完了!" type:LeafNotificationTypeSuccess];
     [[NSUserDefaults standardUserDefaults]setObject:contentArr forKey:@"content"];
+    [self.navigationController popViewControllerAnimated:YES];
     
 }
 
@@ -79,6 +80,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIView *clear = [[UIView alloc]init];
+    clear.backgroundColor = [UIColor clearColor];
+    [self.tableview setTableFooterView:clear];
     
 }
 
