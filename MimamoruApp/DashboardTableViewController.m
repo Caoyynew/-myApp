@@ -42,7 +42,7 @@
     NSString * login = @"login";
     [[NSUserDefaults standardUserDefaults]setObject:login forKey:@"type"];
     
-    
+    [self.segmentControl setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:20]} forState:UIControlStateNormal];
     CGRect farme = self.segmentControl.frame;
     farme.size.height = 40;
     self.segmentControl.frame = farme;

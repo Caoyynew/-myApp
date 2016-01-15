@@ -163,7 +163,7 @@
         }else{
             NSLog(@"Successfully send email!");
             dispatch_async(dispatch_get_main_queue(), ^{
-                [LeafNotification showInController:self withText:@"メール送信完了！！" type:LeafNotificationTypeSuccess];
+               // [LeafNotification showInController:self withText:@"メール送信完了！！" type:LeafNotificationTypeSuccess];
                 [self performSegueWithIdentifier:@"gotodetail" sender:self];
             });
 

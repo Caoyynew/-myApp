@@ -58,7 +58,6 @@
 		E99E97AA1C3FC0350019D2CC /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99E97641C3FC0340019D2CC /* DetailViewController.m */; };
 		E99E97AB1C3FC0350019D2CC /* EgySettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99E97661C3FC0340019D2CC /* EgySettingTableViewController.m */; };
 		E99E97B11C3FC0350019D2CC /* EmergencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99E976D1C3FC0340019D2CC /* EmergencyViewController.m */; };
-		E99E97B21C3FC0350019D2CC /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E99E976E1C3FC0340019D2CC /* Info.plist */; };
 		E99E97C01C3FC0350019D2CC /* LeafNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = E99E977E1C3FC0340019D2CC /* LeafNotification.m */; };
 		E99E97C11C3FC0350019D2CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E99E977F1C3FC0340019D2CC /* main.m */; };
 		E99E97C21C3FC0350019D2CC /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99E97811C3FC0340019D2CC /* MessageViewController.m */; };
@@ -676,7 +675,6 @@
 				E94840871C45FF1B00E8C760 /* face-0.png in Resources */,
 				E94840991C45FF1B00E8C760 /* setting.png in Resources */,
 				E948408C1C45FF1B00E8C760 /* contactlist-0@2x.png in Resources */,
-				E99E97B21C3FC0350019D2CC /* Info.plist in Resources */,
 				E948409C1C45FF9F00E8C760 /* emergencybtn.png in Resources */,
 				E99E97CA1C3FC0350019D2CC /* testdata1.plist in Resources */,
 			);
