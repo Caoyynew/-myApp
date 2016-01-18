@@ -20,7 +20,6 @@
     NSArray *weekarr;
     NSArray *montharr;
     NSArray *yeararr;
-    
     UIPageControl* _page;
     
 }
@@ -31,16 +30,11 @@
 
 
 - (void)awakeFromNib {
-    //    _scoll.userInteractionEnabled = YES;
-    //_scoll.showsHorizontalScrollIndicator = NO;
-    // _scoll.layer.shouldRasterize = YES;
-    _scoll.bounces = NO; //设定是否可自由拖拽
+    
+    _scoll.bounces = YES; //设定是否可自由拖拽
     _scoll.delegate = self;
     
 }
-
-
-
 
 -(void)configUI:(NSIndexPath*)indexPath type:(int)styletype unit:(int)segmentunitnum day:(NSArray*)day week:(NSArray*)week month:(NSArray*)month{
     if (self.scoll != nil) {
@@ -103,19 +97,20 @@
     [chartview3 showInView:_scoll];
     
     [_scoll setShowsHorizontalScrollIndicator:NO];
-    _scoll.contentSize = CGSizeMake(([UIScreen mainScreen].bounds.size.width)*3, 150);
-    _scoll.contentOffset =CGPointMake(([UIScreen mainScreen].bounds.size.width)*2, 0) ;
+    //设置可滑动的宽度 3*width
+    _scoll.contentSize = CGSizeMake(([UIScreen mainScreen].bounds.size.width)*3, 0);
+    //设置显示当前区域位置 2*width
+    _scoll.contentOffset =CGPointMake([UIScreen mainScreen].bounds.size.width*2, 0);
     _scoll.pagingEnabled =YES;
     
-    //[self.contentView addSubview:_scoll];
     
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 
 {
-    
-    int currentPage = (_scoll.contentOffset.x - _scoll.frame.size.width/5) / _scoll.frame.size.width + 1;
+    //_page.currentPage = 2;
+    int currentPage = (_scoll.contentOffset.x - _scoll.frame.size.width) / _scoll.frame.size.width +1;
     
     //today
     

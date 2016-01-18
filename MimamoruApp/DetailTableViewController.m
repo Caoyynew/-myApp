@@ -17,7 +17,7 @@
 
 
     NSMutableArray * contactsArr; //联系人
-    NSMutableArray * xikiArr;    //警戒值
+   
 }
 
 @end
@@ -27,9 +27,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    UIView *clear = [[UIView alloc]init];
+    clear.backgroundColor = [UIColor clearColor];
+    [self.tableView setTableFooterView:clear];
     contactsArr = [[NSMutableArray alloc]init];
     
-    xikiArr = [[NSMutableArray alloc]init];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"DetailTableViewCell" bundle:nil] forCellReuseIdentifier:@"detailcell"];
     [self getPlistWithName:@"testdata1"];
@@ -58,19 +61,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    return 3;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    long m ;
-    if (section==0) {
-        m = 1;
-    }else if (section ==1) {
-        m = 1;
-    }else if (section ==2) {
-        m = 1;
-    }
-    return m;
+  
+    return 1;
 }
 
 
@@ -79,6 +75,7 @@
     if (indexPath.section == 0 ) {
         
         DetailTableViewCell* cell1 = [tableView dequeueReusableCellWithIdentifier:@"detailcell" forIndexPath:indexPath];
+        cell1.selectionStyle = UITableViewCellEditingStyleNone;
         [[[NSBundle mainBundle]loadNibNamed:@"DetailTableViewCell" owner:nil options:nil]firstObject];
         if ([self.titlename isEqualToString:@"電気使用量"]) {
             [cell1 configUI:indexPath type:1 day:dayarray];
@@ -89,14 +86,9 @@
     }
     if (indexPath.section ==1){
         cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellEditingStyleNone;
         cell.textLabel.text = @"山田";
         cell.detailTextLabel.text = @"mytell@163.com";
-        
-    }
-    if (indexPath.section ==2){
-        cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-        cell.textLabel.text = @"しきい値正常";
-        cell.detailTextLabel.text = @"";
     }
     
     return cell;
@@ -113,11 +105,7 @@
         label.text = [NSString stringWithFormat:@"◆今日%@",self.titlename];
     }else if (section == 1){
         label.text = @"◆通知先";
-    }else if (section ==2 ){
-        label.text = @"◆しきい値";
     }
-   
-    
     return label;
 }
 

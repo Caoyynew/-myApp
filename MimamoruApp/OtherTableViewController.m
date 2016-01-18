@@ -71,7 +71,7 @@
 
 -(void)cancellation
 {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"ログアウトしてよろしいですか？" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"ログアウトします。よろしいですか。" preferredStyle:UIAlertControllerStyleAlert];
     [alert addAction:[UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSString *type = @"logout";
         [[NSUserDefaults standardUserDefaults]setObject:type forKey:@"type"];

@@ -41,28 +41,12 @@
     [super viewDidLoad];
     NSString * login = @"login";
     [[NSUserDefaults standardUserDefaults]setObject:login forKey:@"type"];
-    
-//    CGRect tablefram = self.tableView.frame;
-//    tablefram = CGRectMake(80, 0, self.view.bounds.size.width, self.view.bounds.size.height-80);
-//    self.tableView.frame = tablefram;
-//    
-//    
-//    
-//    self.navigationItem.titleView = [[UIView alloc]initWithFrame:CGRectMake(0, 0,self.tableView.bounds.size.width , 80)];
-//    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, 40)];
-//    title.text = @"生活タブ";
-//    title.textAlignment = UITextAlignmentCenter;
-//    [self.navigationItem.titleView addSubview:title];
-//    
-//    
+
     [self.segmentControl setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:20]} forState:UIControlStateNormal];
     CGRect farme = self.segmentControl.frame;
     farme.size.height = 40;
-//    farme.size.width = self.view.bounds.size.width;
     self.segmentControl.frame = farme;
-//    [self.navigationItem.titleView addSubview:self.segmentControl];
-    
-    
+   
     [self.tableView registerNib:[UINib nibWithNibName:@"DashBoardTableViewCell" bundle:nil] forCellReuseIdentifier:@"dashboardCell"];
     xNum = 0;
     //Get test data from plist files
@@ -80,7 +64,6 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [self getTaisetsuPeople];
-    [self getServiceItem];
     
 }
 
@@ -113,14 +96,6 @@
     [sectionArr addObject:t2];
     [sectionArr addObject:t3];
     
-}
-
--(void)getServiceItem{
-    NSDictionary *tmp = [[NSUserDefaults standardUserDefaults]objectForKey:@"anybody"];
-    if (tmp) {
-        itemDict = [[NSMutableDictionary alloc]initWithDictionary:tmp];
-    }
-    [self.tableView reloadData];
 }
 
 -(void)getPlistWithName:(NSString*)name{
@@ -188,8 +163,6 @@
     machNameself = sectionArr[indexPath.section];
    
     [self performSegueWithIdentifier:@"img2Push" sender:self];
-
-    
 }
 
 
@@ -204,24 +177,15 @@
     return label;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-}
-
 -(void)segmentAction:(UISegmentedControl*)seg{
     if (seg.selectedSegmentIndex == 0){
         xNum = 0;
-        
-        [self.tableView reloadData];
     }else if(seg.selectedSegmentIndex == 1){
         xNum = 1;
-   
-        [self.tableView reloadData];
     }else if(seg.selectedSegmentIndex == 2){
         xNum = 2;
- 
-        [self.tableView reloadData];
     }
+    [self.tableView reloadData];
 
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

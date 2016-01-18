@@ -23,8 +23,8 @@
     [self.tableView setTableFooterView:clear];
     if (!Arr) {
         Arr = [[NSMutableArray alloc]init];
-        NSString *t1 = @"◆緊急通報情報設定";
-        NSString *t2 = @"◆緊急通報先設定";
+        NSString *t1 = @"◆緊急通報情報の設定";
+        NSString *t2 = @"◆緊急通報先の設定";
         [Arr addObject:t1];
         [Arr addObject:t2];
     }

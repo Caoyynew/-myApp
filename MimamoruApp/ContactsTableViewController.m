@@ -1,28 +1,44 @@
 //
-//  SenserTableViewController.m
+//  ContactsTableViewController.m
 //  MimamoruApp
 //
-//  Created by totyu3 on 16/1/14.
+//  Created by totyu3 on 16/1/18.
 //  Copyright © 2016年 totyu3. All rights reserved.
 //
 
-#import "SenserTableViewController.h"
+#import "ContactsTableViewController.h"
 
-@interface SenserTableViewController ()
+@interface ContactsTableViewController ()
+{
+    NSMutableArray *root2;
+}
+
 
 @end
 
-@implementation SenserTableViewController
+@implementation ContactsTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    UIView *view = [[UIView alloc]init];
+    view.backgroundColor = [UIColor clearColor];
+    [self.tableView setTableFooterView:view];
 }
+- (IBAction)addContact:(id)sender {
+    
+    [self performSegueWithIdentifier:@"addcontacts" sender:self];
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    NSArray *user = [[NSUserDefaults standardUserDefaults]valueForKey:@"content"];
+    if (!user) {
+        root2 = [[NSMutableArray alloc]init];
+    }else{
+        root2 = [[NSMutableArray alloc]initWithArray:user];
+    }
+    [self.tableView reloadData];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -33,24 +49,31 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 0;
+    return root2.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mycelladd" forIndexPath:indexPath];
     
-    // Configure the cell...
-    
+    NSDictionary *value = root2[indexPath.row];
+    cell.textLabel.text = [value valueForKey:@"name"];
+    cell.detailTextLabel.text = [value valueForKey:@"email"];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone; //不可点击
     return cell;
 }
-*/
 
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [root2 removeObjectAtIndex:indexPath.row];
+    [[NSUserDefaults standardUserDefaults]setObject:root2 forKey:@"content"];
+    [self.tableView reloadData];
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

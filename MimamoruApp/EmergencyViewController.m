@@ -204,6 +204,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"mycell3"];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     NSDictionary *cont = _currentArray[indexPath.row];
     cell.textLabel.text = [cont valueForKey:@"name"];
     cell.detailTextLabel.text = [cont valueForKey:@"email"];
