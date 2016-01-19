@@ -22,13 +22,13 @@
     NSArray *yeararr;
     UIPageControl* _page;
  
-    int currentNo;
+    
 }
 
 @end
 
 @implementation DashBoardTableViewCell
-
+@synthesize currentNo;
 
 - (void)awakeFromNib {
     

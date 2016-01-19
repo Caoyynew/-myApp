@@ -16,4 +16,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *fff;
 @property NSString *hhh;
 @property (weak, nonatomic) IBOutlet UIScrollView *scoll;
+@property int currentNo;
 @end

@@ -22,7 +22,6 @@
     NSMutableArray *sectionArr;
     NSMutableDictionary *itemDict;
     DashBoardTableViewCell *cell;
-    //NSMutableArray*groupArr1;
     int graphtype;
     
     NSString*machNameself;
@@ -32,7 +31,7 @@
     
     
 }
-
+@property (strong, nonatomic) DashBoardTableViewCell *dashcell;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 
 @end
@@ -44,6 +43,9 @@
     NSString * login = @"login";
     [[NSUserDefaults standardUserDefaults]setObject:login forKey:@"type"];
 
+    
+    _dashcell = [[DashBoardTableViewCell alloc]init];
+    _dashcell.currentNo = 2;
     [self.segmentControl setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:20]} forState:UIControlStateNormal];
     CGRect farme = self.segmentControl.frame;
     farme.size.height = 40;
@@ -158,12 +160,9 @@
     return cell;
     
 }
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"dianjiwole!!!!!!!!!");
-}
 
 
+#pragma mark - scrollview 点击事件
 - (void)subscribeBtnClicked:(UITapGestureRecognizer*)sender{
     CGPoint point = [sender locationInView:self.tableView];
     NSIndexPath * indexPath = [self.tableView indexPathForRowAtPoint:point];

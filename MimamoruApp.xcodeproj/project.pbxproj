@@ -46,6 +46,7 @@
 		E94932CB1C44BA0400A71605 /* libMailCore-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E94932BC1C44B9EE00A71605 /* libMailCore-ios.a */; };
 		E96D6AE11C4CB46D00095613 /* AddTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E96D6AE01C4CB46D00095613 /* AddTableViewController.m */; };
 		E96D6AEB1C4CBE8200095613 /* ContactsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E96D6AEA1C4CBE8200095613 /* ContactsTableViewController.m */; };
+		E96F69721C4E1A450080BDA6 /* LifeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E96F69711C4E1A450080BDA6 /* LifeViewController.m */; };
 		E99E97371C3FBE340019D2CC /* MimamoruAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E99E97361C3FBE340019D2CC /* MimamoruAppTests.m */; };
 		E99E97421C3FBE340019D2CC /* MimamoruAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E99E97411C3FBE340019D2CC /* MimamoruAppUITests.m */; };
 		E99E97A01C3FC0350019D2CC /* ABFillButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E99E97511C3FC0340019D2CC /* ABFillButton.m */; };
@@ -199,6 +200,8 @@
 		E96D6AE01C4CB46D00095613 /* AddTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTableViewController.m; sourceTree = "<group>"; };
 		E96D6AE91C4CBE8200095613 /* ContactsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsTableViewController.h; sourceTree = "<group>"; };
 		E96D6AEA1C4CBE8200095613 /* ContactsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsTableViewController.m; sourceTree = "<group>"; };
+		E96F69701C4E1A450080BDA6 /* LifeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LifeViewController.h; sourceTree = "<group>"; };
+		E96F69711C4E1A450080BDA6 /* LifeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LifeViewController.m; sourceTree = "<group>"; };
 		E99E97191C3FBE340019D2CC /* MimamoruApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MimamoruApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E99E97321C3FBE340019D2CC /* MimamoruAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MimamoruAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E99E97361C3FBE340019D2CC /* MimamoruAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MimamoruAppTests.m; sourceTree = "<group>"; };
@@ -352,6 +355,8 @@
 		E9453D8D1C4338A800210852 /* LifeGroup */ = {
 			isa = PBXGroup;
 			children = (
+				E96F69701C4E1A450080BDA6 /* LifeViewController.h */,
+				E96F69711C4E1A450080BDA6 /* LifeViewController.m */,
 				E94840671C45F15F00E8C760 /* DashboardTableViewController.h */,
 				E94840681C45F15F00E8C760 /* DashboardTableViewController.m */,
 				E94840491C45EFCD00E8C760 /* DashBoardTableViewCell.h */,
@@ -714,6 +719,7 @@
 				E99E97AB1C3FC0350019D2CC /* EgySettingTableViewController.m in Sources */,
 				E99E97A01C3FC0350019D2CC /* ABFillButton.m in Sources */,
 				E99E97C11C3FC0350019D2CC /* main.m in Sources */,
+				E96F69721C4E1A450080BDA6 /* LifeViewController.m in Sources */,
 				E99E97AA1C3FC0350019D2CC /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
