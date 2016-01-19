@@ -29,6 +29,8 @@
     
     
     NSString *dataname;
+    
+    
 }
 
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentControl;
@@ -144,7 +146,7 @@
     cell.scoll.tag = indexPath.row;
     UITapGestureRecognizer *singleTap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(subscribeBtnClicked:)];
     [cell.scoll addGestureRecognizer:singleTap1];
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (xNum == 0) {
         cell.fff.text = dataname;
     }else if(xNum == 1){
@@ -156,6 +158,12 @@
     return cell;
     
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"dianjiwole!!!!!!!!!");
+}
+
+
 - (void)subscribeBtnClicked:(UITapGestureRecognizer*)sender{
     CGPoint point = [sender locationInView:self.tableView];
     NSIndexPath * indexPath = [self.tableView indexPathForRowAtPoint:point];

@@ -30,6 +30,13 @@
   //      [myScrollView setBackgroundColor:UUGreen];
 //        myScrollView.layer.shouldRasterize = YES;
 //        myScrollView.layer.rasterizationScale = [UIScreen mainScreen].scale;
+        UIColor *lightG = [UIColor colorWithRed:173.0/255.0 green:216.0/255.0 blue:230.0/255.0 alpha:1.0f];
+        UIColor *darkG = [UIColor colorWithRed:65.0/255.0 green:105.0/255.0 blue:235.0/255.0 alpha:1.0f];
+        CAGradientLayer *gradient = [CAGradientLayer layer];
+        gradient.colors = [NSArray arrayWithObjects:(id)lightG.CGColor,(id)darkG.CGColor, nil];
+        gradient.frame = self.bounds;
+        [self.layer insertSublayer:gradient atIndex:0];
+        self.layer.cornerRadius = 6;
         [self addSubview:myScrollView];
     }
     return self;
@@ -92,12 +99,30 @@
     _xLabels = xLabels;
     NSInteger num;
 
-        num = xLabels.count;
+    num = xLabels.count;
     _xLabelWidth = myScrollView.frame.size.width/num;
     
     for (int i=0; i<xLabels.count; i++) {
         UUChartLabel * label = [[UUChartLabel alloc] initWithFrame:CGRectMake((i *  _xLabelWidth ), self.frame.size.height - UULabelHeight, _xLabelWidth, UULabelHeight)];
         label.text = xLabels[i];
+        if (xLabels.count <8) {
+            if ([label.text isEqualToString: @"1"]) {
+                label.text = @"月";
+            }else if([label.text isEqualToString: @"2"]){
+                label.text = @"火";
+            }else if([label.text isEqualToString: @"3"]){
+                label.text = @"水";
+            }else if([label.text isEqualToString: @"4"]){
+                label.text = @"木";
+            }else if([label.text isEqualToString: @"5"]){
+                label.text = @"金";
+            }else if([label.text isEqualToString: @"6"]){
+                label.text = @"土";
+            }else if([label.text isEqualToString: @"7"]){
+                label.text = @"日";
+            }
+
+        }
         [myScrollView addSubview:label];
         
         [_chartLabelsForX addObject:label];
@@ -131,9 +156,9 @@
             float grade = ((float)value-_yValueMin) / ((float)_yValueMax-_yValueMin);
             //显示柱状的位置
             UUBar * bar = [[UUBar alloc] initWithFrame:CGRectMake((j+(_yValues.count==1?0.1:0.05))*_xLabelWidth +i*_xLabelWidth * 0.46, UULabelHeight, _xLabelWidth * (_yValues.count==1?0.8:0.45), chartCavanHeight)];
-            //bar.barColor = [_colors objectAtIndex:i];
+            bar.barColor = [_colors objectAtIndex:i];
             //!!!!!!!!
-            bar.barColor = UUGreen;
+           //bar.barColor = UUGreen;
             bar.grade = grade;
             [myScrollView addSubview:bar];
         }

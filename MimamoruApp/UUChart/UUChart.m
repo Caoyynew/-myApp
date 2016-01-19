@@ -23,8 +23,8 @@
 -(id)initwithUUChartDataFrame:(CGRect)rect withSource:(id<UUChartDataSource>)dataSource withStyle:(UUChartStyle)style{
     self.dataSource = dataSource;
     self.chartStyle = style;
-    _lineChart.layer.shouldRasterize = YES;
-    _barChart.layer.shouldRasterize = YES;
+//    _lineChart.layer.shouldRasterize = YES;
+//    _barChart.layer.shouldRasterize = YES;
     return [self initWithFrame:rect];
 }
 

@@ -50,7 +50,8 @@
 	if (_barColor) {
 		_chartLine.strokeColor = [_barColor CGColor];
 	}else{
-		_chartLine.strokeColor = [UUGreen CGColor];
+        //设置柱形条颜色
+		_chartLine.strokeColor = [UUTitleColor CGColor];
 	}
     
     CABasicAnimation *pathAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
@@ -64,29 +65,29 @@
     _chartLine.strokeEnd = 2.0;
 }
 
-- (void)drawRect:(CGRect)rect
-{
-	//Draw BG
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    //!!!!
-//    //设置颜色数组
-//    UIColor *darkOp =
-//    [UIColor colorWithRed:0.62f green:0.4f blue:0.42f alpha:1.0];
-//    UIColor *lightOp =
-//    [UIColor colorWithRed:0.43f green:0.76f blue:0.07f alpha:1.0];
-//    //创建CAGradientLayer实例
-//    CAGradientLayer *gradient = [CAGradientLayer layer];
-//    //设置颜色
-//    gradient.colors = [NSArray arrayWithObjects:
-//                       (id)lightOp.CGColor,
-//                       (id)darkOp.CGColor,
-//                       nil];
-    //设置渐变的frame
-    
-    CGContextSetFillColorWithColor(context, [UIColor colorWithRed:200/255.0 green:255/255 blue:200/255 alpha:1].CGColor);
-	CGContextFillRect(context, rect);
-    
-}
+//- (void)drawRect:(CGRect)rect
+//{
+//	//Draw BG
+//    CGContextRef context = UIGraphicsGetCurrentContext();
+//    //!!!!
+////    //设置颜色数组
+////    UIColor *darkOp =
+////    [UIColor colorWithRed:0.62f green:0.4f blue:0.42f alpha:1.0];
+////    UIColor *lightOp =
+////    [UIColor colorWithRed:0.43f green:0.76f blue:0.07f alpha:1.0];
+////    //创建CAGradientLayer实例
+////    CAGradientLayer *gradient = [CAGradientLayer layer];
+////    //设置颜色
+////    gradient.colors = [NSArray arrayWithObjects:
+////                       (id)lightOp.CGColor,
+////                       (id)darkOp.CGColor,
+////                       nil];
+//    //设置渐变的frame
+//    
+//    CGContextSetFillColorWithColor(context, [UIColor colorWithRed:200/255.0 green:255/255 blue:200/255 alpha:1].CGColor);
+//	CGContextFillRect(context, rect);
+//    
+//}
 
 
 @end
