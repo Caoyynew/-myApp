@@ -121,9 +121,15 @@
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     currentNo = _scoll.contentOffset.x/_scoll.frame.size.width;
+    float current = _scoll.contentOffset.x/_scoll.frame.size.width;
     NSLog(@"running = %d",currentNo);
+    [self passCurrent:current indexPath:path];
 }
 
+-(void)passCurrent:(float)current indexPath:(NSIndexPath *)row
+{
+    
+}
 
 
 // 停止拖拽调用方法

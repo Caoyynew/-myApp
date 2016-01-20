@@ -25,8 +25,6 @@
     int graphtype;
     
     NSString*machNameself;
-    
-    
     NSString *dataname;
     
     
@@ -65,6 +63,9 @@
     [self getPlistWithName:@"testdata2"];
     
 }
+
+
+
 
 -(void)viewWillAppear:(BOOL)animated{
     [self getTaisetsuPeople];

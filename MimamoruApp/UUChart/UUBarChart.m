@@ -27,7 +27,6 @@
         // Initialization code
         self.clipsToBounds = YES;
         myScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(UUYLabelwidth, 0, frame.size.width-UUYLabelwidth, frame.size.height)];
-  //      [myScrollView setBackgroundColor:UUGreen];
 //        myScrollView.layer.shouldRasterize = YES;
 //        myScrollView.layer.rasterizationScale = [UIScreen mainScreen].scale;
         UIColor *lightG = [UIColor colorWithRed:173.0/255.0 green:216.0/255.0 blue:230.0/255.0 alpha:1.0f];
@@ -63,12 +62,16 @@
             }
         }
     }
-  
+//    if (max < 5) {
+//        max = 1;
+//    }
     if (self.showRange) {
         _yValueMin = (int)min;
     }else{
         _yValueMin = 0;
     }
+    _yValueMax = (int)max;
+    
     _yValueMax = (int)max;
     CGFloat chartCavanHeight = self.frame.size.height - UULabelHeight*3;
     CGFloat level;
@@ -77,16 +80,27 @@
         level = 1;
         levelHeight = chartCavanHeight/max;
     }else{
-        level = _yValueMax/4.0;
-        levelHeight = chartCavanHeight/4.0;
+        level = _yValueMax/5.0;
+        levelHeight = chartCavanHeight/5.0;
     }
     
     for (int i=0; i<=max; i++) {
-        UUChartLabel * label = [[UUChartLabel alloc] initWithFrame:CGRectMake(0.0,chartCavanHeight-i*levelHeight+5, UUYLabelwidth, UULabelHeight+10)];
-		label.text = [NSString stringWithFormat:@"%.f",level * i+_yValueMin];
-    //    label.backgroundColor = UUGreen;
-		[self addSubview:label];
+        UUChartLabel * label = [[UUChartLabel alloc] initWithFrame:CGRectMake(0.0,chartCavanHeight-i*levelHeight+5, UUYLabelwidth, UULabelHeight)];
+        label.text = [NSString stringWithFormat:@"%.f",level * i+_yValueMin];
+        [self addSubview:label];
     }
+    
+ 
+
+//    float level = (_yValueMax-_yValueMin) /4.0;
+//    CGFloat chartCavanHeight = self.frame.size.height - UULabelHeight*3;
+//    CGFloat levelHeight = chartCavanHeight /4.0;
+    
+//    for (int i=0; i<5; i++) {
+//        UUChartLabel * label = [[UUChartLabel alloc] initWithFrame:CGRectMake(0.0,chartCavanHeight-i*4*levelHeight+5, UUYLabelwidth, UULabelHeight)];
+//		label.text = [NSString stringWithFormat:@"%.1f",level * i*4.0+_yValueMin];
+//		[self addSubview:label];
+//    }
 	
 }
 
@@ -98,8 +112,13 @@
     
     _xLabels = xLabels;
     NSInteger num;
-
-    num = xLabels.count;
+//    if (xLabels.count>=8) {
+//        num = 8;
+//    }else if (xLabels.count<=4){
+//        num = 4;
+//    }else{
+        num = xLabels.count;
+ //   }
     _xLabelWidth = myScrollView.frame.size.width/num;
     
     for (int i=0; i<xLabels.count; i++) {
@@ -121,14 +140,18 @@
             }else if([label.text isEqualToString: @"7"]){
                 label.text = @"日";
             }
-
         }
+        
+        
         [myScrollView addSubview:label];
         
         [_chartLabelsForX addObject:label];
     }
     
-
+//    float max = (([xLabels count]-1)*_xLabelWidth + chartMargin)+_xLabelWidth;
+//    if (myScrollView.frame.size.width < max-10) {
+//        myScrollView.contentSize = CGSizeMake(max, self.frame.size.height);
+//    }
 }
 
 -(void)setColors:(NSArray *)colors
@@ -154,13 +177,12 @@
             NSString *valueString = childAry[j];
             float value = [valueString floatValue];
             float grade = ((float)value-_yValueMin) / ((float)_yValueMax-_yValueMin);
-            //显示柱状的位置
-            UUBar * bar = [[UUBar alloc] initWithFrame:CGRectMake((j+(_yValues.count==1?0.1:0.05))*_xLabelWidth +i*_xLabelWidth * 0.46, UULabelHeight, _xLabelWidth * (_yValues.count==1?0.8:0.45), chartCavanHeight)];
+            
+            UUBar * bar = [[UUBar alloc] initWithFrame:CGRectMake((j+(_yValues.count==1?0.1:0.05))*_xLabelWidth +i*_xLabelWidth * 0.47,0, _xLabelWidth * (_yValues.count==1?0.8:0.45), chartCavanHeight*1.11)];
             bar.barColor = [_colors objectAtIndex:i];
-            //!!!!!!!!
-           //bar.barColor = UUGreen;
             bar.grade = grade;
             [myScrollView addSubview:bar];
+            
         }
     }
 }

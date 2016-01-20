@@ -22,18 +22,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+   
     
 }
 -(void)viewWillAppear:(BOOL)animated
 {
-    
     NSString *type= [[NSUserDefaults standardUserDefaults]valueForKey:@"type"];
     if ([type isEqualToString:@"logout"]) {
         _passWord.text = @"";
         
     }else{
+        animated = NO;
         [self performSegueWithIdentifier:@"gotomain" sender:self];
+        
     }
+
 
 }
 - (IBAction)loginAction:(id)sender {

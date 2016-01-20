@@ -13,6 +13,9 @@
 #define FILL_PERCENT 0.04 /*frame rate*/
 
 @interface ABFillButton ()
+{
+    int types;
+}
 
 @property (nonatomic, assign) BOOL needShadow;
 @property (nonatomic, assign) BOOL needZoom;
@@ -159,11 +162,18 @@
 {
     [self setFillPercent:_fillPercent-FILL_PERCENT];
     
+    
     if(self.fillPercent<0.0){
+        
         if(self.delegate && [self.delegate respondsToSelector:@selector(buttonIsEmpty:)]){
+            NSLog(@"sss");
+
             [self.delegate buttonIsEmpty:self];
             [self createTimer:NO];
+            
+            
         }
+       
     }
 }
 

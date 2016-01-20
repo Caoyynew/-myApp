@@ -47,6 +47,12 @@
 		E96D6AE11C4CB46D00095613 /* AddTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E96D6AE01C4CB46D00095613 /* AddTableViewController.m */; };
 		E96D6AEB1C4CBE8200095613 /* ContactsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E96D6AEA1C4CBE8200095613 /* ContactsTableViewController.m */; };
 		E96F69721C4E1A450080BDA6 /* LifeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E96F69711C4E1A450080BDA6 /* LifeViewController.m */; };
+		E994DC131C4F4ACE0045053C /* UUBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E994DC081C4F4ACE0045053C /* UUBar.m */; };
+		E994DC141C4F4ACE0045053C /* UUBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = E994DC0A1C4F4ACE0045053C /* UUBarChart.m */; };
+		E994DC151C4F4ACE0045053C /* UUChart.m in Sources */ = {isa = PBXBuildFile; fileRef = E994DC0C1C4F4ACE0045053C /* UUChart.m */; };
+		E994DC161C4F4ACE0045053C /* UUChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E994DC0E1C4F4ACE0045053C /* UUChartLabel.m */; };
+		E994DC171C4F4ACE0045053C /* UUColor.m in Sources */ = {isa = PBXBuildFile; fileRef = E994DC101C4F4ACE0045053C /* UUColor.m */; };
+		E994DC181C4F4ACE0045053C /* UULineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = E994DC121C4F4ACE0045053C /* UULineChart.m */; };
 		E99E97371C3FBE340019D2CC /* MimamoruAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E99E97361C3FBE340019D2CC /* MimamoruAppTests.m */; };
 		E99E97421C3FBE340019D2CC /* MimamoruAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E99E97411C3FBE340019D2CC /* MimamoruAppUITests.m */; };
 		E99E97A01C3FC0350019D2CC /* ABFillButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E99E97511C3FC0340019D2CC /* ABFillButton.m */; };
@@ -65,12 +71,6 @@
 		E99E97C91C3FC0350019D2CC /* test.plist in Resources */ = {isa = PBXBuildFile; fileRef = E99E978A1C3FC0340019D2CC /* test.plist */; };
 		E99E97CA1C3FC0350019D2CC /* testdata1.plist in Resources */ = {isa = PBXBuildFile; fileRef = E99E978B1C3FC0340019D2CC /* testdata1.plist */; };
 		E99E97CB1C3FC0350019D2CC /* testdata2.plist in Resources */ = {isa = PBXBuildFile; fileRef = E99E978C1C3FC0340019D2CC /* testdata2.plist */; };
-		E99E97CC1C3FC0350019D2CC /* UUBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E99E978F1C3FC0340019D2CC /* UUBar.m */; };
-		E99E97CD1C3FC0350019D2CC /* UUBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = E99E97911C3FC0350019D2CC /* UUBarChart.m */; };
-		E99E97CE1C3FC0350019D2CC /* UUChart.m in Sources */ = {isa = PBXBuildFile; fileRef = E99E97931C3FC0350019D2CC /* UUChart.m */; };
-		E99E97CF1C3FC0350019D2CC /* UUChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E99E97951C3FC0350019D2CC /* UUChartLabel.m */; };
-		E99E97D01C3FC0350019D2CC /* UUColor.m in Sources */ = {isa = PBXBuildFile; fileRef = E99E97971C3FC0350019D2CC /* UUColor.m */; };
-		E99E97D11C3FC0350019D2CC /* UULineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = E99E97991C3FC0350019D2CC /* UULineChart.m */; };
 		E99E97D21C3FC0350019D2CC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99E979B1C3FC0350019D2CC /* ViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -202,11 +202,23 @@
 		E96D6AEA1C4CBE8200095613 /* ContactsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsTableViewController.m; sourceTree = "<group>"; };
 		E96F69701C4E1A450080BDA6 /* LifeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LifeViewController.h; sourceTree = "<group>"; };
 		E96F69711C4E1A450080BDA6 /* LifeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LifeViewController.m; sourceTree = "<group>"; };
+		E994DC071C4F4ACE0045053C /* UUBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUBar.h; sourceTree = "<group>"; };
+		E994DC081C4F4ACE0045053C /* UUBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUBar.m; sourceTree = "<group>"; };
+		E994DC091C4F4ACE0045053C /* UUBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUBarChart.h; sourceTree = "<group>"; };
+		E994DC0A1C4F4ACE0045053C /* UUBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUBarChart.m; sourceTree = "<group>"; };
+		E994DC0B1C4F4ACE0045053C /* UUChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUChart.h; sourceTree = "<group>"; };
+		E994DC0C1C4F4ACE0045053C /* UUChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUChart.m; sourceTree = "<group>"; };
+		E994DC0D1C4F4ACE0045053C /* UUChartLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUChartLabel.h; sourceTree = "<group>"; };
+		E994DC0E1C4F4ACE0045053C /* UUChartLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUChartLabel.m; sourceTree = "<group>"; };
+		E994DC0F1C4F4ACE0045053C /* UUColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUColor.h; sourceTree = "<group>"; };
+		E994DC101C4F4ACE0045053C /* UUColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUColor.m; sourceTree = "<group>"; };
+		E994DC111C4F4ACE0045053C /* UULineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UULineChart.h; sourceTree = "<group>"; };
+		E994DC121C4F4ACE0045053C /* UULineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UULineChart.m; sourceTree = "<group>"; };
 		E99E97191C3FBE340019D2CC /* MimamoruApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MimamoruApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E99E97321C3FBE340019D2CC /* MimamoruAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MimamoruAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E99E97321C3FBE340019D2CC /* MimamoruApp.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MimamoruApp.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E99E97361C3FBE340019D2CC /* MimamoruAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MimamoruAppTests.m; sourceTree = "<group>"; };
 		E99E97381C3FBE340019D2CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E99E973D1C3FBE340019D2CC /* MimamoruAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MimamoruAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E99E973D1C3FBE340019D2CC /* MimamoruApp.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MimamoruApp.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E99E97411C3FBE340019D2CC /* MimamoruAppUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MimamoruAppUITests.m; sourceTree = "<group>"; };
 		E99E97431C3FBE340019D2CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E99E97501C3FC0340019D2CC /* ABFillButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABFillButton.h; sourceTree = "<group>"; };
@@ -236,18 +248,6 @@
 		E99E978A1C3FC0340019D2CC /* test.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test.plist; sourceTree = "<group>"; };
 		E99E978B1C3FC0340019D2CC /* testdata1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = testdata1.plist; sourceTree = "<group>"; };
 		E99E978C1C3FC0340019D2CC /* testdata2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = testdata2.plist; sourceTree = "<group>"; };
-		E99E978E1C3FC0340019D2CC /* UUBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUBar.h; sourceTree = "<group>"; };
-		E99E978F1C3FC0340019D2CC /* UUBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUBar.m; sourceTree = "<group>"; };
-		E99E97901C3FC0340019D2CC /* UUBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUBarChart.h; sourceTree = "<group>"; };
-		E99E97911C3FC0350019D2CC /* UUBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUBarChart.m; sourceTree = "<group>"; };
-		E99E97921C3FC0350019D2CC /* UUChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUChart.h; sourceTree = "<group>"; };
-		E99E97931C3FC0350019D2CC /* UUChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUChart.m; sourceTree = "<group>"; };
-		E99E97941C3FC0350019D2CC /* UUChartLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUChartLabel.h; sourceTree = "<group>"; };
-		E99E97951C3FC0350019D2CC /* UUChartLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUChartLabel.m; sourceTree = "<group>"; };
-		E99E97961C3FC0350019D2CC /* UUColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUColor.h; sourceTree = "<group>"; };
-		E99E97971C3FC0350019D2CC /* UUColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUColor.m; sourceTree = "<group>"; };
-		E99E97981C3FC0350019D2CC /* UULineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UULineChart.h; sourceTree = "<group>"; };
-		E99E97991C3FC0350019D2CC /* UULineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UULineChart.m; sourceTree = "<group>"; };
 		E99E979A1C3FC0350019D2CC /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		E99E979B1C3FC0350019D2CC /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -340,10 +340,10 @@
 		E9453D8C1C43385F00210852 /* EmergencyGroup */ = {
 			isa = PBXGroup;
 			children = (
-				E99E97501C3FC0340019D2CC /* ABFillButton.h */,
-				E99E97511C3FC0340019D2CC /* ABFillButton.m */,
 				E99E977D1C3FC0340019D2CC /* LeafNotification.h */,
 				E99E977E1C3FC0340019D2CC /* LeafNotification.m */,
+				E99E97501C3FC0340019D2CC /* ABFillButton.h */,
+				E99E97511C3FC0340019D2CC /* ABFillButton.m */,
 				E99E976C1C3FC0340019D2CC /* EmergencyViewController.h */,
 				E99E976D1C3FC0340019D2CC /* EmergencyViewController.m */,
 				E99E97631C3FC0340019D2CC /* DetailViewController.h */,
@@ -406,8 +406,8 @@
 			isa = PBXGroup;
 			children = (
 				E99E97191C3FBE340019D2CC /* MimamoruApp.app */,
-				E99E97321C3FBE340019D2CC /* MimamoruAppTests.xctest */,
-				E99E973D1C3FBE340019D2CC /* MimamoruAppUITests.xctest */,
+				E99E97321C3FBE340019D2CC /* MimamoruApp.xctest */,
+				E99E973D1C3FBE340019D2CC /* MimamoruApp.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -455,18 +455,18 @@
 		E99E978D1C3FC0340019D2CC /* UUChart */ = {
 			isa = PBXGroup;
 			children = (
-				E99E978E1C3FC0340019D2CC /* UUBar.h */,
-				E99E978F1C3FC0340019D2CC /* UUBar.m */,
-				E99E97901C3FC0340019D2CC /* UUBarChart.h */,
-				E99E97911C3FC0350019D2CC /* UUBarChart.m */,
-				E99E97921C3FC0350019D2CC /* UUChart.h */,
-				E99E97931C3FC0350019D2CC /* UUChart.m */,
-				E99E97941C3FC0350019D2CC /* UUChartLabel.h */,
-				E99E97951C3FC0350019D2CC /* UUChartLabel.m */,
-				E99E97961C3FC0350019D2CC /* UUColor.h */,
-				E99E97971C3FC0350019D2CC /* UUColor.m */,
-				E99E97981C3FC0350019D2CC /* UULineChart.h */,
-				E99E97991C3FC0350019D2CC /* UULineChart.m */,
+				E994DC071C4F4ACE0045053C /* UUBar.h */,
+				E994DC081C4F4ACE0045053C /* UUBar.m */,
+				E994DC091C4F4ACE0045053C /* UUBarChart.h */,
+				E994DC0A1C4F4ACE0045053C /* UUBarChart.m */,
+				E994DC0B1C4F4ACE0045053C /* UUChart.h */,
+				E994DC0C1C4F4ACE0045053C /* UUChart.m */,
+				E994DC0D1C4F4ACE0045053C /* UUChartLabel.h */,
+				E994DC0E1C4F4ACE0045053C /* UUChartLabel.m */,
+				E994DC0F1C4F4ACE0045053C /* UUColor.h */,
+				E994DC101C4F4ACE0045053C /* UUColor.m */,
+				E994DC111C4F4ACE0045053C /* UULineChart.h */,
+				E994DC121C4F4ACE0045053C /* UULineChart.m */,
 			);
 			path = UUChart;
 			sourceTree = "<group>";
@@ -507,7 +507,7 @@
 			);
 			name = MimamoruAppTests;
 			productName = MimamoruAppTests;
-			productReference = E99E97321C3FBE340019D2CC /* MimamoruAppTests.xctest */;
+			productReference = E99E97321C3FBE340019D2CC /* MimamoruApp.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		E99E973C1C3FBE340019D2CC /* MimamoruAppUITests */ = {
@@ -525,7 +525,7 @@
 			);
 			name = MimamoruAppUITests;
 			productName = MimamoruAppUITests;
-			productReference = E99E973D1C3FBE340019D2CC /* MimamoruAppUITests.xctest */;
+			productReference = E99E973D1C3FBE340019D2CC /* MimamoruApp.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -699,22 +699,22 @@
 			files = (
 				E99E97D21C3FC0350019D2CC /* ViewController.m in Sources */,
 				E99E97B11C3FC0350019D2CC /* EmergencyViewController.m in Sources */,
+				E994DC171C4F4ACE0045053C /* UUColor.m in Sources */,
 				E94840A81C46187300E8C760 /* DetailTableViewCell.m in Sources */,
+				E994DC181C4F4ACE0045053C /* UULineChart.m in Sources */,
 				E99E97C81C3FC0350019D2CC /* TabBarViewController.m in Sources */,
-				E99E97CF1C3FC0350019D2CC /* UUChartLabel.m in Sources */,
-				E99E97D11C3FC0350019D2CC /* UULineChart.m in Sources */,
 				E99E97C01C3FC0350019D2CC /* LeafNotification.m in Sources */,
+				E994DC151C4F4ACE0045053C /* UUChart.m in Sources */,
+				E994DC131C4F4ACE0045053C /* UUBar.m in Sources */,
 				E948405C1C45EFCD00E8C760 /* DashBoardTableViewCell.m in Sources */,
 				E99E97C31C3FC0350019D2CC /* OtherTableViewController.m in Sources */,
-				E99E97D01C3FC0350019D2CC /* UUColor.m in Sources */,
+				E994DC141C4F4ACE0045053C /* UUBarChart.m in Sources */,
 				E99E97A11C3FC0350019D2CC /* AppDelegate.m in Sources */,
-				E99E97CC1C3FC0350019D2CC /* UUBar.m in Sources */,
 				E99E97A51C3FC0350019D2CC /* ContentTableViewController.m in Sources */,
-				E99E97CD1C3FC0350019D2CC /* UUBarChart.m in Sources */,
 				E96D6AE11C4CB46D00095613 /* AddTableViewController.m in Sources */,
+				E994DC161C4F4ACE0045053C /* UUChartLabel.m in Sources */,
 				E94840A41C46101700E8C760 /* DetailTableViewController.m in Sources */,
 				E96D6AEB1C4CBE8200095613 /* ContactsTableViewController.m in Sources */,
-				E99E97CE1C3FC0350019D2CC /* UUChart.m in Sources */,
 				E94840691C45F15F00E8C760 /* DashboardTableViewController.m in Sources */,
 				E99E97AB1C3FC0350019D2CC /* EgySettingTableViewController.m in Sources */,
 				E99E97A01C3FC0350019D2CC /* ABFillButton.m in Sources */,
@@ -882,7 +882,7 @@
 					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = wu.MimamoruApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MimamoruApp;
 			};
 			name = Debug;
 		};
@@ -908,7 +908,7 @@
 					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = wu.MimamoruApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MimamoruApp;
 			};
 			name = Release;
 		};
@@ -919,7 +919,7 @@
 				INFOPLIST_FILE = MimamoruAppTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = wu.MimamoruAppTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MimamoruApp;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MimamoruApp.app/MimamoruApp";
 			};
 			name = Debug;
@@ -931,7 +931,7 @@
 				INFOPLIST_FILE = MimamoruAppTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = wu.MimamoruAppTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MimamoruApp;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MimamoruApp.app/MimamoruApp";
 			};
 			name = Release;
@@ -942,7 +942,7 @@
 				INFOPLIST_FILE = MimamoruAppUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = wu.MimamoruAppUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MimamoruApp;
 				TEST_TARGET_NAME = MimamoruApp;
 				USES_XCTRUNNER = YES;
 			};
@@ -954,7 +954,7 @@
 				INFOPLIST_FILE = MimamoruAppUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = wu.MimamoruAppUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MimamoruApp;
 				TEST_TARGET_NAME = MimamoruApp;
 				USES_XCTRUNNER = YES;
 			};

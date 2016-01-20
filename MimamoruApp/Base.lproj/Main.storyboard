@@ -99,12 +99,12 @@
                     <connections>
                         <outlet property="passWord" destination="zql-nz-fcf" id="teT-wq-qEs"/>
                         <outlet property="userID" destination="0Da-fH-5Dy" id="dso-Hi-3bL"/>
-                        <segue destination="vvO-ZU-vep" kind="modal" identifier="gotomain" id="qBH-FJ-JNd"/>
+                        <segue destination="vvO-ZU-vep" kind="modal" identifier="gotomain" modalTransitionStyle="crossDissolve" id="qBH-FJ-JNd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="614" y="359"/>
+            <point key="canvasLocation" x="610" y="359"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="hvC-NY-OVo">
@@ -265,7 +265,7 @@ hA
             </objects>
             <point key="canvasLocation" x="2270" y="672"/>
         </scene>
-        <!--Life View Controller-->
+        <!--生活-->
         <scene sceneID="rkw-jd-Xw2">
             <objects>
                 <viewController id="pMW-Dg-SHM" customClass="LifeViewController" sceneMemberID="viewController">
@@ -276,13 +276,44 @@ hA
                     <view key="view" contentMode="scaleToFill" id="rBb-ye-xRS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="3DD-oV-EZS">
+                                <rect key="frame" x="0.0" y="64" width="320" height="41"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Mgg-lc-TtT"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="日"/>
+                                    <segment title="週"/>
+                                    <segment title="月"/>
+                                </segments>
+                                <color key="tintColor" red="0.63137254899999995" green="0.78039215689999997" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
+                            </segmentedControl>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2tZ-74-n66">
+                                <rect key="frame" x="0.0" y="104" width="320" height="415"/>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="3DD-oV-EZS" secondAttribute="trailing" id="9Y0-Zo-vgj"/>
+                            <constraint firstItem="3DD-oV-EZS" firstAttribute="leading" secondItem="rBb-ye-xRS" secondAttribute="leading" id="PYe-R8-mZS"/>
+                            <constraint firstItem="2tZ-74-n66" firstAttribute="top" secondItem="3DD-oV-EZS" secondAttribute="bottom" id="QXp-t7-oEK"/>
+                            <constraint firstItem="2tZ-74-n66" firstAttribute="leading" secondItem="rBb-ye-xRS" secondAttribute="leading" id="do3-dS-xaG"/>
+                            <constraint firstAttribute="trailing" secondItem="2tZ-74-n66" secondAttribute="trailing" id="eZS-Rm-XBH"/>
+                            <constraint firstItem="3DD-oV-EZS" firstAttribute="top" secondItem="Vi1-9m-FIN" secondAttribute="bottom" id="n12-oi-uQ0"/>
+                            <constraint firstItem="qnm-Za-l89" firstAttribute="top" secondItem="2tZ-74-n66" secondAttribute="bottom" id="xwg-4M-FZw"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="EUz-EG-fce"/>
+                    <navigationItem key="navigationItem" title="生活" id="EUz-EG-fce"/>
+                    <connections>
+                        <outlet property="scroll" destination="2tZ-74-n66" id="3Qx-6m-HZk"/>
+                        <outlet property="segment" destination="3DD-oV-EZS" id="ECE-q7-Cve"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vBK-BQ-IR1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2179" y="-591"/>
+            <point key="canvasLocation" x="1847" y="-599"/>
         </scene>
         <!--生活-->
         <scene sceneID="IJ6-VT-1EI">

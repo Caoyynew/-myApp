@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:MimamoruApp.xcodeproj">
+      location = "self:/Users/totyu3/Desktop/MimamoruApp/MimamoruApp.xcodeproj">
    </FileRef>
 </Workspace>
