@@ -23,6 +23,8 @@
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:161.0/255.0 green:199.0/255.0 blue:166.0/255.0 alpha:1]];
     [[UINavigationBar appearance]setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:20]}];
     
+    
+    
     _locationManager = [[CLLocationManager alloc]init];
     _locationManager.delegate = self;
     _locationManager.desiredAccuracy = kCLLocationAccuracyBest;

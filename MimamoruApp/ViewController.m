@@ -22,23 +22,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
-    
-}
--(void)viewWillAppear:(BOOL)animated
-{
     NSString *type= [[NSUserDefaults standardUserDefaults]valueForKey:@"type"];
+   
     if ([type isEqualToString:@"logout"]) {
+     
         _passWord.text = @"";
         
     }else{
-        animated = NO;
+        
         [self performSegueWithIdentifier:@"gotomain" sender:self];
         
     }
 
-
+    
 }
+
 - (IBAction)loginAction:(id)sender {
     if ([_userID.text isEqual:@""]) {
         [LeafNotification showInController:self withText:@"ユーザーIDを入力してください"];
@@ -63,16 +61,10 @@
 }
 
 - (void)didReceiveMemoryWarning {
+    
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
 }
 
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    if (type ==1) {
-//        [self performSegueWithIdentifier:@"gotomain" sender:self];
-//    }
-//    
-//    
-//}
 
 @end
