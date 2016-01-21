@@ -18,12 +18,18 @@
                         <rect key="frame" x="0.0" y="30" width="320" height="119"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </scrollView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPr-bL-eMk">
+                        <rect key="frame" x="10" y="30" width="30" height="10"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1U2-et-b1z">
-                        <rect key="frame" x="20" y="0.0" width="42" height="30"/>
+                        <rect key="frame" x="6" y="0.0" width="38" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="e4d-ZB-MUf"/>
+                            <constraint firstAttribute="height" constant="20" id="e4d-ZB-MUf"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -32,7 +38,7 @@
                     <constraint firstAttribute="trailing" secondItem="IDJ-Eh-NvU" secondAttribute="trailing" id="7rn-Tk-vLt"/>
                     <constraint firstItem="1U2-et-b1z" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="8E6-T2-EpI"/>
                     <constraint firstItem="IDJ-Eh-NvU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="LHY-4Z-Hcx"/>
-                    <constraint firstItem="1U2-et-b1z" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="O5p-GE-a8O"/>
+                    <constraint firstItem="1U2-et-b1z" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="6" id="O5p-GE-a8O"/>
                     <constraint firstItem="IDJ-Eh-NvU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="30" id="iLm-17-fpa"/>
                     <constraint firstItem="IDJ-Eh-NvU" firstAttribute="top" secondItem="1U2-et-b1z" secondAttribute="bottom" constant="30" id="mAB-hM-Sab"/>
                     <constraint firstAttribute="bottom" secondItem="IDJ-Eh-NvU" secondAttribute="bottom" id="zjG-CZ-cPB"/>
@@ -44,6 +50,7 @@
                 </variation>
             </tableViewCellContentView>
             <connections>
+                <outlet property="danwei" destination="aPr-bL-eMk" id="fQo-VY-KZ9"/>
                 <outlet property="fff" destination="1U2-et-b1z" id="YbX-w0-WiR"/>
                 <outlet property="scoll" destination="IDJ-Eh-NvU" id="DPS-0J-qj2"/>
             </connections>

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E99E97181C3FBE340019D2CC"
-               BuildableName = "MimamorareruApp.app"
+               BuildableName = "MimamoruApp.app"
                BlueprintName = "MimamoruApp"
                ReferencedContainer = "container:MimamoruApp.xcodeproj">
             </BuildableReference>
@@ -53,7 +53,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E99E97181C3FBE340019D2CC"
-            BuildableName = "MimamorareruApp.app"
+            BuildableName = "MimamoruApp.app"
             BlueprintName = "MimamoruApp"
             ReferencedContainer = "container:MimamoruApp.xcodeproj">
          </BuildableReference>
@@ -76,7 +76,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E99E97181C3FBE340019D2CC"
-            BuildableName = "MimamorareruApp.app"
+            BuildableName = "MimamoruApp.app"
             BlueprintName = "MimamoruApp"
             ReferencedContainer = "container:MimamoruApp.xcodeproj">
          </BuildableReference>
@@ -95,7 +95,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E99E97181C3FBE340019D2CC"
-            BuildableName = "MimamorareruApp.app"
+            BuildableName = "MimamoruApp.app"
             BlueprintName = "MimamoruApp"
             ReferencedContainer = "container:MimamoruApp.xcodeproj">
          </BuildableReference>

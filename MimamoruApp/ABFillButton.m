@@ -97,14 +97,14 @@
 - (void)setHighlighted:(BOOL)highlighted
 {
     [super setHighlighted:highlighted];
-    
     [self configureToSelected:highlighted];
+
+    
 }
 
 - (void)setSelected:(BOOL)selected
 {
     [super setSelected:selected];
-    
     [self configureToSelected:selected];
     
 }
@@ -114,6 +114,7 @@
     [super setSelected:keepHighlighted];
     self.keepHighlighted = keepHighlighted;
     [self configureToSelected:keepHighlighted];
+    
 }
 
 - (void) configureToSelected: (BOOL) selected
@@ -160,28 +161,28 @@
 
 - (void) emptyButton
 {
-    [self setFillPercent:_fillPercent-FILL_PERCENT];
-    
-    
-    if(self.fillPercent<0.0){
+    if (self.emptyButtonPressing) {
         
-        if(self.delegate && [self.delegate respondsToSelector:@selector(buttonIsEmpty:)]){
-            NSLog(@"sss");
-
-            [self.delegate buttonIsEmpty:self];
-            [self createTimer:NO];
-            
+        [self setFillPercent:_fillPercent-FILL_PERCENT];
+        
+        if(self.fillPercent<0.0){
+            NSLog(@"%f",self.fillPercent);
+            if(self.delegate || [self.delegate respondsToSelector:@selector(buttonIsEmpty:)]){
+                
+                [self.delegate buttonIsEmpty:self];
+                [self createTimer:NO];
+            }
             
         }
-       
     }
+    
 }
-
+//按下去的时间
 - (void) createTimer: (BOOL) timer
 {
 
     if(timer){
-        if(!self.pressingTimer){
+        if(!self.pressingTimer ){
             self.pressingTimer = [NSTimer scheduledTimerWithTimeInterval:FILL_TIMER_SPEED/(1/FILL_PERCENT)
                                                          target:self
                                                        selector:@selector(emptyButton)
@@ -191,10 +192,10 @@
         if(self.pressingTimer){
             [self.pressingTimer invalidate];
             self.pressingTimer = nil;
+            [self setFillPercent:1.0];
+            [self setEmptyButtonPressing:NO];
         }
-        
     }
-    
 }
                           
                           

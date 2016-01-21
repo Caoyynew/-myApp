@@ -291,7 +291,7 @@ hA
                                 <color key="tintColor" red="0.63137254899999995" green="0.78039215689999997" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
                             </segmentedControl>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2tZ-74-n66">
-                                <rect key="frame" x="0.0" y="104" width="320" height="415"/>
+                                <rect key="frame" x="0.0" y="104" width="320" height="464"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
