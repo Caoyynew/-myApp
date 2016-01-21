@@ -76,6 +76,7 @@
         NSString *type = @"logout";
         [[NSUserDefaults standardUserDefaults]setObject:type forKey:@"type"];
         [self dismissViewControllerAnimated:YES completion:nil];
+       //[self performSegueWithIdentifier:@"back" sender:self];
     }]];
     [alert addAction:[UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         

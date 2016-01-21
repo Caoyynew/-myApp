@@ -20,13 +20,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MimamoruApp/ViewController.m"
-            timestampString = "475042985.838772"
+            timestampString = "475048588.423743"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
             landmarkName = "-viewWillAppear:"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MimamoruApp/TabBarViewController.m"
+            timestampString = "475048478.990439"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
