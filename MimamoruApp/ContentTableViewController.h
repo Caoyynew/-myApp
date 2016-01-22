@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ContentTableViewController : UITableViewController<UITextFieldDelegate,UITextViewDelegate>
+@interface ContentTableViewController : UITableViewController<UITextFieldDelegate,UITextViewDelegate,NSURLConnectionDataDelegate>
 
 @end
