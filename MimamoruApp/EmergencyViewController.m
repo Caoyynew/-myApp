@@ -145,12 +145,12 @@
         [to addObject:newAddress];
     }
     //测试数据
-//    NSString *tEmail = @"m18506823136@163.com";
-//    MCOAddress *tAdress = [MCOAddress addressWithMailbox:tEmail];
-//    NSMutableArray *tArr = [[NSMutableArray alloc]init];
-//    [tArr addObject:tAdress];
-//    [[builder header]setTo:tArr];
-    [[builder header]setTo:to];
+    NSString *tEmail = @"m18506823136@163.com";
+    MCOAddress *tAdress = [MCOAddress addressWithMailbox:tEmail];
+    NSMutableArray *tArr = [[NSMutableArray alloc]init];
+    [tArr addObject:tAdress];
+    [[builder header]setTo:tArr];
+  //  [[builder header]setTo:to];
 
     //メールのタイトル
     [[builder header]setSubject:@"!!「見守りアプリ」の緊急通報メールです"];
