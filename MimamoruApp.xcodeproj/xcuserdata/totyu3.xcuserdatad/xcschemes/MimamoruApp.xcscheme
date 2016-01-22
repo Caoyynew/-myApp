@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E99E97311C3FBE340019D2CC"
-               BuildableName = "MimamoruAppTests.xctest"
+               BuildableName = "MimamoruApp.xctest"
                BlueprintName = "MimamoruAppTests"
                ReferencedContainer = "container:MimamoruApp.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E99E973C1C3FBE340019D2CC"
-               BuildableName = "MimamoruAppUITests.xctest"
+               BuildableName = "MimamoruApp.xctest"
                BlueprintName = "MimamoruAppUITests"
                ReferencedContainer = "container:MimamoruApp.xcodeproj">
             </BuildableReference>

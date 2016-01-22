@@ -23,8 +23,7 @@
 -(id)initwithUUChartDataFrame:(CGRect)rect withSource:(id<UUChartDataSource>)dataSource withStyle:(UUChartStyle)style{
     self.dataSource = dataSource;
     self.chartStyle = style;
-    _lineChart.layer.shouldRasterize = YES;
-    _barChart.layer.shouldRasterize = YES;
+    
     return [self initWithFrame:rect];
 }
 
@@ -45,6 +44,7 @@
             _lineChart = [[UULineChart alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
             [self addSubview:_lineChart];
         }
+        
         //选择标记范围
         if ([self.dataSource respondsToSelector:@selector(UUChartMarkRangeInLineChart:)]) {
             [_lineChart setMarkRange:[self.dataSource UUChartMarkRangeInLineChart:self]];

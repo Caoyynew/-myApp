@@ -16,17 +16,25 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        
 		_chartLine = [CAShapeLayer layer];
+        
 		_chartLine.lineCap = kCALineCapSquare;
 		_chartLine.fillColor   = [[UIColor whiteColor] CGColor];
 		_chartLine.lineWidth   = self.frame.size.width;
 		_chartLine.strokeEnd   = 0.0;
 		self.clipsToBounds = YES;
-       // self.backgroundColor =UUGreen;
 		[self.layer addSublayer:_chartLine];
-       // _chartLine.backgroundColor =(__bridge CGColorRef _Nullable)([UIColor colorWithRed:0.2 green:0.3 blue:0.4 alpha:1]);
+//        self.layer.shouldRasterize = YES;
+//        self.layer.rasterizationScale = [UIScreen mainScreen].scale;
+//		self.layer.cornerRadius = 2.0;
+//        UIColor *lightG = [UIColor colorWithRed:173.0/255.0 green:216.0/255.0 blue:230.0/255.0 alpha:1.0f];
+//        UIColor *darkG = [UIColor colorWithRed:65.0/255.0 green:105.0/255.0 blue:235.0/255.0 alpha:1.0f];
+//        CAGradientLayer *gradient = [CAGradientLayer layer];
+//        gradient.colors = [NSArray arrayWithObjects:(id)lightG.CGColor,(id)darkG.CGColor, nil];
+//        gradient.frame = self.bounds;
+//        [self.layer insertSublayer:gradient atIndex:0];
 
-		
     }
     return self;
 }
@@ -34,8 +42,7 @@
 -(void)setGrade:(float)grade
 {
     if (grade==0)
-        
-        return;
+    return;
     
 	_grade = grade;
 	UIBezierPath *progressline = [UIBezierPath bezierPath];
@@ -50,7 +57,8 @@
 	if (_barColor) {
 		_chartLine.strokeColor = [_barColor CGColor];
 	}else{
-		_chartLine.strokeColor = [UUGreen CGColor];
+        _chartLine.strokeColor = [[UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:0.6f] CGColor];
+    
 	}
     
     CABasicAnimation *pathAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
@@ -64,29 +72,15 @@
     _chartLine.strokeEnd = 2.0;
 }
 
-- (void)drawRect:(CGRect)rect
-{
-	//Draw BG
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    //!!!!
-//    //设置颜色数组
-//    UIColor *darkOp =
-//    [UIColor colorWithRed:0.62f green:0.4f blue:0.42f alpha:1.0];
-//    UIColor *lightOp =
-//    [UIColor colorWithRed:0.43f green:0.76f blue:0.07f alpha:1.0];
-//    //创建CAGradientLayer实例
-//    CAGradientLayer *gradient = [CAGradientLayer layer];
-//    //设置颜色
-//    gradient.colors = [NSArray arrayWithObjects:
-//                       (id)lightOp.CGColor,
-//                       (id)darkOp.CGColor,
-//                       nil];
-    //设置渐变的frame
-    
-    CGContextSetFillColorWithColor(context, [UIColor colorWithRed:200/255.0 green:255/255 blue:200/255 alpha:1].CGColor);
-	CGContextFillRect(context, rect);
-    
-}
+//- (void)drawRect:(CGRect)rect
+//{
+//	//Draw BG
+//    CGContextRef context = UIGraphicsGetCurrentContext();
+//    
+//    CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
+//	CGContextFillRect(context, rect);
+//    
+//}
 
 
 @end

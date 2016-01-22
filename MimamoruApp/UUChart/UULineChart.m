@@ -21,7 +21,15 @@
     if (self) {
         // Initialization code
         self.clipsToBounds = YES;
+        UIColor *lightG = [UIColor colorWithRed:64.0/255.0 green:224.0/255.0 blue:208.0/255.0 alpha:1.0f];
+        UIColor *darkG = [UIColor colorWithRed:0.0/255.0 green:128.0/255.0 blue:128.0/255.0 alpha:1.0f];
+        CAGradientLayer *gradient = [CAGradientLayer layer];
+        gradient.colors = [NSArray arrayWithObjects:(id)lightG.CGColor,(id)darkG.CGColor, nil];
+        gradient.frame = self.bounds;
+        [self.layer insertSublayer:gradient atIndex:0];
+        self.layer.cornerRadius = 6;
     }
+    
     return self;
 }
 
@@ -113,27 +121,50 @@
     _xLabelWidth = (self.frame.size.width - UUYLabelwidth)/num;
     
     for (int i=0; i<xLabels.count; i++) {
+      
         NSString *labelText = xLabels[i];
         UUChartLabel * label = [[UUChartLabel alloc] initWithFrame:CGRectMake(i * _xLabelWidth+UUYLabelwidth, self.frame.size.height - UULabelHeight, _xLabelWidth, UULabelHeight)];
+        
+  
         label.text = labelText;
+        
+
+        if (xLabels.count <8) {
+            if ([label.text isEqualToString: @"1"]) {
+                label.text = @"月";
+            }else if([label.text isEqualToString: @"2"]){
+                label.text = @"火";
+            }else if([label.text isEqualToString: @"3"]){
+                label.text = @"水";
+            }else if([label.text isEqualToString: @"4"]){
+                label.text = @"木";
+            }else if([label.text isEqualToString: @"5"]){
+                label.text = @"金";
+            }else if([label.text isEqualToString: @"6"]){
+                label.text = @"土";
+            }else if([label.text isEqualToString: @"7"]){
+                label.text = @"日";
+            }
+        }
+        
         [self addSubview:label];
         
         [_chartLabelsForX addObject:label];
     }
     
     //画竖线
-    for (int i=0; i<xLabels.count+1; i++) {
-        CAShapeLayer *shapeLayer = [CAShapeLayer layer];
-        UIBezierPath *path = [UIBezierPath bezierPath];
-        [path moveToPoint:CGPointMake(UUYLabelwidth+i*_xLabelWidth,UULabelHeight)];
-        [path addLineToPoint:CGPointMake(UUYLabelwidth+i*_xLabelWidth,self.frame.size.height-2*UULabelHeight)];
-        [path closePath];
-        shapeLayer.path = path.CGPath;
-        shapeLayer.strokeColor = [[[UIColor blackColor] colorWithAlphaComponent:0.1] CGColor];
-        shapeLayer.fillColor = [[UIColor whiteColor] CGColor];
-        shapeLayer.lineWidth = 1;
-        [self.layer addSublayer:shapeLayer];
-    }
+//    for (int i=0; i<xLabels.count+1; i++) {
+//        CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+//        UIBezierPath *path = [UIBezierPath bezierPath];
+//        [path moveToPoint:CGPointMake(UUYLabelwidth+i*_xLabelWidth,0)];
+//        [path addLineToPoint:CGPointMake(UUYLabelwidth+i*_xLabelWidth,self.frame.size.height-2*UULabelHeight)];
+//        [path closePath];
+//        shapeLayer.path = path.CGPath;
+//        shapeLayer.strokeColor = [[[UIColor blackColor] colorWithAlphaComponent:0.1] CGColor];
+//        shapeLayer.fillColor = [[UIColor whiteColor] CGColor];
+//        shapeLayer.lineWidth = 1;
+//        [self.layer addSublayer:shapeLayer];
+//    }
 }
 
 -(void)setColors:(NSArray *)colors
@@ -186,10 +217,30 @@
         CAShapeLayer *_chartLine = [CAShapeLayer layer];
         _chartLine.lineCap = kCALineCapRound;
         _chartLine.lineJoin = kCALineJoinBevel;
-        _chartLine.fillColor   = [[UIColor whiteColor] CGColor];
+        _chartLine.fillColor   = [[UIColor blackColor] CGColor];
         _chartLine.lineWidth   = 2.0;
+        _chartLine.lineDashPhase=6.0;
         _chartLine.strokeEnd   = 0.0;
         [self.layer addSublayer:_chartLine];
+        
+//        CAShapeLayer *backgroundLayer = [CAShapeLayer layer];
+//        //backgroundLayer.frame = self.;
+//        backgroundLayer.fillColor = [UIColor blackColor].CGColor;
+//        backgroundLayer.backgroundColor = [UIColor clearColor].CGColor;
+//        [backgroundLayer setStrokeColor:[UIColor clearColor].CGColor];
+//        //[backgroundLayer setLineWidth:((NSNumber *)theme[kPlotStrokeWidthKey]).intValue];
+//        CGMutablePathRef backgroundPath = CGPathCreateMutable();
+//        CGPathAddLineToPoint(backgroundPath, NULL, 45.3 ,176);
+//        
+//        //additional points for background.
+//        CGPathAddLineToPoint(backgroundPath, NULL, 45.3, self.bounds.size.height - 30.0);
+//        CGPathAddLineToPoint(backgroundPath, NULL, 45.3, self.bounds.size.height - 30.0);
+//        CGPathCloseSubpath(backgroundPath);
+//        
+//        backgroundLayer.path = backgroundPath;
+//        
+//        
+//        [self.layer addSublayer:backgroundLayer];
         
         UIBezierPath *progressline = [UIBezierPath bezierPath];
         CGFloat firstValue = [[childAry objectAtIndex:0] floatValue];
@@ -249,7 +300,7 @@
         if ([[_colors objectAtIndex:i] CGColor]) {
             _chartLine.strokeColor = [[_colors objectAtIndex:i] CGColor];
         }else{
-            _chartLine.strokeColor = [UUGreen CGColor];
+            _chartLine.strokeColor = [UUWhite CGColor];
         }
         CABasicAnimation *pathAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
         pathAnimation.duration = childAry.count*0.1;
@@ -270,10 +321,11 @@
     view.layer.masksToBounds = YES;
     view.layer.cornerRadius = 4;
     view.layer.borderWidth = 2;
-    view.layer.borderColor = [[_colors objectAtIndex:index] CGColor]?[[_colors objectAtIndex:index] CGColor]:UUGreen.CGColor;
+    view.layer.borderColor = [[_colors objectAtIndex:index] CGColor]?[[_colors objectAtIndex:index] CGColor]:UUWhite.CGColor;
     
     if (isHollow) {
-        view.backgroundColor = [UIColor whiteColor];
+        //圆点心颜色
+        view.backgroundColor =  [UIColor colorWithRed:64.0/255.0 green:224.0/255.0 blue:208.0/255.0 alpha:1.0f];
     }else{
         view.backgroundColor = [_colors objectAtIndex:index]?[_colors objectAtIndex:index]:UUGreen;
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(point.x-UUTagLabelwidth/2.0, point.y-UULabelHeight*2, UUTagLabelwidth, UULabelHeight)];

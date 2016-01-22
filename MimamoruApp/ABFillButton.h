@@ -20,7 +20,7 @@
 @interface ABFillButton : UIButton
 
 //Properties
-@property (nonatomic, assign) BOOL emptyButtonPressing;
+@property (nonatomic, assign) BOOL emptyButtonPressing; // YES:可以发邮件 NO:不可发邮件
 
 //Data
 @property (nonatomic, assign) float fillPercent;

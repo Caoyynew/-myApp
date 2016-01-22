@@ -21,13 +21,14 @@
     NSArray *montharr;
     NSArray *yeararr;
     UIPageControl* _page;
+ 
     
 }
 
 @end
 
 @implementation DashBoardTableViewCell
-
+@synthesize currentNo;
 
 - (void)awakeFromNib {
     
@@ -64,31 +65,31 @@
     montharr = month;
     
     if ([self.hhh isEqualToString:@"ドア"]) {
-        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 15, [UIScreen mainScreen].bounds.size.width-20
+        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(10, 15, [UIScreen mainScreen].bounds.size.width-20
                                                                        , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
         
-        chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+5, 15, [UIScreen mainScreen].bounds.size.width-20
+        chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+10, 15, [UIScreen mainScreen].bounds.size.width-20
                                                                         , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
         
-        chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width)*2+5, 15, [UIScreen mainScreen].bounds.size.width-20
+        chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width)*2+10, 15, [UIScreen mainScreen].bounds.size.width-20
                                                                         , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
     }else if([self.hhh isEqualToString:@"電気使用量"]){
-        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 15, [UIScreen mainScreen].bounds.size.width-20
+        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(10, 15, [UIScreen mainScreen].bounds.size.width-20
                                                                        , 130) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle];
         
-        chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+5, 15, [UIScreen mainScreen].bounds.size.width-20
+        chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+10, 15, [UIScreen mainScreen].bounds.size.width-20
                                                                         , 130) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle];
         
-        chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width)*2+5, 15, [UIScreen mainScreen].bounds.size.width-20
+        chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width)*2+10, 15, [UIScreen mainScreen].bounds.size.width-20
                                                                         , 130) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle];
     }else if([self.hhh isEqualToString:@"マット"]){
-        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 15, [UIScreen mainScreen].bounds.size.width-20
+        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(10, 15, [UIScreen mainScreen].bounds.size.width-20
                                                                        , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
         
-        chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+5, 15, [UIScreen mainScreen].bounds.size.width-20
+        chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+10, 15, [UIScreen mainScreen].bounds.size.width-20
                                                                         , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
         
-        chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width)*2+5, 15, [UIScreen mainScreen].bounds.size.width-20
+        chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width)*2+10, 15, [UIScreen mainScreen].bounds.size.width-20
                                                                         , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
     }
     
@@ -104,12 +105,39 @@
     _scoll.pagingEnabled =YES;
     
     
+    
 }
 
+
+
+#pragma mark - UIScroll View delegate
+//开始拖拽调用
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    
+    NSLog(@"start");
+}
+//滚动某个位置调用
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    currentNo = _scoll.contentOffset.x/_scoll.frame.size.width;
+    float current = _scoll.contentOffset.x/_scoll.frame.size.width;
+    NSLog(@"running = %d",currentNo);
+    [self passCurrent:current indexPath:path];
+}
+
+-(void)passCurrent:(float)current indexPath:(NSIndexPath *)row
+{
+    
+}
+
+
+// 停止拖拽调用方法
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 
 {
-    //_page.currentPage = 2;
+    
+    NSLog(@"end");
     int currentPage = (_scoll.contentOffset.x - _scoll.frame.size.width) / _scoll.frame.size.width +1;
     
     //today

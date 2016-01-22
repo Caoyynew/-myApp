@@ -33,12 +33,14 @@
 
 @implementation EmergencyViewController
 
+
 -(void)viewDidLoad
 {
+
     _button.delegate = self;
     [_button setFillPercent:1.0];
     [_button configureButtonWithHightlightedShadowAndZoom:YES];
-    [_button setEmptyButtonPressing:YES];
+    
     _tableview.delegate = self;
     _tableview.dataSource = self;
     
@@ -50,8 +52,11 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    
     [self reloadContact];
     [self settingEmail];
+    [_button setEmptyButtonPressing:YES];
+
 }
 
 
@@ -166,7 +171,7 @@
             NSLog(@"Error sending email:%@",error);
             dispatch_async(dispatch_get_main_queue(), ^{
                 [LeafNotification showInController:self withText:@"メール送信が失敗しました！"];
-                flag = 0;
+
             });
         }else{
             NSLog(@"Successfully send email!");
@@ -175,9 +180,10 @@
 //                
 //            });
             dispatch_async(dispatch_get_main_queue(), ^{
-                if (flag ==1) {
+
+                    [_button setEmptyButtonPressing:NO]; //设定id 判断是否进行第二次出发
                     [self pushview];
-                }
+
             });
             
             
@@ -187,12 +193,10 @@
 }
 //换面跳转的方法
 -(void)pushview{
-    flag = 0;
+    
     [self performSegueWithIdentifier:@"gotodetail" sender:self];
     
 }
-
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
@@ -223,11 +227,12 @@
 - (IBAction)btnAction:(id)sender {
     
     [_button setFillPercent:1.0];
+    
 }
 
 -(void)buttonIsEmpty:(ABFillButton *)button{
     NSLog(@"button is pressedd");
-    flag =1;
+
     NSMutableDictionary *myInfo;
     NSDictionary *myDict = [[NSUserDefaults standardUserDefaults]valueForKey:@"personal"];
     if (myDict==nil) {
@@ -247,8 +252,12 @@
     NSString *otherthing = [myInfo valueForKey:@"other"];
     NSString *contentFirst = [myInfo valueForKey:@"contentfirst"];
     message = [NSString stringWithFormat:@"   氏名：%@\n   性别：%@ \n   誕生日：%@\n   現住所：%@\n   かかりつけ医：%@\n   服薬情報：%@\n   健康診断結果情報：%@\n   その他お願い事項：%@\n   緊急通報メール宛先：%@\n",name,sex,birday,adress,doctor,kusili,health,otherthing,contentFirst];
+    
+   
+    
 
-    [self sendEmail:message];
+        [self sendEmail:message];
+
 }
 
 

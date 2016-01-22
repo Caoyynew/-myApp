@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "DataWebService.h"
 @interface ViewController : UIViewController
-
+@property(strong, nonatomic)NSString *userid;
 
 @end
 

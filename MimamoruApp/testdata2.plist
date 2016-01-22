@@ -33,13 +33,13 @@
 	</array>
 	<key>week</key>
 	<array>
-		<real>9.5</real>
+		<integer>12</integer>
 		<integer>10</integer>
-		<real>8.5</real>
+		<integer>8</integer>
 		<integer>9</integer>
 		<integer>8</integer>
 		<integer>10</integer>
-		<integer>8</integer>
+		<integer>6</integer>
 	</array>
 	<key>month</key>
 	<array>
