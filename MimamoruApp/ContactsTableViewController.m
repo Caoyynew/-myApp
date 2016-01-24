@@ -72,7 +72,32 @@
 {
     [root2 removeObjectAtIndex:indexPath.row];
     [[NSUserDefaults standardUserDefaults]setObject:root2 forKey:@"content"];
+    
+    
     [self.tableView reloadData];
+}
+
+
+#pragma mark -  删除的request事件
+
+-(void)startRequest:(NSString *)getid{
+    //post 提交修改
+    NSURL *url = [NSURL URLWithString:@"http://mimamorihz.azurewebsites.net/userInfoEdit.php"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    //
+    [request setHTTPMethod:@"post"];
+    NSString * content = getid;
+    [request setHTTPBody:[content dataUsingEncoding:NSUTF8StringEncoding]];
+    //构建session
+    NSURLSession *session = [NSURLSession sharedSession];
+    //任务
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSLog(@"%@",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
+        //异步回调方法
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+        NSLog(@"%@",dict);
+    }];
+    [task resume];
 }
 /*
 // Override to support conditional editing of the table view.

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="lqa-g2-x7W">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="lqa-g2-x7W">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -986,10 +986,10 @@ hA
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="RLR-0Y-yla" secondAttribute="bottom" constant="11" id="THk-jh-Tfx"/>
-                                                <constraint firstItem="RLR-0Y-yla" firstAttribute="leading" secondItem="caN-Gc-GoM" secondAttribute="leading" constant="20" id="cXD-Mc-grW"/>
-                                                <constraint firstItem="RLR-0Y-yla" firstAttribute="top" secondItem="caN-Gc-GoM" secondAttribute="top" constant="10" id="t7J-oF-v73"/>
-                                                <constraint firstItem="RLR-0Y-yla" firstAttribute="centerX" secondItem="caN-Gc-GoM" secondAttribute="centerX" id="woW-I5-tFi"/>
+                                                <constraint firstItem="RLR-0Y-yla" firstAttribute="leading" secondItem="caN-Gc-GoM" secondAttribute="leading" constant="20" id="G2B-Ha-2BK"/>
+                                                <constraint firstItem="RLR-0Y-yla" firstAttribute="top" secondItem="caN-Gc-GoM" secondAttribute="top" constant="10" id="Udq-XK-SLe"/>
+                                                <constraint firstAttribute="trailing" secondItem="RLR-0Y-yla" secondAttribute="trailing" constant="20" id="c4G-uO-KoG"/>
+                                                <constraint firstAttribute="bottom" secondItem="RLR-0Y-yla" secondAttribute="bottom" constant="19" id="yJk-Uz-jsq"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

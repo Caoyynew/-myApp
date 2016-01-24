@@ -37,78 +37,64 @@ enum ActionTypes{
 @implementation ContentTableViewController
 @synthesize myInfo;
 
-//-(void)startRequest:(NSString *)getid{
-//    //get 获取数据
-//    if (action == QUERY) {
-//        NSString *strUrl = [[NSString alloc]initWithFormat:@"http://mimamorihz.azurewebsites.net/userInfo.php?getid=%@&type=%@&action=%@",getid,@"JSON",@"query"];
-//        strUrl = [strUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//        NSURL *url = [NSURL URLWithString:strUrl];
-//        NSURLRequest *request = [[NSURLRequest alloc]initWithURL:url];
-//        NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
-//        if (connection) {
-//            
-//            self.datas = [NSMutableData new];
-//        }
-//    //post 提交修改
-//    }else if (action == MOD){
-//        NSString *strUrl = [[NSString alloc]initWithFormat:@"http://mimamorihz.azurewebsites.net/userInfoEdit.php"];
-//        strUrl = [strUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//        NSURL *url = [NSURL URLWithString:strUrl];
-//        NSString *post = [NSString stringWithFormat:@"getid=%@&type=%@&action=%@",getid,@"JSON",@"modify"];
-//        NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding];
-//        NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url];
-//        [request setHTTPMethod:@"POST"];
-//        [request setHTTPBody:postData];
-//        NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
-//        if (connection) {
-//            self.datas = [NSMutableData new];
-//        }
-//    }
-//    
-//}
-////successful
-//-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-//{
-//    [self.datas appendData:data];
-//    NSLog(@"data = %@",data);
-//}
-////fail
-//-(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-//{
-//    NSLog(@"%@",[error localizedDescription]);
-//}
-//
-//-(void)connectionDidFinishLoading:(NSURLConnection *)connection
-//{
-//    NSLog(@"完成请求！");
-//    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:self.datas options:NSJSONReadingAllowFragments error:nil];
-//    NSLog(@"dict = %@", dict);
-//    [self reloadView:dict];
-//
-//}
+-(void)startRequest:(NSString *)getid{
+    //get 获取数据
+    if (action == QUERY) {
+        NSString *strUrl = [[NSString alloc]initWithFormat:@"http://mimamorihz.azurewebsites.net/userInfo.php?getid=%@&type=%@&action=%@",getid,@"JSON",@"query"];
+        NSURL *url = [NSURL URLWithString:strUrl];
+        NSURLSession *session = [NSURLSession sharedSession];
+        NSURLSessionDataTask *task = [session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            //异步回调方法
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+            [self reloadView:dict];
+           // NSLog(@"%@",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
+           // NSLog(@"%@",dict);
+        }];
+        [task resume];
+        
+    //post 提交修改
+    }else if (action == MOD){
 
-
+        NSURL *url = [NSURL URLWithString:@"http://mimamorihz.azurewebsites.net/userInfoEdit.php"];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+        //
+        [request setHTTPMethod:@"post"];
+        NSString * content = getid;
+        [request setHTTPBody:[content dataUsingEncoding:NSUTF8StringEncoding]];
+        //构建session
+        NSURLSession *session = [NSURLSession sharedSession];
+        //任务
+        NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            NSLog(@"%@",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
+            //异步回调方法
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+            [self reloadView:dict];
+        }];
+        [task resume];
+    }
+    
+}
 //从服务器获取 userinfo 数据
-//-(void)reloadView:(NSDictionary *)res
-//{
-//    self.myInfo = [[NSMutableDictionary alloc]initWithDictionary:res];
-//    NSMutableDictionary *userArr = [[NSMutableDictionary alloc]initWithDictionary:res];
-//    NSLog(@"%@",userArr);
-//    _name.text = [myInfo valueForKey:@"name"];
-//    _sex.text = [myInfo valueForKey:@"sex"];
-//    _birday.text = [myInfo valueForKey:@"birthday"];
-//    _adress.text = [myInfo valueForKey:@"adress"];
-//    _doctor.text = [myInfo valueForKey:@"doctor"];
-//    _kusili.text = [myInfo valueForKey:@"kusili"];
-//    _health.text = [myInfo valueForKey:@"health"];
-//    _otherthing.text = [myInfo valueForKey:@"other"];
-//}
+-(void)reloadView:(NSDictionary *)res
+{
+    self.myInfo = [[NSMutableDictionary alloc]initWithDictionary:res];
+    NSMutableDictionary *userArr = [[NSMutableDictionary alloc]initWithDictionary:res];
+    NSLog(@"%@",userArr);
+    _name.text = [myInfo valueForKey:@"name"];
+    _sex.text = [myInfo valueForKey:@"sex"];
+    _birday.text = [myInfo valueForKey:@"birthday"];
+    _adress.text = [myInfo valueForKey:@"adress"];
+    _doctor.text = [myInfo valueForKey:@"doctor"];
+    _kusili.text = [myInfo valueForKey:@"kusili"];
+    _health.text = [myInfo valueForKey:@"health"];
+    _otherthing.text = [myInfo valueForKey:@"other"];
+}
 
 
 -(void)viewWillAppear:(BOOL)animated
 {
-  //  action = QUERY;
-  //  [self startRequest:@"000001"];
+   // action = QUERY;
+   // [self startRequest:@"000001"];
 }
 
 
