@@ -52,6 +52,8 @@
 		E994DC161C4F4ACE0045053C /* UUChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E994DC0E1C4F4ACE0045053C /* UUChartLabel.m */; };
 		E994DC171C4F4ACE0045053C /* UUColor.m in Sources */ = {isa = PBXBuildFile; fileRef = E994DC101C4F4ACE0045053C /* UUColor.m */; };
 		E994DC181C4F4ACE0045053C /* UULineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = E994DC121C4F4ACE0045053C /* UULineChart.m */; };
+		E997B02F1C5B28B900031202 /* DataBaseTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E997B02E1C5B28B900031202 /* DataBaseTool.m */; };
+		E997B0311C5B28CF00031202 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E997B0301C5B28CF00031202 /* libsqlite3.0.tbd */; };
 		E99E97371C3FBE340019D2CC /* MimamoruAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E99E97361C3FBE340019D2CC /* MimamoruAppTests.m */; };
 		E99E97421C3FBE340019D2CC /* MimamoruAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E99E97411C3FBE340019D2CC /* MimamoruAppUITests.m */; };
 		E99E97A01C3FC0350019D2CC /* ABFillButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E99E97511C3FC0340019D2CC /* ABFillButton.m */; };
@@ -211,6 +213,9 @@
 		E994DC101C4F4ACE0045053C /* UUColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUColor.m; sourceTree = "<group>"; };
 		E994DC111C4F4ACE0045053C /* UULineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UULineChart.h; sourceTree = "<group>"; };
 		E994DC121C4F4ACE0045053C /* UULineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UULineChart.m; sourceTree = "<group>"; };
+		E997B02D1C5B28B900031202 /* DataBaseTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataBaseTool.h; sourceTree = "<group>"; };
+		E997B02E1C5B28B900031202 /* DataBaseTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataBaseTool.m; sourceTree = "<group>"; };
+		E997B0301C5B28CF00031202 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		E99E97191C3FBE340019D2CC /* MimamoruApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MimamoruApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E99E97321C3FBE340019D2CC /* MimamoruApp.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MimamoruApp.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E99E97361C3FBE340019D2CC /* MimamoruAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MimamoruAppTests.m; sourceTree = "<group>"; };
@@ -254,6 +259,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E997B0311C5B28CF00031202 /* libsqlite3.0.tbd in Frameworks */,
 				D43AF2961C4D278E00F7E955 /* libMailCore-ios.a in Frameworks */,
 				E94840A11C46075600E8C760 /* Contacts.framework in Frameworks */,
 				E948409F1C46074D00E8C760 /* ContactsUI.framework in Frameworks */,
@@ -382,10 +388,19 @@
 			name = LifeGroup;
 			sourceTree = "<group>";
 		};
+		E997B0251C5B288E00031202 /* DataBaseTool */ = {
+			isa = PBXGroup;
+			children = (
+				E997B02D1C5B28B900031202 /* DataBaseTool.h */,
+				E997B02E1C5B28B900031202 /* DataBaseTool.m */,
+			);
+			name = DataBaseTool;
+			sourceTree = "<group>";
+		};
 		E99E97101C3FBE340019D2CC = {
 			isa = PBXGroup;
 			children = (
-				E95D9B021C50C322003CE21A /* libsqlite3.tbd */,
+				E997B0301C5B28CF00031202 /* libsqlite3.0.tbd */,
 				E94840A01C46075600E8C760 /* Contacts.framework */,
 				E948409E1C46074C00E8C760 /* ContactsUI.framework */,
 				E948403C1C45EBD400E8C760 /* CoreLocation.framework */,
@@ -430,6 +445,7 @@
 			isa = PBXGroup;
 			children = (
 				D43AF2791C4D277B00F7E955 /* mailcore2.xcodeproj */,
+				E997B0251C5B288E00031202 /* DataBaseTool */,
 				E9453D8D1C4338A800210852 /* LifeGroup */,
 				E9453D8C1C43385F00210852 /* EmergencyGroup */,
 				E9453D8B1C4337E900210852 /* OtherGroup */,
@@ -697,7 +713,7 @@
 				E99E97B11C3FC0350019D2CC /* EmergencyViewController.m in Sources */,
 				E994DC171C4F4ACE0045053C /* UUColor.m in Sources */,
 				E94840A81C46187300E8C760 /* DetailTableViewCell.m in Sources */,
-				E95D9B011C50BF93003CE21A /* DataWebService.m in Sources */,
+				E997B02F1C5B28B900031202 /* DataBaseTool.m in Sources */,
 				E994DC181C4F4ACE0045053C /* UULineChart.m in Sources */,
 				E99E97C81C3FC0350019D2CC /* TabBarViewController.m in Sources */,
 				E99E97C01C3FC0350019D2CC /* LeafNotification.m in Sources */,
@@ -707,12 +723,9 @@
 				E99E97C31C3FC0350019D2CC /* OtherTableViewController.m in Sources */,
 				E994DC141C4F4ACE0045053C /* UUBarChart.m in Sources */,
 				E99E97A11C3FC0350019D2CC /* AppDelegate.m in Sources */,
-				E95C994C1C51D1A100C8A918 /* EmergencyContactsInterface.m in Sources */,
 				E99E97A51C3FC0350019D2CC /* ContentTableViewController.m in Sources */,
-				E95C994F1C51D35800C8A918 /* B1ViewInterface.m in Sources */,
 				E96D6AE11C4CB46D00095613 /* AddTableViewController.m in Sources */,
 				E994DC161C4F4ACE0045053C /* UUChartLabel.m in Sources */,
-				E95C99421C51D0BC00C8A918 /* UserInfoInterface.m in Sources */,
 				E94840A41C46101700E8C760 /* DetailTableViewController.m in Sources */,
 				E96D6AEB1C4CBE8200095613 /* ContactsTableViewController.m in Sources */,
 				E94840691C45F15F00E8C760 /* DashboardTableViewController.m in Sources */,

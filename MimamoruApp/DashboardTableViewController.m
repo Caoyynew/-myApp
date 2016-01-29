@@ -9,6 +9,7 @@
 #import "DashboardTableViewController.h"
 #import "DashBoardTableViewCell.h"
 #import "DetailTableViewController.h"
+#import "DataBaseTool.h"
 @interface DashboardTableViewController() <UIScrollViewDelegate,UIGestureRecognizerDelegate>{
     
 
@@ -45,6 +46,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //刷新数据
+    [[DataBaseTool sharedDB]openDB];
+    
+    
     NSString * login = @"login";
     [[NSUserDefaults standardUserDefaults]setObject:login forKey:@"type"];
 
