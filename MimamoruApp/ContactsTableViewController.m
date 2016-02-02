@@ -7,10 +7,12 @@
 //
 
 #import "ContactsTableViewController.h"
-
+#include "DataBaseTool.h"
 @interface ContactsTableViewController ()
 {
-    NSMutableArray *root2;
+    NSMutableArray *emergencyContacts;
+    NSString *indexRowContact;
+    NSString *userid0;
 }
 
 
@@ -28,14 +30,12 @@
     
     [self performSegueWithIdentifier:@"addcontacts" sender:self];
 }
+#pragma mark - 从本地数据库获取数据
 -(void)viewWillAppear:(BOOL)animated
 {
-    NSArray *user = [[NSUserDefaults standardUserDefaults]valueForKey:@"content"];
-    if (!user) {
-        root2 = [[NSMutableArray alloc]init];
-    }else{
-        root2 = [[NSMutableArray alloc]initWithArray:user];
-    }
+    userid0 = @"00000001";
+    emergencyContacts = [[DataBaseTool sharedDB]selectL_EmergencyContactsTableuserid:userid0];
+    NSLog(@"emergencycount=%lu",(unsigned long)emergencyContacts.count);
     [self.tableView reloadData];
 }
 
@@ -54,39 +54,40 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return root2.count;
+    return emergencyContacts.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mycelladd" forIndexPath:indexPath];
     
-    NSDictionary *value = root2[indexPath.row];
-    cell.textLabel.text = [value valueForKey:@"name"];
-    cell.detailTextLabel.text = [value valueForKey:@"email"];
+    NSDictionary *value = emergencyContacts[indexPath.row];
+    cell.textLabel.text = [value valueForKey:@"nickname"];
+    cell.detailTextLabel.text = [value valueForKey:@"contact"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone; //不可点击
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [root2 removeObjectAtIndex:indexPath.row];
-    [[NSUserDefaults standardUserDefaults]setObject:root2 forKey:@"content"];
     
-    
+    NSDictionary *value = emergencyContacts[indexPath.row];
+    indexRowContact = [value valueForKey:@"contact"];
+    [self startRequest:userid0 Contact:indexRowContact];
+    [emergencyContacts removeObjectAtIndex:indexPath.row];
     [self.tableView reloadData];
 }
 
 
 #pragma mark -  删除的request事件
 
--(void)startRequest:(NSString *)getid{
+-(void)startRequest:(NSString *)getid Contact:(NSString*)contact{
     //post 提交修改
-    NSURL *url = [NSURL URLWithString:@"http://mimamorihz.azurewebsites.net/userInfoEdit.php"];
+    NSURL *url = [NSURL URLWithString:@"http://mimamorihz.azurewebsites.net/emergencyDelete.php"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     //
     [request setHTTPMethod:@"post"];
-    NSString * content = getid;
+    NSString * content = [NSString stringWithFormat:@"userid0=%@&contact=%@",getid,contact];
     [request setHTTPBody:[content dataUsingEncoding:NSUTF8StringEncoding]];
     //构建session
     NSURLSession *session = [NSURLSession sharedSession];
@@ -96,9 +97,24 @@
         //异步回调方法
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         NSLog(@"%@",dict);
+        [self reloaddate:dict];
     }];
     [task resume];
 }
+
+#pragma mark - L_EmergencyContact 本地数据更新
+
+-(void)reloaddate:(NSDictionary*)dic
+{
+    NSString *code = [dic valueForKey:@"code"];
+    if ([code isEqualToString:@"deleteOK"]) {
+        NSMutableDictionary *deleteDic = [[NSMutableDictionary alloc]init];
+        [deleteDic setValue:indexRowContact forKey:@"contact"];
+        [[DataBaseTool sharedDB]deleteL_EmergencyContactsTable:deleteDic userid:userid0];
+    }
+}
+
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

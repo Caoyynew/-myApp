@@ -9,10 +9,11 @@
 #import "ViewController.h"
 #import "LeafNotification.h"
 #import "AppDelegate.h"
+#import "MBProgressHUD.h"
 
 @interface ViewController ()<UITextFieldDelegate>
 {
-    
+    NSString *usertype;
 }
 @property (weak, nonatomic) IBOutlet UITextField *userID;
 @property (weak, nonatomic) IBOutlet UITextField *passWord;
@@ -20,6 +21,54 @@
 @end
 
 @implementation ViewController
+
+#pragma mark - 验证登陆
+
+-(void)startRequest:(NSString*)userid password:(NSString*)pwd
+{
+    //post 提交修改
+    usertype = @"0";
+    NSURL *url = [NSURL URLWithString:@"http://mimamorihz.azurewebsites.net/login.php"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    //
+    [request setHTTPMethod:@"post"];
+    NSString * content = [NSString stringWithFormat:@"userid=%@&password=%@&usertype=%@",userid,pwd,usertype];
+    [request setHTTPBody:[content dataUsingEncoding:NSUTF8StringEncoding]];
+    //构建session
+    NSURLSession *session = [NSURLSession sharedSession];
+    //任务
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSLog(@"%@",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
+        //异步回调方法
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+        NSLog(@"%@",dict);
+        [self checkdate:dict];
+    }];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [task resume];
+    
+}
+
+//判断是否成功
+
+-(void)checkdate:(NSDictionary*)date{
+    
+    NSString *value = [date valueForKey:@"code"];
+    
+    if ([value isEqualToString:@""]) {
+       dispatch_async(dispatch_get_main_queue(), ^{
+           [MBProgressHUD hideHUDForView:self.view animated:YES];
+           [self performSegueWithIdentifier:@"gotomain" sender:self];
+       });
+    }else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [LeafNotification showInController:self withText:@"ユーザーID or パスワードエラー"];
+        });
+    }
+}
+
+
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -35,9 +84,6 @@
         
     }
 }
-
-
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -55,12 +101,9 @@
         [LeafNotification showInController:self withText:@"パスワードを入力してください"];
         return;
     }
-    if ([_userID.text isEqual:@"123"] || [_passWord.text isEqual:@"123"]) {
-        
-        [self performSegueWithIdentifier:@"gotomain" sender:self];
-    }else {
-        [LeafNotification showInController:self withText:@"ユーザーID or パスワードエラー"];
-    }
+    //进行服务器请求，判断
+    [self startRequest:_userID.text password:_passWord.text];
+
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField

@@ -11,6 +11,7 @@
 #import "LeafNotification.h"
 #import <MailCore/MailCore.h>
 #import "AppDelegate.h"
+#import "DataBaseTool.h"
 @interface EmergencyViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,ABFillButtonDelegate>
 {
     NSMutableArray *_currentArray;
@@ -23,6 +24,8 @@
     NSString *message;
     NSString *latitude;
     NSString *longitude;
+    
+    NSString *userid0;
     
     int flag;
 }
@@ -53,6 +56,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     
+    userid0 = @"00000001";
     [self reloadContact];
     [self settingEmail];
     [_button setEmptyButtonPressing:YES];
@@ -66,18 +70,12 @@
 }
 
 -(void)reloadContact{
-    [_currentArray removeAllObjects];
-    NSArray *arr = [[NSUserDefaults standardUserDefaults]valueForKey:@"content"];
-    if (!arr) {
+    
+    _currentArray = [[DataBaseTool sharedDB]selectL_EmergencyContactsTableuserid:userid0];
+    if (_currentArray.count == 0) {
         [LeafNotification showInController:self withText:@"連絡人を追加してください"];
         return;
     }
-    if (!arr) {
-        _currentArray = [[NSMutableArray alloc]init];
-    }else{
-        _currentArray = [[NSMutableArray alloc]initWithArray:arr];
-    }
-
     [_tableview reloadData];
 }
 
@@ -175,12 +173,7 @@
             });
         }else{
             NSLog(@"Successfully send email!");
-//            static dispatch_once_t onceToken;
-//            dispatch_once(&onceToken, ^{
-//                
-//            });
             dispatch_async(dispatch_get_main_queue(), ^{
-
                     [_button setEmptyButtonPressing:NO]; //设定id 判断是否进行第二次出发
                     [self pushview];
 
@@ -210,8 +203,8 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     NSDictionary *cont = _currentArray[indexPath.row];
-    cell.textLabel.text = [cont valueForKey:@"name"];
-    cell.detailTextLabel.text = [cont valueForKey:@"email"];
+    cell.textLabel.text = [cont valueForKey:@"nickname"];
+    cell.detailTextLabel.text = [cont valueForKey:@"contact"];
     return cell;
 }
 

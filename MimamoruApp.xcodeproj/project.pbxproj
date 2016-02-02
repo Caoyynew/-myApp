@@ -46,6 +46,7 @@
 		E949328E1C4490A100A71605 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E949328D1C4490A100A71605 /* CFNetwork.framework */; };
 		E96D6AE11C4CB46D00095613 /* AddTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E96D6AE01C4CB46D00095613 /* AddTableViewController.m */; };
 		E96D6AEB1C4CBE8200095613 /* ContactsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E96D6AEA1C4CBE8200095613 /* ContactsTableViewController.m */; };
+		E98DB6A81C603DDC005CF924 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E98DB6A71C603DDC005CF924 /* MBProgressHUD.m */; };
 		E994DC131C4F4ACE0045053C /* UUBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E994DC081C4F4ACE0045053C /* UUBar.m */; };
 		E994DC141C4F4ACE0045053C /* UUBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = E994DC0A1C4F4ACE0045053C /* UUBarChart.m */; };
 		E994DC151C4F4ACE0045053C /* UUChart.m in Sources */ = {isa = PBXBuildFile; fileRef = E994DC0C1C4F4ACE0045053C /* UUChart.m */; };
@@ -201,6 +202,8 @@
 		E96D6AE01C4CB46D00095613 /* AddTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTableViewController.m; sourceTree = "<group>"; };
 		E96D6AE91C4CBE8200095613 /* ContactsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsTableViewController.h; sourceTree = "<group>"; };
 		E96D6AEA1C4CBE8200095613 /* ContactsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsTableViewController.m; sourceTree = "<group>"; };
+		E98DB6A61C603DDC005CF924 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		E98DB6A71C603DDC005CF924 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		E994DC071C4F4ACE0045053C /* UUBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUBar.h; sourceTree = "<group>"; };
 		E994DC081C4F4ACE0045053C /* UUBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUBar.m; sourceTree = "<group>"; };
 		E994DC091C4F4ACE0045053C /* UUBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUBarChart.h; sourceTree = "<group>"; };
@@ -454,6 +457,8 @@
 				E99E97541C3FC0340019D2CC /* AppDelegate.m */,
 				E99E97881C3FC0340019D2CC /* TabBarViewController.h */,
 				E99E97891C3FC0340019D2CC /* TabBarViewController.m */,
+				E98DB6A61C603DDC005CF924 /* MBProgressHUD.h */,
+				E98DB6A71C603DDC005CF924 /* MBProgressHUD.m */,
 				E99E979A1C3FC0350019D2CC /* ViewController.h */,
 				E99E979B1C3FC0350019D2CC /* ViewController.m */,
 				E99E97581C3FC0340019D2CC /* Main.storyboard */,
@@ -726,6 +731,7 @@
 				E99E97A51C3FC0350019D2CC /* ContentTableViewController.m in Sources */,
 				E96D6AE11C4CB46D00095613 /* AddTableViewController.m in Sources */,
 				E994DC161C4F4ACE0045053C /* UUChartLabel.m in Sources */,
+				E98DB6A81C603DDC005CF924 /* MBProgressHUD.m in Sources */,
 				E94840A41C46101700E8C760 /* DetailTableViewController.m in Sources */,
 				E96D6AEB1C4CBE8200095613 /* ContactsTableViewController.m in Sources */,
 				E94840691C45F15F00E8C760 /* DashboardTableViewController.m in Sources */,

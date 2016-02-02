@@ -7,10 +7,10 @@
 //
 
 #import "ContentTableViewController.h"
+#import "DataBaseTool.h"
 enum ActionTypes{
     
     QUERY,      //查询
-    ADD,        //
     MOD         //修改
 };
 @interface ContentTableViewController ()
@@ -30,71 +30,74 @@ enum ActionTypes{
 
 
 @property (strong, nonatomic) NSMutableData *datas;
-
-@property (strong, nonatomic) NSMutableDictionary *myInfo;
 @end
 
 @implementation ContentTableViewController
-@synthesize myInfo;
 
 -(void)startRequest:(NSString *)getid{
-    //get 获取数据
-    if (action == QUERY) {
-        NSString *strUrl = [[NSString alloc]initWithFormat:@"http://mimamorihz.azurewebsites.net/userInfo.php?getid=%@&type=%@&action=%@",getid,@"JSON",@"query"];
-        NSURL *url = [NSURL URLWithString:strUrl];
-        NSURLSession *session = [NSURLSession sharedSession];
-        NSURLSessionDataTask *task = [session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-            //异步回调方法
-            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-            [self reloadView:dict];
-           // NSLog(@"%@",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
-           // NSLog(@"%@",dict);
-        }];
-        [task resume];
-        
+    
     //post 提交修改
-    }else if (action == MOD){
-
-        NSURL *url = [NSURL URLWithString:@"http://mimamorihz.azurewebsites.net/userInfoEdit.php"];
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-        //
-        [request setHTTPMethod:@"post"];
-        NSString * content = getid;
-        [request setHTTPBody:[content dataUsingEncoding:NSUTF8StringEncoding]];
-        //构建session
-        NSURLSession *session = [NSURLSession sharedSession];
-        //任务
-        NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-            NSLog(@"%@",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
-            //异步回调方法
-            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-            [self reloadView:dict];
-        }];
-        [task resume];
+    _update.text = @"2016-1-31 10:00:00";
+    NSURL *url = [NSURL URLWithString:@"http://mimamorihz.azurewebsites.net/userInfoUpdate.php"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    //post
+    [request setHTTPMethod:@"post"];
+    NSString * content = [NSString stringWithFormat:@"userid=%@&username=%@&sex=%@&birthday=%@&address=%@&kakaritsuke=%@&drug=%@&health=%@&other=%@&updatename=%@&updatedate=%@",getid,_name.text,_sex.text,_birday.text,_adress.text,_doctor.text,_kusili.text,_health.text,_otherthing.text,_updateName.text,_update.text];
+    [request setHTTPBody:[content dataUsingEncoding:NSUTF8StringEncoding]];
+    //构建session
+    NSURLSession *session = [NSURLSession sharedSession];
+    //任务
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSLog(@"data=%@",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
+        //异步回调方法
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+        [self reloadView:dict];
+    }];
+    [task resume];
+    
+    
+}
+#pragma mark - 更新成功，向本地数据库添加更新数据
+-(void)reloadView:(NSDictionary *)res
+{
+    NSLog(@"%@",res);
+    NSString *code = [res valueForKey:@"code"];
+    if ([code isEqualToString:@"updateOK"]) {
+        NSMutableDictionary *updateDic = [[NSMutableDictionary alloc]init];
+        [updateDic setValue: _name.text forKey:@"username"];
+        [updateDic setValue:_sex.text forKey:@"sex"];
+        [updateDic setValue:_birday.text forKey:@"birthday"];
+        [updateDic setValue:_adress.text forKey:@"address"];
+        [updateDic setValue:_doctor.text forKey:@"kakaritsuke"];
+        [updateDic setValue:_kusili.text forKey:@"drug"];
+        [updateDic setValue:_health.text forKey:@"health"];
+        [updateDic setValue:_otherthing.text forKey:@"other"];
+        [updateDic setValue:_update.text forKey:@"updatetime"];
+        [updateDic setValue:_updateName.text forKey:@"updatename"];
+        
+        [[DataBaseTool sharedDB]updateL_UserInfoTable:updateDic userid:@"00000001"];
     }
     
 }
-//从服务器获取 userinfo 数据
--(void)reloadView:(NSDictionary *)res
-{
-    self.myInfo = [[NSMutableDictionary alloc]initWithDictionary:res];
-    NSMutableDictionary *userArr = [[NSMutableDictionary alloc]initWithDictionary:res];
-    NSLog(@"%@",userArr);
-    _name.text = [myInfo valueForKey:@"name"];
-    _sex.text = [myInfo valueForKey:@"sex"];
-    _birday.text = [myInfo valueForKey:@"birthday"];
-    _adress.text = [myInfo valueForKey:@"adress"];
-    _doctor.text = [myInfo valueForKey:@"doctor"];
-    _kusili.text = [myInfo valueForKey:@"kusili"];
-    _health.text = [myInfo valueForKey:@"health"];
-    _otherthing.text = [myInfo valueForKey:@"other"];
-}
 
+
+#pragma mark - 从本地数据库获取数据
 
 -(void)viewWillAppear:(BOOL)animated
 {
-   // action = QUERY;
-   // [self startRequest:@"000001"];
+    NSMutableDictionary *userinfoDic = [[DataBaseTool sharedDB]selectL_UserInfoTableuserid:@"00000001"];
+    if (userinfoDic) {
+        _name.text = [userinfoDic valueForKey:@"username"];
+        _sex.text = [userinfoDic valueForKey:@"sex"];
+        _birday.text = [userinfoDic valueForKey:@"birthday"];
+        _adress.text = [userinfoDic valueForKey:@"address"];
+        _doctor.text = [userinfoDic valueForKey:@"kakaritsuke"];
+        _kusili.text = [userinfoDic valueForKey:@"drug"];
+        _health.text = [userinfoDic valueForKey:@"health"];
+        _otherthing.text = [userinfoDic valueForKey:@"other"];
+        _update.text = [userinfoDic valueForKey:@"updatetime"];
+        _updateName.text = [userinfoDic valueForKey:@"updatename"];
+    }
 }
 
 
@@ -104,21 +107,6 @@ enum ActionTypes{
     UIView *view = [[UIView alloc]init];
     view.backgroundColor = [UIColor clearColor];
     [self.tableView setTableFooterView:view];
-    NSDictionary *myDict = [[NSUserDefaults standardUserDefaults]valueForKey:@"personal"];
-    if (myDict==nil) {
-        myInfo = [[NSMutableDictionary alloc]init];
-    }else{
-        myInfo = [[NSMutableDictionary alloc]initWithDictionary:myDict];
-        _name.text = [myInfo valueForKey:@"name"];
-        _sex.text = [myInfo valueForKey:@"sex"];
-        _birday.text = [myInfo valueForKey:@"birthday"];
-        _adress.text = [myInfo valueForKey:@"adress"];
-        _doctor.text = [myInfo valueForKey:@"doctor"];
-        _kusili.text = [myInfo valueForKey:@"kusili"];
-        _health.text = [myInfo valueForKey:@"health"];
-        _otherthing.text = [myInfo valueForKey:@"other"];
-    
-    }
     
 }
 
@@ -127,21 +115,9 @@ enum ActionTypes{
     
 }
 - (IBAction)saveContent:(id)sender {
-    [myInfo setValue:_name.text forKey:@"name"];
-    [myInfo setValue:_sex.text forKey:@"sex"];
-    [myInfo setValue:_birday.text forKey:@"birthday"];
-    [myInfo setValue:_adress.text forKey:@"adress"];
-    [myInfo setValue:_doctor.text forKey:@"doctor"];
-    [myInfo setValue:_kusili.text forKey:@"kusili"];
-    [myInfo setValue:_health.text forKey:@"health"];
-    [myInfo setValue:_otherthing.text forKey:@"other"];
     
-    NSLog(@"%@",myInfo);
-    
-//    action = MOD;
-//    [self startRequest:@"000001"];
-    
-    [[NSUserDefaults standardUserDefaults]setValue:myInfo forKey:@"personal"];
+    [self startRequest:@"00000001"];
+
     [self.navigationController popViewControllerAnimated:YES];
 }
 
