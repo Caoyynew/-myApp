@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface DetailTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *danwei;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 -(void)configUI:(NSIndexPath*)indexPath type:(int)styletype day:(NSArray *)day;
 @end

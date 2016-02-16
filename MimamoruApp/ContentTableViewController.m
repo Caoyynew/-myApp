@@ -8,14 +8,20 @@
 
 #import "ContentTableViewController.h"
 #import "DataBaseTool.h"
+#import "MBProgressHUD.h"
 enum ActionTypes{
     
     QUERY,      //查询
     MOD         //修改
 };
-@interface ContentTableViewController ()
+@interface ContentTableViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     enum ActionTypes action;
+    NSMutableArray *emergencyArr;
+    NSString *indexRowContact;
+    NSString *userid0;
+
+    IBOutlet UITableView *myTableView;
 }
 @property (weak, nonatomic) IBOutlet UITextField *name;
 @property (weak, nonatomic) IBOutlet UITextField *sex;
@@ -28,16 +34,19 @@ enum ActionTypes{
 @property (weak, nonatomic) IBOutlet UILabel *update;
 @property (weak, nonatomic) IBOutlet UILabel *updateName;
 
-
-@property (strong, nonatomic) NSMutableData *datas;
 @end
 
 @implementation ContentTableViewController
 
+#pragma mark - userinfo信息保存的请求
 -(void)startRequest:(NSString *)getid{
     
     //post 提交修改
-    _update.text = @"2016-1-31 10:00:00";
+    NSDate *  senddate=[NSDate date];
+    NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
+    [dateformatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    _update.text=[dateformatter stringFromDate:senddate];
+    
     NSURL *url = [NSURL URLWithString:@"http://mimamorihz.azurewebsites.net/userInfoUpdate.php"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     //post
@@ -53,18 +62,18 @@ enum ActionTypes{
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         [self reloadView:dict];
     }];
+    [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
     [task resume];
     
-    
 }
-#pragma mark - 更新成功，向本地数据库添加更新数据
+#pragma mark - userinfo更新成功，向本地数据库添加更新数据
 -(void)reloadView:(NSDictionary *)res
 {
     NSLog(@"%@",res);
     NSString *code = [res valueForKey:@"code"];
     if ([code isEqualToString:@"updateOK"]) {
         NSMutableDictionary *updateDic = [[NSMutableDictionary alloc]init];
-        [updateDic setValue: _name.text forKey:@"username"];
+        [updateDic setValue:_name.text forKey:@"username"];
         [updateDic setValue:_sex.text forKey:@"sex"];
         [updateDic setValue:_birday.text forKey:@"birthday"];
         [updateDic setValue:_adress.text forKey:@"address"];
@@ -75,17 +84,28 @@ enum ActionTypes{
         [updateDic setValue:_update.text forKey:@"updatetime"];
         [updateDic setValue:_updateName.text forKey:@"updatename"];
         
-        [[DataBaseTool sharedDB]updateL_UserInfoTable:updateDic userid:@"00000001"];
+        [[DataBaseTool sharedDB]updateL_UserInfoTable:updateDic userid:userid0];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.tableView animated:YES];
+            [self.navigationController popViewControllerAnimated:YES];
+        });
     }
     
 }
 
 
-#pragma mark - 从本地数据库获取数据
+#pragma mark - 从本地数据库获取数据（L_UserInfo和 L_EmergencyContacts）
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    NSMutableDictionary *userinfoDic = [[DataBaseTool sharedDB]selectL_UserInfoTableuserid:@"00000001"];
+    //获取紧急联系人
+    userid0 = @"00000001";
+    emergencyArr = [[DataBaseTool sharedDB]selectL_EmergencyContactsTableuserid:userid0];
+    NSLog(@"emergencycount=%lu",(unsigned long)emergencyArr.count);
+    [myTableView reloadData];
+    
+    //获取userinfo信息
+    NSMutableDictionary *userinfoDic = [[DataBaseTool sharedDB]selectL_UserInfoTableuserid:userid0];
     if (userinfoDic) {
         _name.text = [userinfoDic valueForKey:@"username"];
         _sex.text = [userinfoDic valueForKey:@"sex"];
@@ -97,28 +117,143 @@ enum ActionTypes{
         _otherthing.text = [userinfoDic valueForKey:@"other"];
         _update.text = [userinfoDic valueForKey:@"updatetime"];
         _updateName.text = [userinfoDic valueForKey:@"updatename"];
+        
     }
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     UIView *view = [[UIView alloc]init];
     view.backgroundColor = [UIColor clearColor];
     [self.tableView setTableFooterView:view];
+}
+
+#pragma mark - 紧急联系人mytableview datasource
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *title = [NSString new];
+    if (tableView == myTableView) {
+        
+        title = @"";
+        return title;
+    }
+    return [super tableView:tableView titleForHeaderInSection:section];
     
+}
+
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
+    if (tableView == myTableView) {
+        return 1;
+    }
+    else{
+        return 12;
+    }
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (tableView == myTableView) {
+        return emergencyArr.count;
+    }else{
+        return [super tableView:tableView numberOfRowsInSection:section];
+    }
+    return 0;
+    
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView == myTableView) {
+        static NSString *cellid = @"mycell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellid forIndexPath:indexPath];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellid];
+        }
+        NSDictionary *value = emergencyArr[indexPath.row];
+        cell.textLabel.text = [value valueForKey:@"nickname"];
+        cell.detailTextLabel.text = [value valueForKey:@"contact"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone; //不可点击
+        return cell;
+    }else{
+        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    }
+    
+}
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView == myTableView) {
+        return YES;
+    }else {
+        return NO;
+    }
+}
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView == myTableView) {
+        NSDictionary *value = emergencyArr[indexPath.row];
+        indexRowContact = [value valueForKey:@"contact"];
+        [self startRequest:userid0 Contact:indexRowContact];
+        [emergencyArr removeObjectAtIndex:indexPath.row];
+        
+
+    }
+}
+#pragma mark -  紧急联系人删除的request事件
+
+-(void)startRequest:(NSString *)getid Contact:(NSString*)contact{
+    //post 提交修改
+    NSURL *url = [NSURL URLWithString:@"http://mimamorihz.azurewebsites.net/emergencyDelete.php"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    //
+    [request setHTTPMethod:@"post"];
+    NSString * content = [NSString stringWithFormat:@"userid0=%@&contact=%@",getid,contact];
+    [request setHTTPBody:[content dataUsingEncoding:NSUTF8StringEncoding]];
+    //构建session
+    NSURLSession *session = [NSURLSession sharedSession];
+    //任务
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSLog(@"%@",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
+        //异步回调方法
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+        NSLog(@"%@",dict);
+        [self reloaddate:dict];
+    }];
+    [MBProgressHUD showHUDAddedTo:myTableView animated:YES];
+    [task resume];
+}
+#pragma mark - L_EmergencyContact 本地数据更新
+
+-(void)reloaddate:(NSDictionary*)dic
+{
+    NSString *code = [dic valueForKey:@"code"];
+    if ([code isEqualToString:@"deleteOK"]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:myTableView animated:YES];
+            [myTableView reloadData];
+        });
+        NSMutableDictionary *deleteDic = [[NSMutableDictionary alloc]init];
+        [deleteDic setValue:indexRowContact forKey:@"contact"];
+        [[DataBaseTool sharedDB]deleteL_EmergencyContactsTable:deleteDic userid:userid0];
+            }
+}
+#pragma mark - 添加紧急联系人
+- (IBAction)addContacts:(id)sender {
+    
+    [self performSegueWithIdentifier:@"addcontact" sender:self];
 }
 
 - (void)didReceiveMemoryWarning {
+    
     [super didReceiveMemoryWarning];
     
 }
+#pragma mark - 保存提交
 - (IBAction)saveContent:(id)sender {
     
-    [self startRequest:@"00000001"];
-
-    [self.navigationController popViewControllerAnimated:YES];
+    [self startRequest:userid0];
+    
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -133,59 +268,5 @@ enum ActionTypes{
     }
     return  YES;
 }
-
-/*
- - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
- UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
- 
- // Configure the cell...
- 
- return cell;
- }
- */
-
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- } else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end

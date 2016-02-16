@@ -32,8 +32,9 @@
 }
 
 - (void)didReceiveMemoryWarning {
+    
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
 }
 
 #pragma mark - Table view data source
@@ -41,7 +42,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 2;
+    return 1;
 }
 
 
@@ -57,7 +58,9 @@
 {
     if (indexPath.row==0) {
         [self performSegueWithIdentifier:@"gotocontent" sender:self];
-    }else if (indexPath.row==1){
+        
+    }
+        else if (indexPath.row==1){
         [self performSegueWithIdentifier:@"gotomessage" sender:self];
     }
 }

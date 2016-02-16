@@ -227,7 +227,7 @@ hA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uUD-KT-fhq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1842" y="672"/>
+            <point key="canvasLocation" x="2374" y="672"/>
         </scene>
         <!--緊急-->
         <scene sceneID="D0m-ed-Gsm">
@@ -263,7 +263,7 @@ hA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RrN-Xu-clG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2270" y="672"/>
+            <point key="canvasLocation" x="2802" y="672"/>
         </scene>
         <!--生活-->
         <scene sceneID="rkw-jd-Xw2">
@@ -389,7 +389,7 @@ hA
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fMr-JG-bj5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1448" y="1326"/>
+            <point key="canvasLocation" x="1980" y="1326"/>
         </scene>
         <!--緊急通報の設定-->
         <scene sceneID="ODc-F2-Ooo">
@@ -424,7 +424,7 @@ hA
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RU9-yy-jVd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2185" y="1326"/>
+            <point key="canvasLocation" x="2717" y="1326"/>
         </scene>
         <!--緊急通報先の設定-->
         <scene sceneID="3Vy-B0-dzX">
@@ -479,7 +479,7 @@ hA
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ybh-eI-hc1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2657" y="1326"/>
+            <point key="canvasLocation" x="3189" y="1326"/>
         </scene>
         <!--緊急通報先の入力-->
         <scene sceneID="u6n-QW-BC3">
@@ -602,7 +602,7 @@ hA
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="alL-E3-6Yi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2657" y="2093"/>
+            <point key="canvasLocation" x="3197" y="2169"/>
         </scene>
         <!--緊急通報情報の設定-->
         <scene sceneID="OBt-a8-EwK">
@@ -904,10 +904,74 @@ hA
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="緊急通報先" id="keU-ye-Dx3">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="150" id="vD7-6F-B4G">
+                                        <rect key="frame" x="0.0" y="836" width="320" height="150"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vD7-6F-B4G" id="3Oc-pM-h3s">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qHo-ZG-oHn">
+                                                    <rect key="frame" x="320" y="0.0" width="30" height="30"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" title="追加"/>
+                                                    <connections>
+                                                        <action selector="addContacts:" destination="N5Y-nQ-ggS" eventType="touchUpInside" id="btL-5a-Hoh"/>
+                                                    </connections>
+                                                </button>
+                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QAa-x0-ecT">
+                                                    <rect key="frame" x="5" y="28" width="310" height="116"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <prototypes>
+                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="mycell" selectionStyle="default" indentationWidth="10" reuseIdentifier="mycell" textLabel="Drz-Rz-lA3" detailTextLabel="14Y-5a-TGY" style="IBUITableViewCellStyleSubtitle" id="7ku-di-dwt">
+                                                            <rect key="frame" x="0.0" y="28" width="310" height="44"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7ku-di-dwt" id="XmB-2d-4Gn">
+                                                                <rect key="frame" x="0.0" y="0.0" width="310" height="43"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Drz-Rz-lA3">
+                                                                        <rect key="frame" x="15" y="2" width="36" height="22"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="14Y-5a-TGY">
+                                                                        <rect key="frame" x="15" y="24" width="50" height="17"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </tableViewCellContentView>
+                                                        </tableViewCell>
+                                                    </prototypes>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="N5Y-nQ-ggS" id="sn6-yX-Ci5"/>
+                                                    </connections>
+                                                </tableView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="QAa-x0-ecT" secondAttribute="bottom" constant="5" id="N08-5E-Dv0"/>
+                                                <constraint firstAttribute="trailing" secondItem="QAa-x0-ecT" secondAttribute="trailing" constant="5" id="TCu-iu-KDf"/>
+                                                <constraint firstItem="qHo-ZG-oHn" firstAttribute="leading" secondItem="3Oc-pM-h3s" secondAttribute="leading" constant="320" id="VVE-pX-aDb"/>
+                                                <constraint firstItem="QAa-x0-ecT" firstAttribute="leading" secondItem="3Oc-pM-h3s" secondAttribute="leading" constant="5" id="dJE-uf-bz6"/>
+                                                <constraint firstItem="qHo-ZG-oHn" firstAttribute="top" secondItem="3Oc-pM-h3s" secondAttribute="top" id="xDj-gU-An1"/>
+                                                <constraint firstAttribute="bottom" secondItem="qHo-ZG-oHn" secondAttribute="bottom" constant="119" id="z85-cr-DVX"/>
+                                                <constraint firstItem="QAa-x0-ecT" firstAttribute="top" secondItem="3Oc-pM-h3s" secondAttribute="top" constant="28" id="zGm-LE-htk"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection headerTitle="最終更新日付" id="5bP-VM-V1B">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="70" id="xY6-A7-6Dl">
-                                        <rect key="frame" x="0.0" y="836" width="320" height="70"/>
+                                        <rect key="frame" x="0.0" y="1014" width="320" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xY6-A7-6Dl" id="e8M-oy-TAb">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
@@ -933,7 +997,7 @@ hA
                             <tableViewSection headerTitle="最終更新者名" id="Ozx-cY-1vf">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="70" id="8Kr-jJ-ef9">
-                                        <rect key="frame" x="0.0" y="934" width="320" height="70"/>
+                                        <rect key="frame" x="0.0" y="1112" width="320" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Kr-jJ-ef9" id="wft-lb-zgm">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
@@ -959,7 +1023,7 @@ hA
                             <tableViewSection id="9ey-fb-ZGp">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="70" id="Gcg-k1-jRr">
-                                        <rect key="frame" x="0.0" y="1004" width="320" height="70"/>
+                                        <rect key="frame" x="0.0" y="1182" width="320" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gcg-k1-jRr" id="caN-Gc-GoM">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
@@ -1008,16 +1072,47 @@ hA
                         <outlet property="doctor" destination="EpD-RR-dfo" id="SgY-yN-nkA"/>
                         <outlet property="health" destination="vuR-KV-CYe" id="uhl-gi-as9"/>
                         <outlet property="kusili" destination="1fI-Pu-t96" id="zjE-sp-tPt"/>
+                        <outlet property="myTableView" destination="QAa-x0-ecT" id="grf-7n-2fS"/>
                         <outlet property="name" destination="at4-ld-rdc" id="fpH-o2-rlu"/>
                         <outlet property="otherthing" destination="Grj-jz-uD5" id="zVF-Hf-8AF"/>
                         <outlet property="sex" destination="kEc-BN-16p" id="11U-BV-4XW"/>
                         <outlet property="update" destination="Ibk-fh-5tN" id="1mJ-kO-e20"/>
                         <outlet property="updateName" destination="P6d-e4-D3C" id="Qvk-YO-w3I"/>
+                        <segue destination="GWx-ck-euD" kind="push" identifier="addcontact" id="ozP-Dq-PPg"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qk7-qg-qFK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2185" y="2079"/>
+            <point key="canvasLocation" x="2260" y="2139"/>
+        </scene>
+        <!--Profile Table View Controller-->
+        <scene sceneID="lo5-pz-843">
+            <objects>
+                <tableViewController id="lJg-lq-iRv" customClass="ProfileTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="h4A-9T-AAd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="profilecell" rowHeight="60" id="apC-cO-tcO">
+                                <rect key="frame" x="0.0" y="92" width="320" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="apC-cO-tcO" id="wNU-nr-1AK">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="lJg-lq-iRv" id="AEw-bq-6Js"/>
+                            <outlet property="delegate" destination="lJg-lq-iRv" id="mqx-Cs-gSe"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="KyL-e3-ajq"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n5G-Q5-2Nz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="627" y="1023"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1vp-DG-kBU">
@@ -1073,7 +1168,7 @@ hA
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Tn-FC-9OU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1448" y="672"/>
+            <point key="canvasLocation" x="1980" y="672"/>
         </scene>
         <!--設定-->
         <scene sceneID="68h-c7-Tiz">
@@ -1092,7 +1187,7 @@ hA
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qqs-jF-2Fo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1011" y="1326"/>
+            <point key="canvasLocation" x="1543" y="1326"/>
         </scene>
         <!--Detail Table View Controller-->
         <scene sceneID="kh3-EW-6hi">
@@ -1158,8 +1253,29 @@ hA
             </objects>
             <point key="canvasLocation" x="1448" y="-599"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="0nf-1E-L0f">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oRF-iv-tgD" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ct0-TM-TVD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="lJg-lq-iRv" kind="relationship" relationship="rootViewController" id="rHF-Pn-Gze"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nxd-MG-EgK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="147" y="1023"/>
+        </scene>
     </scenes>
     <resources>
         <image name="emergencybtn.png" width="128" height="128"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="ozP-Dq-PPg"/>
+    </inferredMetricsTieBreakers>
 </document>

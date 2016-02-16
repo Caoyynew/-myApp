@@ -37,12 +37,18 @@
     type = styletype;
     dayarr = day;
     if (type ==1) {
-        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 10, [UIScreen mainScreen].bounds.size.width-10
-                                                                       , 150) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
+        self.danwei.text =@"wh";
+        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 30, [UIScreen mainScreen].bounds.size.width-10
+                                                                       , 120) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
     }else if (type ==2){
-        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 10, [UIScreen mainScreen].bounds.size.width-10
-                                                                   , 150) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
+        self.danwei.text = @"回数";
+        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 30, [UIScreen mainScreen].bounds.size.width-10
+                                                                   , 120) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
     }
+    NSDate *date  = [NSDate date];
+    NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
+    [dateformatter setDateFormat:@"yyyy年MM月dd日"];
+    self.dateLabel.text =[dateformatter stringFromDate:date];
     [chartview showInView:self.contentView];
 }
 

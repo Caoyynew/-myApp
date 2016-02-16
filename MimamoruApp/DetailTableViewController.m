@@ -102,7 +102,7 @@
     //对齐方式
     label.textAlignment = NSTextAlignmentLeft;
     if (section ==0) {
-        label.text = [NSString stringWithFormat:@"◆今日%@",self.titlename];
+        label.text = [NSString stringWithFormat:@"◆%@",self.titlename];
     }else if (section == 1){
         label.text = @"◆通知先";
     }
@@ -113,7 +113,7 @@
 {
     int height;
     if (indexPath.section == 0) {
-        height = 180;
+        height = 160;
     }else{
         height = 60;
     }

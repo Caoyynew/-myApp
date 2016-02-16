@@ -34,7 +34,10 @@
     [self.tableView setTableFooterView:view];
     
     userid0 = @"00000001";
-    updatedate = @"2016-2-1 10:00:00";
+    NSDate *  senddate=[NSDate date];
+    NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
+    [dateformatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    updatedate=[dateformatter stringFromDate:senddate];
 }
 
 
