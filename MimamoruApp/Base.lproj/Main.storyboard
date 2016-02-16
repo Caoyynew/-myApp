@@ -9,7 +9,7 @@
         <!--ログイン-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="login" id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -109,7 +109,7 @@
         <!--Tab Bar View Controller-->
         <scene sceneID="hvC-NY-OVo">
             <objects>
-                <tabBarController id="vvO-ZU-vep" customClass="TabBarViewController" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tablebar" id="vvO-ZU-vep" customClass="TabBarViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="mrR-KV-hzy"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="qaQ-Gm-SFK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
