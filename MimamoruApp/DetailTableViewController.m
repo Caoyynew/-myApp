@@ -8,13 +8,13 @@
 
 #import "DetailTableViewController.h"
 #import "DetailTableViewCell.h"
-
+#import "DataBaseTool.h"
 @interface DetailTableViewController ()
 {
     int xNum;//0:1~24時 1:1~7日 2:１〜３０日 　3:１〜１２月
     NSArray *dayarray;
     NSArray *dayarray2;
-
+    NSString *userid0;
 
     NSMutableArray * contactsArr; //联系人
    
@@ -24,6 +24,17 @@
 
 @implementation DetailTableViewController
 
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    userid0 = @"00000001";
+    contactsArr = [[DataBaseTool sharedDB]selectL_ShiKiChiContacts:userid0];
+    if (contactsArr.count==0) {
+        contactsArr = [[NSMutableArray alloc]init];
+    }
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -31,8 +42,6 @@
     UIView *clear = [[UIView alloc]init];
     clear.backgroundColor = [UIColor clearColor];
     [self.tableView setTableFooterView:clear];
-    contactsArr = [[NSMutableArray alloc]init];
-    
     
     [self.tableView registerNib:[UINib nibWithNibName:@"DetailTableViewCell" bundle:nil] forCellReuseIdentifier:@"detailcell"];
     [self getPlistWithName:@"testdata1"];
@@ -90,7 +99,6 @@
         cell.textLabel.text = @"山田";
         cell.detailTextLabel.text = @"mytell@163.com";
     }
-    
     return cell;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{

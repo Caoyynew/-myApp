@@ -32,7 +32,10 @@
 //更新接口
 -(void)updateL_EmergencyContactsTable:(NSDictionary *)itemDict userid:(NSString *)userid;
 
-//L_SensorData
+//L_SensorData 数据查询
+-(NSMutableArray*)selectL_SensorData:(NSString*)userid;
 
+//L_ShiKiChiContacts 查询数据
+-(NSMutableArray*)selectL_ShiKiChiContacts:(NSString*)userid;
 
 @end

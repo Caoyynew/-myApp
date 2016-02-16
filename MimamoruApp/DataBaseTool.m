@@ -24,21 +24,6 @@
 @end
 @implementation DataBaseTool
 
-//
-//-(NSMutableDictionary*)userDic{
-//
-//    _userDic = [[NSMutableDictionary alloc]init];
-//    [_userDic setValue:@"00000001" forKey:@"userid0"];
-//    [_userDic setValue:@"12345678900100000001" forKey:@"nitid"];
-//    [_userDic setValue:@"0" forKey:@"usertype"];
-//    [_userDic setValue:@"nit0" forKey:@"password"];
-//    userid0 = [_userDic valueForKey:@"userid0"];
-//    nitid = [_userDic valueForKey:@"nitid"];
-//    usertype = [[_userDic valueForKey:@"usertype"]intValue];
-//    password = [[_userDic valueForKey:@"password"]intValue];
-//    return _userDic;
-//}
-
 
 +(DataBaseTool*)sharedDB{
     
@@ -89,10 +74,9 @@
 
 
 #pragma mark - 基本表（创建本地表和向服务器请求）
-
 //L_SensorData
 -(BOOL)createL_SensorDataTable{
-    char *sql = "create table if not exists L_SensorData(id INTEGER PRIMARY KEY AUTOINCREMENT,nitid TEXT,userid0 TEXT,date TEXT,time TEXT,sensorid TEXT,value TEXT)";
+    char *sql = "create table if not exists L_SensorData(id INTEGER PRIMARY KEY AUTOINCREMENT,nitid TEXT,userid0 TEXT,date TEXT,time TEXT,sensorid TEXT,value TEXT,graphtype TEXT)";
     sqlite3_stmt *statement;
     NSInteger sqlReturn = sqlite3_prepare_v2(database, sql, -1, &statement, nil);
     if (sqlReturn != SQLITE_OK) {
@@ -158,7 +142,7 @@
         return NO;
     }else{
         //code
-        
+        [self startRequest:@"userinfo"];
         return YES;
     }
 }
@@ -187,12 +171,50 @@
 #pragma mark - 返回数据添加到本地表
 -(void)addtoDBname:(NSString*)table backData:(NSDictionary*)dic{
     
+    if ([table isEqualToString:@"userinfo"]) {
+        NSLog(@"dic=%@",dic);
+        sqlite3_stmt *statement;
+        char *sql = "insert into L_UserInfo(userid0,username,sex,birthday,address,kakaritsuke,drug,health,other,updatetime,updatename) values(?,?,?,?,?,?,?,?,?,?,?)";
+        NSInteger sqlReturn = sqlite3_prepare_v2(database, sql, -1, &statement, nil);
+        if (sqlReturn !=SQLITE_OK) {
+        }
+        NSArray *arr = [dic valueForKey:@"userinfo"];
+        NSDictionary *itemDict = [arr objectAtIndex:0];
+        
+        NSString *username = [itemDict valueForKey:@"username"];
+        NSString *sex = [itemDict valueForKey:@"sex"];
+        NSString *birthday = [itemDict valueForKey:@"birthday"];
+        NSString *address = [itemDict valueForKey:@"address"];
+        NSString *kakaritsuke = [itemDict valueForKey:@"kakaritsuke"];
+        NSString *drug = [itemDict valueForKey:@"drug"];
+        NSString *health = [itemDict valueForKey:@"health"];
+        NSString *other = [itemDict valueForKey:@"other"];
+        NSString *updatetime = [itemDict valueForKey:@"updatetime"];
+        NSString *updatename = [itemDict valueForKey:@"updatename"];
+        
+        sqlite3_bind_text(statement, 1, [userid0 UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 2, [username UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 3, [sex UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 4, [birthday UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 5, [address UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 6, [kakaritsuke UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 7, [drug UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 8, [health UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 9, [other UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 10, [updatetime UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 11, [updatename UTF8String], -1, SQLITE_TRANSIENT);
+        
+        int success = sqlite3_step(statement);
+        sqlite3_finalize(statement);
+        if (success == SQLITE_ERROR) {
+        }
+    }
     
     if ([table isEqualToString:@"sensordata"]) {
         NSArray *itemArr = [dic valueForKey:@"sensordata"];
         for (int i = 0; i <itemArr.count; i++) {
             sqlite3_stmt *statement;
-            char *sql = "insert into L_SensorData(nitid,userid0,date,time,sensorid,value) values(?,?,?,?,?,?)";
+            char *sql = "insert into L_SensorData(nitid,userid0,date,time,sensorid,value,graphtype) values(?,?,?,?,?,?,?)";
             NSInteger sqlReturn = sqlite3_prepare_v2(database, sql, -1, &statement, nil);
             if (sqlReturn !=SQLITE_OK) {
             }
@@ -201,6 +223,7 @@
             NSString *time = [itemDict valueForKey:@"time"];
             NSString *sensorid = [itemDict valueForKey:@"sensorid"];
             NSString *value = [itemDict valueForKey:@"value"];
+            NSString *graphtype = [itemDict valueForKey:@"graphtype"];
             
             sqlite3_bind_text(statement, 1, [nitid UTF8String], -1, SQLITE_TRANSIENT);
             sqlite3_bind_text(statement, 2, [userid0 UTF8String], -1, SQLITE_TRANSIENT);
@@ -208,6 +231,7 @@
             sqlite3_bind_text(statement, 4, [time UTF8String], -1, SQLITE_TRANSIENT);
             sqlite3_bind_text(statement, 5, [sensorid UTF8String], -1, SQLITE_TRANSIENT);
             sqlite3_bind_text(statement, 6, [value UTF8String], -1, SQLITE_TRANSIENT);
+            sqlite3_bind_text(statement, 7, [graphtype UTF8String], -1, SQLITE_TRANSIENT);
             
             int success = sqlite3_step(statement);
             sqlite3_finalize(statement);
@@ -273,39 +297,40 @@
 -(void)updateL_UserInfoTable:(NSDictionary*)itemDict userid:(NSString*)userid
 {
     sqlite3_stmt *statement;
-    char *sql = "insert into L_UserInfo(userid0,username,sex,birthday,address,kakaritsuke,drug,health,other,updatetime,updatename) values(?,?,?,?,?,?,?,?,?,?,?)";
+    char *sql = "UPDATE L_UserInfo SET username=?,sex=?,birthday=?,address=?,kakaritsuke=?,drug=?,health=?,other=?,updatetime=?,updatename=? where userid0=?";
     NSInteger sqlReturn = sqlite3_prepare_v2(database, sql, -1, &statement, nil);
     if (sqlReturn !=SQLITE_OK) {
         NSLog(@"sql error!");
     }else{
-    NSString *username = [itemDict valueForKey:@"username"];
-    NSString *sex = [itemDict valueForKey:@"sex"];
-    NSString *birthday = [itemDict valueForKey:@"birthday"];
-    NSString *address = [itemDict valueForKey:@"address"];
-    NSString *kakaritsuke = [itemDict valueForKey:@"kakaritsuke"];
-    NSString *drug = [itemDict valueForKey:@"drug"];
-    NSString *health = [itemDict valueForKey:@"health"];
-    NSString *other = [itemDict valueForKey:@"other"];
-    NSString *updatetime = [itemDict valueForKey:@"updatetime"];
-    //更新者为用户自己存入数据库
-    NSString *updatename = [itemDict valueForKey:@"username"];
-    sqlite3_bind_text(statement, 1, [userid UTF8String], -1, SQLITE_TRANSIENT);
-    sqlite3_bind_text(statement, 2, [username UTF8String], -1, SQLITE_TRANSIENT);
-    sqlite3_bind_text(statement, 3, [sex UTF8String], -1, SQLITE_TRANSIENT);
-    sqlite3_bind_text(statement, 4, [birthday UTF8String], -1, SQLITE_TRANSIENT);
-    sqlite3_bind_text(statement, 5, [address UTF8String], -1, SQLITE_TRANSIENT);
-    sqlite3_bind_text(statement, 6, [kakaritsuke UTF8String], -1, SQLITE_TRANSIENT);
-    sqlite3_bind_text(statement, 7, [drug UTF8String], -1, SQLITE_TRANSIENT);
-    sqlite3_bind_text(statement, 8, [health UTF8String], -1, SQLITE_TRANSIENT);
-    sqlite3_bind_text(statement, 9, [other UTF8String], -1, SQLITE_TRANSIENT);
-    sqlite3_bind_text(statement, 10, [updatetime UTF8String], -1, SQLITE_TRANSIENT);
-    sqlite3_bind_text(statement, 11, [updatename UTF8String], -1, SQLITE_TRANSIENT);
-    
-    int success = sqlite3_step(statement);
-    sqlite3_finalize(statement);
-    if (success == SQLITE_ERROR) {
-        NSLog(@"insert NG");
-    }
+        NSString *username = [itemDict valueForKey:@"username"];
+        NSString *sex = [itemDict valueForKey:@"sex"];
+        NSString *birthday = [itemDict valueForKey:@"birthday"];
+        NSString *address = [itemDict valueForKey:@"address"];
+        NSString *kakaritsuke = [itemDict valueForKey:@"kakaritsuke"];
+        NSString *drug = [itemDict valueForKey:@"drug"];
+        NSString *health = [itemDict valueForKey:@"health"];
+        NSString *other = [itemDict valueForKey:@"other"];
+        NSString *updatetime = [itemDict valueForKey:@"updatetime"];
+        //更新者为用户自己存入数据库
+        NSString *updatename = [itemDict valueForKey:@"username"];
+        
+        sqlite3_bind_text(statement, 1, [username UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 2, [sex UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 3, [birthday UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 4, [address UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 5, [kakaritsuke UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 6, [drug UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 7, [health UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 8, [other UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 9, [updatetime UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 10, [updatename UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 11, [userid UTF8String], -1, SQLITE_TRANSIENT);
+        
+        int success = sqlite3_step(statement);
+        sqlite3_finalize(statement);
+        if (success == SQLITE_ERROR) {
+            NSLog(@"update NG");
+        }
     }
     
 }
@@ -331,7 +356,7 @@
         char *other = (char*) sqlite3_column_text(statement, 7);
         char *updatetime = (char*) sqlite3_column_text(statement, 8);
         char *updatename = (char*) sqlite3_column_text(statement, 9);
-
+        
         [selectDic setValue:[NSString stringWithUTF8String:username] forKey:@"username"];
         [selectDic setValue:[NSString stringWithUTF8String:sex] forKey:@"sex"];
         [selectDic setValue:[NSString stringWithUTF8String:birthday] forKey:@"birthday"];
@@ -388,7 +413,7 @@
         if (success == SQLITE_ERROR) {
             NSLog(@"insert NG");
         }
-
+        
     }
 }
 //----------------------------查询--------------------------
@@ -433,6 +458,69 @@
     if (success == SQLITE_ERROR) {
         NSLog(@"delete NG");
     }
+}
+
+#pragma mark - SensorData 数据查询
+-(NSMutableArray*)selectL_SensorData:(NSString *)userid
+{
+    sqlite3_stmt *statement;
+    char *sql = "select date,time,sensorid,value,graphtype from L_SensorData where userid0=?";
+    NSInteger sqlReturn = sqlite3_prepare_v2(database, sql, -1, &statement, nil);
+    if (sqlReturn !=SQLITE_OK) {
+        NSLog(@"sql error!");
+    }
+    sqlite3_bind_text(statement, 1, [userid UTF8String], -1, SQLITE_TRANSIENT);
+    NSMutableArray *contactArr = [[NSMutableArray alloc]init];
+    while (sqlite3_step(statement)==SQLITE_ROW) {
+        char *date = (char*) sqlite3_column_text(statement, 0);
+        char *time = (char*) sqlite3_column_text(statement, 1);
+        char *sensorid = (char*) sqlite3_column_text(statement, 2);
+        char *value = (char*) sqlite3_column_text(statement, 3);
+        char *graphtype = (char*) sqlite3_column_text(statement, 4);
+        
+        NSMutableDictionary *valueDic = [[NSMutableDictionary alloc]init];
+        [valueDic setValue:[NSString stringWithUTF8String:date] forKey:@"date"];
+        [valueDic setValue:[NSString stringWithUTF8String:time] forKey:@"time"];
+        [valueDic setValue:[NSString stringWithUTF8String:sensorid] forKey:@"sensorid"];
+        [valueDic setValue:[NSString stringWithUTF8String:value] forKey:@"value"];
+        [valueDic setValue:[NSString stringWithUTF8String:graphtype] forKey:@"graphtype"];
+        [contactArr addObject:valueDic];
+    }
+    int success = sqlite3_step(statement);
+    sqlite3_finalize(statement);
+    if (success == SQLITE_ERROR) {
+        NSLog(@"select NG");
+    }
+    return contactArr;
+    
+}
+#pragma mark - ShiKiChiContacts 数据查询
+-(NSMutableArray*)selectL_ShiKiChiContacts:(NSString *)userid
+{
+    sqlite3_stmt *statement;
+    char *sql = "select sensorid,abnname,abnemail from L_ShiKiChiContacts where userid0=?";
+    NSInteger sqlReturn = sqlite3_prepare_v2(database, sql, -1, &statement, nil);
+    if (sqlReturn !=SQLITE_OK) {
+        NSLog(@"sql error!");
+    }
+    sqlite3_bind_text(statement, 1, [userid UTF8String], -1, SQLITE_TRANSIENT);
+    NSMutableArray *contactArr = [[NSMutableArray alloc]init];
+    while (sqlite3_step(statement)==SQLITE_ROW) {
+        char *sensorid = (char*) sqlite3_column_text(statement, 0);
+        char *abnname = (char*) sqlite3_column_text(statement, 1);
+        char *abnemail = (char*) sqlite3_column_text(statement, 2);
+        NSMutableDictionary *value = [[NSMutableDictionary alloc]init];
+        [value setValue:[NSString stringWithUTF8String:sensorid] forKey:@"sensorid"];
+        [value setValue:[NSString stringWithUTF8String:abnname] forKey:@"abnname"];
+        [value setValue:[NSString stringWithUTF8String:abnemail] forKey:@"abnemail"];
+        [contactArr addObject:value];
+    }
+    int success = sqlite3_step(statement);
+    sqlite3_finalize(statement);
+    if (success == SQLITE_ERROR) {
+        NSLog(@"select NG");
+    }
+    return contactArr;
 }
 
 @end
