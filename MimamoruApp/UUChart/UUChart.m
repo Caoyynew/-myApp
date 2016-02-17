@@ -15,15 +15,15 @@
 @property (strong, nonatomic) UUBarChart * barChart;
 
 @property (assign, nonatomic) id<UUChartDataSource> dataSource;
-
+@property NSString*uuuid;
 @end
 
 @implementation UUChart
 
--(id)initwithUUChartDataFrame:(CGRect)rect withSource:(id<UUChartDataSource>)dataSource withStyle:(UUChartStyle)style{
+-(id)initwithUUChartDataFrame:(CGRect)rect withSource:(id<UUChartDataSource>)dataSource withStyle:(UUChartStyle)style withid:(NSString*)uuid{
     self.dataSource = dataSource;
     self.chartStyle = style;
-    
+    self.uuuid = uuid;
     return [self initWithFrame:rect];
 }
 
@@ -73,21 +73,63 @@
         //判断显示最大最小值
         if ([self.dataSource respondsToSelector:@selector(UUChart:ShowMaxMinAtIndex:)]) {
             NSMutableArray *showMaxMinArray = [[NSMutableArray alloc]init];
-            NSArray *y_values = [self.dataSource UUChart_yValueArray:self];
-            if (y_values.count>0){
-                for (int i=0; i<y_values.count; i++) {
-                    if ([self.dataSource UUChart:self ShowMaxMinAtIndex:i]) {
-                        [showMaxMinArray addObject:@"1"];
-                    }else{
-                        [showMaxMinArray addObject:@"0"];
+            if ([self.uuuid isEqualToString:@"1"]) {
+                NSArray *y_values = [self.dataSource UUChart_yValueArray:self];
+                if (y_values.count>0){
+                    for (int i=0; i<y_values.count; i++) {
+                        if ([self.dataSource UUChart:self ShowMaxMinAtIndex:i]) {
+                            [showMaxMinArray addObject:@"1"];
+                        }else{
+                            [showMaxMinArray addObject:@"0"];
+                        }
                     }
+                    _lineChart.ShowMaxMinArray = showMaxMinArray;
                 }
-                _lineChart.ShowMaxMinArray = showMaxMinArray;
+
+            }else if([self.uuuid isEqualToString:@"2"]){
+                NSArray *y_values = [self.dataSource UUChart_yValueArray2:self];
+                if (y_values.count>0){
+                    for (int i=0; i<y_values.count; i++) {
+                        if ([self.dataSource UUChart:self ShowMaxMinAtIndex:i]) {
+                            [showMaxMinArray addObject:@"1"];
+                        }else{
+                            [showMaxMinArray addObject:@"0"];
+                        }
+                    }
+                    _lineChart.ShowMaxMinArray = showMaxMinArray;
+                }
+
+            }else if([self.uuuid isEqualToString:@"3"]){
+                NSArray *y_values = [self.dataSource UUChart_yValueArray3:self];
+                if (y_values.count>0){
+                    for (int i=0; i<y_values.count; i++) {
+                        if ([self.dataSource UUChart:self ShowMaxMinAtIndex:i]) {
+                            [showMaxMinArray addObject:@"1"];
+                        }else{
+                            [showMaxMinArray addObject:@"0"];
+                        }
+                    }
+                    _lineChart.ShowMaxMinArray = showMaxMinArray;
+                }
+
             }
+            
+                    }
+        if ([self.uuuid isEqualToString:@"1"]) {
+            [_lineChart setYValues:[self.dataSource UUChart_yValueArray:self]];
+        }else if([self.uuuid isEqualToString:@"2"]){
+            [_lineChart setYValues:[self.dataSource UUChart_yValueArray2:self]];
+        }else if([self.uuuid isEqualToString:@"3"]){
+            [_lineChart setYValues:[self.dataSource UUChart_yValueArray3:self]];
         }
-        
-		[_lineChart setYValues:[self.dataSource UUChart_yValueArray:self]];
-		[_lineChart setXLabels:[self.dataSource UUChart_xLableArray:self]];
+        if ([self.uuuid isEqualToString:@"1"]) {
+            [_lineChart setXLabels:[self.dataSource UUChart_xLableArray:self]];
+        }else if([self.uuuid isEqualToString:@"2"]){
+            [_lineChart setXLabels:[self.dataSource UUChart_xLableArray2:self]];
+        }else if([self.uuuid isEqualToString:@"3"]){
+            [_lineChart setXLabels:[self.dataSource UUChart_xLableArray3:self]];
+        }
+		
         
 		[_lineChart strokeChart];
 
@@ -103,8 +145,23 @@
         if ([self.dataSource respondsToSelector:@selector(UUChart_ColorArray:)]) {
             [_barChart setColors:[self.dataSource UUChart_ColorArray:self]];
         }
-		[_barChart setYValues:[self.dataSource UUChart_yValueArray:self]];
-		[_barChart setXLabels:[self.dataSource UUChart_xLableArray:self]];
+        if ([self.uuuid isEqualToString:@"1"]) {
+            [_barChart setYValues:[self.dataSource UUChart_yValueArray:self]];
+        }else if([self.uuuid isEqualToString:@"2"]){
+            [_barChart setYValues:[self.dataSource UUChart_yValueArray2:self]];
+        }else if([self.uuuid isEqualToString:@"3"]){
+            [_barChart setYValues:[self.dataSource UUChart_yValueArray3:self]];
+        }
+		//[_barChart setYValues:[self.dataSource UUChart_yValueArray:self]];
+        
+        if ([self.uuuid isEqualToString:@"1"]) {
+            [_barChart setXLabels:[self.dataSource UUChart_xLableArray:self]];
+        }else if([self.uuuid isEqualToString:@"2"]){
+            [_barChart setXLabels:[self.dataSource UUChart_xLableArray2:self]];
+        }else if([self.uuuid isEqualToString:@"3"]){
+            [_barChart setXLabels:[self.dataSource UUChart_xLableArray3:self]];
+        }
+		
         
         [_barChart strokeChart];
 	}

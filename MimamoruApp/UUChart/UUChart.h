@@ -25,9 +25,13 @@ typedef enum {
 @required
 //横坐标标题数组
 - (NSArray *)UUChart_xLableArray:(UUChart *)chart;
+- (NSArray *)UUChart_xLableArray2:(UUChart *)chart;
+- (NSArray *)UUChart_xLableArray3:(UUChart *)chart;
 
 //数值多重数组
 - (NSArray *)UUChart_yValueArray:(UUChart *)chart;
+- (NSArray *)UUChart_yValueArray2:(UUChart *)chart;
+- (NSArray *)UUChart_yValueArray3:(UUChart *)chart;
 
 @optional
 //颜色数组
@@ -55,7 +59,7 @@ typedef enum {
 
 @property (assign) UUChartStyle chartStyle;
 
--(id)initwithUUChartDataFrame:(CGRect)rect withSource:(id<UUChartDataSource>)dataSource withStyle:(UUChartStyle)style;
+-(id)initwithUUChartDataFrame:(CGRect)rect withSource:(id<UUChartDataSource>)dataSource withStyle:(UUChartStyle)style withid:(NSString*)uuid;
 
 - (void)showInView:(UIView *)view;
 

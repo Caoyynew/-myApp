@@ -62,9 +62,6 @@
             }
         }
     }
-//    if (max < 5) {
-//        max = 1;
-//    }
     if (self.showRange) {
         _yValueMin = (int)min;
     }else{
@@ -72,35 +69,20 @@
     }
     _yValueMax = (int)max;
     
-    _yValueMax = (int)max;
-    CGFloat chartCavanHeight = self.frame.size.height - UULabelHeight*3;
-    CGFloat level;
-    CGFloat levelHeight;
-    if (max<10) {
-        level = 1;
-        levelHeight = chartCavanHeight/max;
-    }else{
-        level = _yValueMax/5.0;
-        levelHeight = chartCavanHeight/5.0;
+    if (_chooseRange.max!=_chooseRange.min) {
+        _yValueMax = _chooseRange.max;
+        _yValueMin = _chooseRange.min;
     }
-    
-    for (int i=0; i<=max; i++) {
-        UUChartLabel * label = [[UUChartLabel alloc] initWithFrame:CGRectMake(0.0,chartCavanHeight-i*levelHeight+5, UUYLabelwidth, UULabelHeight)];
-        label.text = [NSString stringWithFormat:@"%.f",level * i+_yValueMin];
-        [self addSubview:label];
-    }
-    
- 
 
-//    float level = (_yValueMax-_yValueMin) /4.0;
-//    CGFloat chartCavanHeight = self.frame.size.height - UULabelHeight*3;
-//    CGFloat levelHeight = chartCavanHeight /4.0;
+    float level = (_yValueMax-_yValueMin) /4.0;
+    CGFloat chartCavanHeight = self.frame.size.height - UULabelHeight*3;
+    CGFloat levelHeight = chartCavanHeight /4.0;
     
-//    for (int i=0; i<5; i++) {
-//        UUChartLabel * label = [[UUChartLabel alloc] initWithFrame:CGRectMake(0.0,chartCavanHeight-i*4*levelHeight+5, UUYLabelwidth, UULabelHeight)];
-//		label.text = [NSString stringWithFormat:@"%.1f",level * i*4.0+_yValueMin];
-//		[self addSubview:label];
-//    }
+    for (int i=0; i<2; i++) {
+        UUChartLabel * label = [[UUChartLabel alloc] initWithFrame:CGRectMake(0.0,chartCavanHeight-i*levelHeight+5, UUYLabelwidth, UULabelHeight)];
+		label.text = [NSString stringWithFormat:@"%d",[[NSString stringWithFormat:@"%.1f",level * i+_yValueMin]intValue]];
+		[self addSubview:label];
+    }
 	
 }
 
@@ -119,11 +101,26 @@
 //    }else{
         num = xLabels.count;
  //   }
-    _xLabelWidth = myScrollView.frame.size.width/num;
+    _xLabelWidth = (self.frame.size.width-5 - UUYLabelwidth)/num;
     
     for (int i=0; i<xLabels.count; i++) {
         UUChartLabel * label = [[UUChartLabel alloc] initWithFrame:CGRectMake((i *  _xLabelWidth ), self.frame.size.height - UULabelHeight, _xLabelWidth, UULabelHeight)];
         label.text = xLabels[i];
+        
+        if (xLabels.count >25) {
+            if ([label.text intValue] >1 && [label.text intValue] <7) {
+                label.text = @"";
+            }else if([label.text intValue] >7 && [label.text intValue] <13){
+                label.text = @"";
+            }else if([label.text intValue] >13 && [label.text intValue] <19){
+                label.text = @"";
+            }else if([label.text intValue] >19 && [label.text intValue] <25){
+                label.text = @"";
+            }else if([label.text intValue] >25 && [label.text intValue] <xLabels.count){
+                label.text = @"";
+            }
+        }
+
         if (xLabels.count <8) {
             if ([label.text isEqualToString: @"1"]) {
                 label.text = @"月";

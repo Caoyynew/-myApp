@@ -519,7 +519,7 @@
     }
     for (int i=0; i<21; i++) {
         sqlite3_stmt *statement;
-        char *sql = "select date,value from L_SensorData where userid0=? and date=? and sensorid=?";
+        char *sql = "select value from L_SensorData where userid0=? and date=? and sensorid=?";
         NSInteger sqlReturn = sqlite3_prepare_v2(database, sql, -1, &statement, nil);
         if (sqlReturn !=SQLITE_OK) {
             NSLog(@"sql error!");
@@ -530,8 +530,7 @@
         NSMutableArray *contactArr = [[NSMutableArray alloc]init];
         while (sqlite3_step(statement)==SQLITE_ROW) {
             
-            char *date = (char*) sqlite3_column_text(statement, 0);
-            char *value = (char*) sqlite3_column_text(statement, 1);
+            char *value = (char*) sqlite3_column_text(statement, 0);
             
             NSString* valueStr = [NSString stringWithUTF8String:value];
             [contactArr addObject:valueStr];

@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E90916E71C74884600CC0391 /* UUBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E90916DC1C74884600CC0391 /* UUBar.m */; };
+		E90916E81C74884600CC0391 /* UUBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = E90916DE1C74884600CC0391 /* UUBarChart.m */; };
+		E90916E91C74884600CC0391 /* UUChart.m in Sources */ = {isa = PBXBuildFile; fileRef = E90916E01C74884600CC0391 /* UUChart.m */; };
+		E90916EA1C74884600CC0391 /* UUChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E90916E21C74884600CC0391 /* UUChartLabel.m */; };
+		E90916EB1C74884600CC0391 /* UUColor.m in Sources */ = {isa = PBXBuildFile; fileRef = E90916E41C74884600CC0391 /* UUColor.m */; };
+		E90916EC1C74884600CC0391 /* UULineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = E90916E61C74884600CC0391 /* UULineChart.m */; };
 		E916778B1C719B330091655A /* libMailCore-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E916777C1C719B1A0091655A /* libMailCore-ios.a */; };
 		E948403D1C45EBD500E8C760 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E948403C1C45EBD400E8C760 /* CoreLocation.framework */; };
 		E948405C1C45EFCD00E8C760 /* DashBoardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E948404A1C45EFCD00E8C760 /* DashBoardTableViewCell.m */; };
@@ -47,12 +53,6 @@
 		E96D6AE11C4CB46D00095613 /* AddTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E96D6AE01C4CB46D00095613 /* AddTableViewController.m */; };
 		E96D6AEB1C4CBE8200095613 /* ContactsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E96D6AEA1C4CBE8200095613 /* ContactsTableViewController.m */; };
 		E98DB6A81C603DDC005CF924 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E98DB6A71C603DDC005CF924 /* MBProgressHUD.m */; };
-		E994DC131C4F4ACE0045053C /* UUBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E994DC081C4F4ACE0045053C /* UUBar.m */; };
-		E994DC141C4F4ACE0045053C /* UUBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = E994DC0A1C4F4ACE0045053C /* UUBarChart.m */; };
-		E994DC151C4F4ACE0045053C /* UUChart.m in Sources */ = {isa = PBXBuildFile; fileRef = E994DC0C1C4F4ACE0045053C /* UUChart.m */; };
-		E994DC161C4F4ACE0045053C /* UUChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E994DC0E1C4F4ACE0045053C /* UUChartLabel.m */; };
-		E994DC171C4F4ACE0045053C /* UUColor.m in Sources */ = {isa = PBXBuildFile; fileRef = E994DC101C4F4ACE0045053C /* UUColor.m */; };
-		E994DC181C4F4ACE0045053C /* UULineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = E994DC121C4F4ACE0045053C /* UULineChart.m */; };
 		E997B02F1C5B28B900031202 /* DataBaseTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E997B02E1C5B28B900031202 /* DataBaseTool.m */; };
 		E997B0311C5B28CF00031202 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E997B0301C5B28CF00031202 /* libsqlite3.0.tbd */; };
 		E99E97371C3FBE340019D2CC /* MimamoruAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E99E97361C3FBE340019D2CC /* MimamoruAppTests.m */; };
@@ -157,6 +157,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E90916DB1C74884600CC0391 /* UUBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUBar.h; sourceTree = "<group>"; };
+		E90916DC1C74884600CC0391 /* UUBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUBar.m; sourceTree = "<group>"; };
+		E90916DD1C74884600CC0391 /* UUBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUBarChart.h; sourceTree = "<group>"; };
+		E90916DE1C74884600CC0391 /* UUBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUBarChart.m; sourceTree = "<group>"; };
+		E90916DF1C74884600CC0391 /* UUChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUChart.h; sourceTree = "<group>"; };
+		E90916E01C74884600CC0391 /* UUChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUChart.m; sourceTree = "<group>"; };
+		E90916E11C74884600CC0391 /* UUChartLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUChartLabel.h; sourceTree = "<group>"; };
+		E90916E21C74884600CC0391 /* UUChartLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUChartLabel.m; sourceTree = "<group>"; };
+		E90916E31C74884600CC0391 /* UUColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUColor.h; sourceTree = "<group>"; };
+		E90916E41C74884600CC0391 /* UUColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUColor.m; sourceTree = "<group>"; };
+		E90916E51C74884600CC0391 /* UULineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UULineChart.h; sourceTree = "<group>"; };
+		E90916E61C74884600CC0391 /* UULineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UULineChart.m; sourceTree = "<group>"; };
 		E916776E1C719B1A0091655A /* mailcore2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = mailcore2.xcodeproj; path = "../../../MailCore2/build-mac/mailcore2.xcodeproj"; sourceTree = "<group>"; };
 		E948403C1C45EBD400E8C760 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E94840491C45EFCD00E8C760 /* DashBoardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashBoardTableViewCell.h; sourceTree = "<group>"; };
@@ -204,18 +216,6 @@
 		E96D6AEA1C4CBE8200095613 /* ContactsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsTableViewController.m; sourceTree = "<group>"; };
 		E98DB6A61C603DDC005CF924 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		E98DB6A71C603DDC005CF924 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		E994DC071C4F4ACE0045053C /* UUBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUBar.h; sourceTree = "<group>"; };
-		E994DC081C4F4ACE0045053C /* UUBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUBar.m; sourceTree = "<group>"; };
-		E994DC091C4F4ACE0045053C /* UUBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUBarChart.h; sourceTree = "<group>"; };
-		E994DC0A1C4F4ACE0045053C /* UUBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUBarChart.m; sourceTree = "<group>"; };
-		E994DC0B1C4F4ACE0045053C /* UUChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUChart.h; sourceTree = "<group>"; };
-		E994DC0C1C4F4ACE0045053C /* UUChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUChart.m; sourceTree = "<group>"; };
-		E994DC0D1C4F4ACE0045053C /* UUChartLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUChartLabel.h; sourceTree = "<group>"; };
-		E994DC0E1C4F4ACE0045053C /* UUChartLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUChartLabel.m; sourceTree = "<group>"; };
-		E994DC0F1C4F4ACE0045053C /* UUColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUColor.h; sourceTree = "<group>"; };
-		E994DC101C4F4ACE0045053C /* UUColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUColor.m; sourceTree = "<group>"; };
-		E994DC111C4F4ACE0045053C /* UULineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UULineChart.h; sourceTree = "<group>"; };
-		E994DC121C4F4ACE0045053C /* UULineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UULineChart.m; sourceTree = "<group>"; };
 		E997B02D1C5B28B900031202 /* DataBaseTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataBaseTool.h; sourceTree = "<group>"; };
 		E997B02E1C5B28B900031202 /* DataBaseTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataBaseTool.m; sourceTree = "<group>"; };
 		E997B0301C5B28CF00031202 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
@@ -472,18 +472,18 @@
 		E99E978D1C3FC0340019D2CC /* UUChart */ = {
 			isa = PBXGroup;
 			children = (
-				E994DC071C4F4ACE0045053C /* UUBar.h */,
-				E994DC081C4F4ACE0045053C /* UUBar.m */,
-				E994DC091C4F4ACE0045053C /* UUBarChart.h */,
-				E994DC0A1C4F4ACE0045053C /* UUBarChart.m */,
-				E994DC0B1C4F4ACE0045053C /* UUChart.h */,
-				E994DC0C1C4F4ACE0045053C /* UUChart.m */,
-				E994DC0D1C4F4ACE0045053C /* UUChartLabel.h */,
-				E994DC0E1C4F4ACE0045053C /* UUChartLabel.m */,
-				E994DC0F1C4F4ACE0045053C /* UUColor.h */,
-				E994DC101C4F4ACE0045053C /* UUColor.m */,
-				E994DC111C4F4ACE0045053C /* UULineChart.h */,
-				E994DC121C4F4ACE0045053C /* UULineChart.m */,
+				E90916DB1C74884600CC0391 /* UUBar.h */,
+				E90916DC1C74884600CC0391 /* UUBar.m */,
+				E90916DD1C74884600CC0391 /* UUBarChart.h */,
+				E90916DE1C74884600CC0391 /* UUBarChart.m */,
+				E90916DF1C74884600CC0391 /* UUChart.h */,
+				E90916E01C74884600CC0391 /* UUChart.m */,
+				E90916E11C74884600CC0391 /* UUChartLabel.h */,
+				E90916E21C74884600CC0391 /* UUChartLabel.m */,
+				E90916E31C74884600CC0391 /* UUColor.h */,
+				E90916E41C74884600CC0391 /* UUColor.m */,
+				E90916E51C74884600CC0391 /* UULineChart.h */,
+				E90916E61C74884600CC0391 /* UULineChart.m */,
 			);
 			path = UUChart;
 			sourceTree = "<group>";
@@ -715,22 +715,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				E99E97D21C3FC0350019D2CC /* ViewController.m in Sources */,
+				E90916E71C74884600CC0391 /* UUBar.m in Sources */,
 				E99E97B11C3FC0350019D2CC /* EmergencyViewController.m in Sources */,
-				E994DC171C4F4ACE0045053C /* UUColor.m in Sources */,
 				E94840A81C46187300E8C760 /* DetailTableViewCell.m in Sources */,
 				E997B02F1C5B28B900031202 /* DataBaseTool.m in Sources */,
-				E994DC181C4F4ACE0045053C /* UULineChart.m in Sources */,
+				E90916EB1C74884600CC0391 /* UUColor.m in Sources */,
 				E99E97C81C3FC0350019D2CC /* TabBarViewController.m in Sources */,
 				E99E97C01C3FC0350019D2CC /* LeafNotification.m in Sources */,
-				E994DC151C4F4ACE0045053C /* UUChart.m in Sources */,
-				E994DC131C4F4ACE0045053C /* UUBar.m in Sources */,
 				E948405C1C45EFCD00E8C760 /* DashBoardTableViewCell.m in Sources */,
+				E90916E81C74884600CC0391 /* UUBarChart.m in Sources */,
 				E99E97C31C3FC0350019D2CC /* OtherTableViewController.m in Sources */,
-				E994DC141C4F4ACE0045053C /* UUBarChart.m in Sources */,
+				E90916EA1C74884600CC0391 /* UUChartLabel.m in Sources */,
 				E99E97A11C3FC0350019D2CC /* AppDelegate.m in Sources */,
 				E99E97A51C3FC0350019D2CC /* ContentTableViewController.m in Sources */,
+				E90916E91C74884600CC0391 /* UUChart.m in Sources */,
 				E96D6AE11C4CB46D00095613 /* AddTableViewController.m in Sources */,
-				E994DC161C4F4ACE0045053C /* UUChartLabel.m in Sources */,
 				E98DB6A81C603DDC005CF924 /* MBProgressHUD.m in Sources */,
 				E94840A41C46101700E8C760 /* DetailTableViewController.m in Sources */,
 				E96D6AEB1C4CBE8200095613 /* ContactsTableViewController.m in Sources */,
@@ -739,6 +738,7 @@
 				E99E97A01C3FC0350019D2CC /* ABFillButton.m in Sources */,
 				E99E97C11C3FC0350019D2CC /* main.m in Sources */,
 				E99E97AA1C3FC0350019D2CC /* DetailViewController.m in Sources */,
+				E90916EC1C74884600CC0391 /* UULineChart.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

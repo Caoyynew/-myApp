@@ -10,7 +10,7 @@
 
 
 @interface DashBoardTableViewCell : UITableViewCell
--(void)configUI:(NSIndexPath*)indexPath type:(int)styletype unit:(int)segmentunitnum day:(NSArray*)day week:(NSArray*)week month:(NSArray*)month ;
+-(void)configUI:(NSIndexPath*)indexPath type:(int)styletype unit:(int)segmentunitnum day1:(NSArray*)day1 week1:(NSMutableArray*)week1 month1:(NSMutableArray*)month1 day2:(NSArray*)day2 week2:(NSMutableArray*)week2 month2:(NSMutableArray*)month2 day3:(NSArray*)day3 week3:(NSMutableArray*)week3 month3:(NSMutableArray*)month3;
 
 -(void)passCurrent:(float)current indexPath:(NSIndexPath*)row;
 @property (weak, nonatomic) IBOutlet UILabel *fff;

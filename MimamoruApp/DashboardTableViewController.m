@@ -14,14 +14,27 @@
     
 
     int xNum;//0:1~24時 1:1~7日 2:１〜３０日 　3:１〜１２月
-    NSArray *dayarray;
-    NSArray *weekarray;
-    NSArray *montharray;
-    NSArray *yeararray;
-    NSArray *dayarray2;
-    NSArray *weekarray2;
-    NSArray *montharray2;
-    NSArray *yeararray2;
+//    NSArray *dayarray;
+//    NSArray *weekarray;
+//    NSArray *montharray;
+//    NSArray *yeararray;
+//    NSArray *dayarray2;
+//    NSArray *weekarray2;
+//    NSArray *montharray2;
+//    NSArray *yeararray2;
+    //1:今天，这周，这月
+    //2:昨天，上周，上月
+    //3:前天，上上周，上上月
+    NSArray *dayArr1;
+    NSArray *dayArr2;
+    NSArray *dayArr3;
+    NSMutableArray *weekArr1;
+    NSMutableArray *weekArr2;
+    NSMutableArray *weekArr3;
+    NSMutableArray *monthArr1;
+    NSMutableArray *monthArr2;
+    NSMutableArray *monthArr3;
+    
     NSMutableArray *sectionArr;
     NSMutableArray *sectionArr2;
     NSString*dateString;
@@ -49,9 +62,7 @@
     //刷新数据
     [[DataBaseTool sharedDB]openDB];
     
-    NSArray *arr = [[DataBaseTool sharedDB]selectL_SensorDayData:@"00000001" Sensorid:@"000001001"];
-    NSLog(@"arr= %@",arr);
-    NSString * login = @"login";
+        NSString * login = @"login";
     [[NSUserDefaults standardUserDefaults]setObject:login forKey:@"type"];
 
     
@@ -67,25 +78,70 @@
     //Get test data from plist files
     [_segmentControl addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
     
+}
+#pragma mark - 刷新数据
+-(void)reloadData{
+    //电气使用量数据
+    //日数据
+    NSArray *dayArr = [[DataBaseTool sharedDB]selectL_SensorDayData:@"00000001" Sensorid:@"000001001"];
     
-    [self getPlistWithName:@"testdata1"];
-    [self getPlistWithName:@"testdata2"];
+    dayArr1 = [[NSArray alloc]initWithArray:dayArr[0]];
+//    if (dayArr1.count==0) {
+//        dayArr1 = @[@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0"];
+//    }
+    dayArr2 = [[NSArray alloc]initWithArray:dayArr[1]];
+    dayArr3 = [[NSArray alloc]initWithArray:dayArr[2]];
+   
+    //周数据
+    weekArr1 = [[NSMutableArray alloc]init];
+    weekArr2 = [[NSMutableArray alloc]init];
+    weekArr3 = [[NSMutableArray alloc]init];
+    NSArray *weekArr = [[DataBaseTool sharedDB]selectL_SensorWeekData:@"00000001" Sensorid:@"000001001"];
+    for (int i=0; i<weekArr.count; i++) {
+        NSString *day = [weekArr objectAtIndex:i];
+        if (i<7) {
+            [weekArr1 addObject:day];
+        }
+        if (i>6 && i<14) {
+            [weekArr2 addObject:day];
+        }
+        if (i>13) {
+            [weekArr3 addObject:day];
+        }
+    }
+    
+    //月数据
+    monthArr1 = [[NSMutableArray alloc]init];
+    monthArr2 = [[NSMutableArray alloc]init];
+    monthArr3 = [[NSMutableArray alloc]init];
+    NSArray *monthArr = [[DataBaseTool sharedDB]selectL_SensorMounthData:@"00000001" Sensorid:@"000001001"];
+    for (int i = 0; i<monthArr.count; i++) {
+        NSString *day = [monthArr objectAtIndex:i];
+        if (i<30) {
+            [monthArr1 addObject:day];
+        }
+        if (i>29 && i <60) {
+            [monthArr2 addObject:day];
+        }
+        if (i>59) {
+            [monthArr3 addObject:day];
+        }
+    }
+    NSLog(@"1=%@ 2=%@ 3=%@",dayArr1,dayArr2,dayArr3);
     
 }
 
 
-
-
 -(void)viewWillAppear:(BOOL)animated{
+    
+    //从本地刷新数据
+    [self reloadData];
+    
     NSDate *pickerDate = [NSDate date];
-    
     NSDateFormatter *pickerFormatter = [[NSDateFormatter alloc] init];
-    
     [pickerFormatter setDateFormat:@"yyyy年MM月dd日"];
-    
     dateString = [pickerFormatter stringFromDate:pickerDate];
     NSLog(@"%@",dateString);
-    
     
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"yyyy年MM月dd日"];
@@ -140,21 +196,6 @@
     [sectionArr addObject:t3];
 }
 
--(void)getPlistWithName:(NSString*)name{
-    NSBundle *bundle = [NSBundle mainBundle];
-    NSString *plistPath = [bundle pathForResource:name ofType:@"plist"];
-    NSDictionary *dict = [[NSDictionary alloc]initWithContentsOfFile:plistPath];
-    if ([name isEqualToString:@"testdata1"]) {
-        dayarray =[[NSArray alloc]initWithArray:[dict objectForKey:@"day"]];
-        weekarray = [[NSArray alloc]initWithArray:[dict objectForKey:@"week"]];
-        montharray = [[NSArray alloc]initWithArray:[dict objectForKey:@"month"]];
-    }else if([name isEqualToString:@"testdata2"]){
-        dayarray2=[[NSArray alloc]initWithArray:[dict objectForKey:@"day"]];
-        weekarray2 = [[NSArray alloc]initWithArray:[dict objectForKey:@"week"]];
-        montharray2 = [[NSArray alloc]initWithArray:[dict objectForKey:@"month"]];
-    }
-    
-}
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -185,8 +226,9 @@
  
     DashBoardTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"dashboardCell"];
     cell.hhh = sectionArr[indexPath.section];
-    cell.rrr = sectionArr2[indexPath.section];
+    
     if ([sectionArr[indexPath.section]isEqualToString:@"電気使用量"]) {
+        cell.rrr = @"0";
         if (xNum == 0) {
             cell.danwei.text = @"wh";
         }else if(xNum == 1){
@@ -194,17 +236,19 @@
         }else if(xNum == 2){
             cell.danwei.text = @"kwh";
         }
-        [cell configUI:indexPath type:2 unit:xNum day:dayarray week:weekarray month:montharray ];
+        [cell configUI:indexPath type:2 unit:xNum day1:dayArr3 week1:weekArr3 month1:monthArr3 day2:dayArr2 week2:weekArr2 month2:monthArr2 day3:dayArr1 week3:weekArr1 month3:monthArr1];
+        NSLog(@"333=%@",monthArr3);
         
     }else if ([sectionArr[indexPath.section]isEqualToString:@"照度"]) {
-        
+        cell.rrr = @"1";
         cell.danwei.text = @"lux";
         
-        [cell configUI:indexPath type:2 unit:xNum day:dayarray week:weekarray month:montharray ];
+     //   [cell configUI:indexPath type:2 unit:xNum day:dayarray week:weekarray month:montharray ];
         
     }else{
+        cell.rrr = @"1";
         cell.danwei.text = @"回数";
-        [cell configUI:indexPath type:2 unit:xNum day:dayarray2 week:weekarray2 month:montharray2 ];
+      //  [cell configUI:indexPath type:2 unit:xNum day:dayarray2 week:weekarray2 month:montharray2 ];
     }
     cell.scoll.tag = indexPath.row;
     

@@ -55,7 +55,7 @@
             }
         }
     }
-    if (max < 5) {
+    if (max < 2) {
         max = 1;
     }
     if (self.showRange) {
@@ -118,17 +118,29 @@
 //    }else{
         num = xLabels.count;
 //    }
-    _xLabelWidth = (self.frame.size.width - UUYLabelwidth)/num;
+    _xLabelWidth = (self.frame.size.width-2 - UUYLabelwidth)/num;
     
     for (int i=0; i<xLabels.count; i++) {
-      
+        
         NSString *labelText = xLabels[i];
         UUChartLabel * label = [[UUChartLabel alloc] initWithFrame:CGRectMake(i * _xLabelWidth+UUYLabelwidth, self.frame.size.height - UULabelHeight, _xLabelWidth, UULabelHeight)];
         
-  
+        
         label.text = labelText;
         
-
+        if (xLabels.count >25) {
+            if ([label.text intValue] >1 && [label.text intValue] <7) {
+                label.text = @"";
+            }else if([label.text intValue] >7 && [label.text intValue] <13){
+                label.text = @"";
+            }else if([label.text intValue] >13 && [label.text intValue] <19){
+                label.text = @"";
+            }else if([label.text intValue] >19 && [label.text intValue] <25){
+                label.text = @"";
+            }else if([label.text intValue] >25 && [label.text intValue] <xLabels.count){
+                label.text = @"";
+            }
+        }
         if (xLabels.count <8) {
             if ([label.text isEqualToString: @"1"]) {
                 label.text = @"月";
