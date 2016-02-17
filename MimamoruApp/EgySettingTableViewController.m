@@ -23,8 +23,8 @@
     [self.tableView setTableFooterView:clear];
     if (!Arr) {
         Arr = [[NSMutableArray alloc]init];
-        NSString *t1 = @"◆緊急通報情報の設定";
-        NSString *t2 = @"◆緊急通報先の設定";
+        NSString *t1 = @"緊急通報情報の設定";
+        NSString *t2 = @"緊急通報先の設定";
         [Arr addObject:t1];
         [Arr addObject:t2];
     }
@@ -44,12 +44,21 @@
 
     return 1;
 }
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.tableView reloadData];
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mycell1" forIndexPath:indexPath];
-    cell.textLabel.text = Arr[indexPath.row];
-    cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:20];
+    UILabel * title = [[UILabel alloc]initWithFrame:CGRectMake(self.view.bounds.size.width*0.1, 12.5, self.view.bounds.size.width*0.8, 55)];
+    title.text = Arr[indexPath.row];
+    title.backgroundColor = [UIColor colorWithRed:161/255.0 green:199/255.0 blue:166/255.0 alpha:1];
+    title.textAlignment = NSTextAlignmentCenter;
+    title.layer.cornerRadius = 5.0;
+    [cell addSubview:title];
+    //cell.textLabel.text = Arr[indexPath.row];
+    //cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:20];
     
     return cell;
 }

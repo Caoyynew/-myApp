@@ -32,8 +32,13 @@
 //更新接口
 -(void)updateL_EmergencyContactsTable:(NSDictionary *)itemDict userid:(NSString *)userid;
 
-//L_SensorData 数据查询
--(NSMutableArray*)selectL_SensorData:(NSString*)userid;
+//L_SensorData数据查询
+//查询3天数据
+-(NSMutableArray*)selectL_SensorDayData:(NSString*)userid Sensorid:(NSString*)sensorid;
+//查询3周数据
+-(NSMutableArray*)selectL_SensorWeekData:(NSString*)userid Sensorid:(NSString*)sensorid;
+//查询3月数据
+-(NSMutableArray*)selectL_SensorMounthData:(NSString*)userid Sensorid:(NSString*)sensorid;
 
 //L_ShiKiChiContacts 查询数据
 -(NSMutableArray*)selectL_ShiKiChiContacts:(NSString*)userid;

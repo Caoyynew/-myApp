@@ -461,40 +461,137 @@
 }
 
 #pragma mark - SensorData 数据查询
--(NSMutableArray*)selectL_SensorData:(NSString *)userid
+//72小时数据
+-(NSMutableArray*)selectL_SensorDayData:(NSString *)userid Sensorid:(NSString*)sensorid
 {
-    sqlite3_stmt *statement;
-    char *sql = "select date,time,sensorid,value,graphtype from L_SensorData where userid0=?";
-    NSInteger sqlReturn = sqlite3_prepare_v2(database, sql, -1, &statement, nil);
-    if (sqlReturn !=SQLITE_OK) {
-        NSLog(@"sql error!");
-    }
-    sqlite3_bind_text(statement, 1, [userid UTF8String], -1, SQLITE_TRANSIENT);
-    NSMutableArray *contactArr = [[NSMutableArray alloc]init];
-    while (sqlite3_step(statement)==SQLITE_ROW) {
-        char *date = (char*) sqlite3_column_text(statement, 0);
-        char *time = (char*) sqlite3_column_text(statement, 1);
-        char *sensorid = (char*) sqlite3_column_text(statement, 2);
-        char *value = (char*) sqlite3_column_text(statement, 3);
-        char *graphtype = (char*) sqlite3_column_text(statement, 4);
-        
-        NSMutableDictionary *valueDic = [[NSMutableDictionary alloc]init];
-        [valueDic setValue:[NSString stringWithUTF8String:date] forKey:@"date"];
-        [valueDic setValue:[NSString stringWithUTF8String:time] forKey:@"time"];
-        [valueDic setValue:[NSString stringWithUTF8String:sensorid] forKey:@"sensorid"];
-        [valueDic setValue:[NSString stringWithUTF8String:value] forKey:@"value"];
-        [valueDic setValue:[NSString stringWithUTF8String:graphtype] forKey:@"graphtype"];
-        [contactArr addObject:valueDic];
-    }
-    int success = sqlite3_step(statement);
-    sqlite3_finalize(statement);
-    if (success == SQLITE_ERROR) {
-        NSLog(@"select NG");
-    }
-    return contactArr;
+    NSMutableArray* rootArr= [[NSMutableArray alloc]init];
     
+    NSDate * senddate=[NSDate date];
+    NSMutableArray *count = [[NSMutableArray alloc]init];
+    for (int i = 0; i<3; i++) {
+        NSDate *day = [[NSDate alloc]initWithTimeIntervalSinceReferenceDate:([senddate timeIntervalSinceReferenceDate] - i*24*3600)];
+        NSDateFormatter *dateformatter=[[NSDateFormatter alloc] init];
+        [dateformatter setDateFormat:@"yyyy-MM-dd"];
+        NSString *dateStr = [dateformatter stringFromDate:day];
+        [count addObject:dateStr];
+    }
+    for (int i=0; i<3; i++) {
+        sqlite3_stmt *statement;
+        char *sql = "select value from L_SensorData where userid0=? and date=? and sensorid=? order by time";
+        NSInteger sqlReturn = sqlite3_prepare_v2(database, sql, -1, &statement, nil);
+        if (sqlReturn !=SQLITE_OK) {
+            NSLog(@"sql error!");
+        }
+        sqlite3_bind_text(statement, 1, [userid UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 2, [[count objectAtIndex:i] UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 3, [sensorid UTF8String], -1, SQLITE_TRANSIENT);
+        NSMutableArray *contactArr = [[NSMutableArray alloc]init];
+        while (sqlite3_step(statement)==SQLITE_ROW) {
+            
+            char *value = (char*) sqlite3_column_text(statement, 0);
+            NSString* valueStr = [NSString stringWithUTF8String:value];
+            [contactArr addObject:valueStr];
+        }
+        
+        int success = sqlite3_step(statement);
+        sqlite3_finalize(statement);
+        if (success == SQLITE_ERROR) {
+            NSLog(@"select NG");
+        }
+        [rootArr addObject:contactArr];
+    }
+    return rootArr;
+
+}
+//21天数据
+-(NSMutableArray*)selectL_SensorWeekData:(NSString *)userid Sensorid:(NSString *)sensorid
+{
+    NSMutableArray* rootArr= [[NSMutableArray alloc]init];
+    
+    NSDate * senddate=[NSDate date];
+    NSMutableArray *count = [[NSMutableArray alloc]init];
+    for (int i = 0; i<21; i++) {
+        NSDate *day = [[NSDate alloc]initWithTimeIntervalSinceReferenceDate:([senddate timeIntervalSinceReferenceDate] - i*24*3600)];
+        NSDateFormatter *dateformatter=[[NSDateFormatter alloc] init];
+        [dateformatter setDateFormat:@"yyyy-MM-dd"];
+        NSString *dateStr = [dateformatter stringFromDate:day];
+        [count addObject:dateStr];
+    }
+    for (int i=0; i<21; i++) {
+        sqlite3_stmt *statement;
+        char *sql = "select date,value from L_SensorData where userid0=? and date=? and sensorid=?";
+        NSInteger sqlReturn = sqlite3_prepare_v2(database, sql, -1, &statement, nil);
+        if (sqlReturn !=SQLITE_OK) {
+            NSLog(@"sql error!");
+        }
+        sqlite3_bind_text(statement, 1, [userid UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 2, [[count objectAtIndex:i] UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 3, [sensorid UTF8String], -1, SQLITE_TRANSIENT);
+        NSMutableArray *contactArr = [[NSMutableArray alloc]init];
+        while (sqlite3_step(statement)==SQLITE_ROW) {
+            
+            char *date = (char*) sqlite3_column_text(statement, 0);
+            char *value = (char*) sqlite3_column_text(statement, 1);
+            
+            NSString* valueStr = [NSString stringWithUTF8String:value];
+            [contactArr addObject:valueStr];
+            
+        }
+        NSNumber *sum = [contactArr valueForKeyPath:@"@sum.floatValue"];
+        int success = sqlite3_step(statement);
+        sqlite3_finalize(statement);
+        if (success == SQLITE_ERROR) {
+            NSLog(@"select NG");
+        }
+        [rootArr addObject:sum];
+    }
+    return rootArr;
+}
+//3月数据
+-(NSMutableArray*)selectL_SensorMounthData:(NSString *)userid Sensorid:(NSString *)sensorid
+{
+    NSMutableArray* rootArr= [[NSMutableArray alloc]init];
+    
+    NSDate * senddate=[NSDate date];
+    NSMutableArray *count = [[NSMutableArray alloc]init];
+    for (int i = 0; i<89; i++) {
+        NSDate *day = [[NSDate alloc]initWithTimeIntervalSinceReferenceDate:([senddate timeIntervalSinceReferenceDate] - i*24*3600)];
+        NSDateFormatter *dateformatter=[[NSDateFormatter alloc] init];
+        [dateformatter setDateFormat:@"yyyy-MM-dd"];
+        NSString *dateStr = [dateformatter stringFromDate:day];
+        [count addObject:dateStr];
+    }
+    for (int i=0; i<89; i++) {
+        sqlite3_stmt *statement;
+        char *sql = "select value from L_SensorData where userid0=? and date=? and sensorid=?";
+        NSInteger sqlReturn = sqlite3_prepare_v2(database, sql, -1, &statement, nil);
+        if (sqlReturn !=SQLITE_OK) {
+            NSLog(@"sql error!");
+        }
+        sqlite3_bind_text(statement, 1, [userid UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 2, [[count objectAtIndex:i] UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 3, [sensorid UTF8String], -1, SQLITE_TRANSIENT);
+        NSMutableArray *contactArr = [[NSMutableArray alloc]init];
+        while (sqlite3_step(statement)==SQLITE_ROW) {
+            
+            char *value = (char*) sqlite3_column_text(statement, 0);
+            NSString* valueStr = [NSString stringWithUTF8String:value];
+            [contactArr addObject:valueStr];
+            
+        }
+        NSNumber *sum = [contactArr valueForKeyPath:@"@sum.floatValue"];
+        int success = sqlite3_step(statement);
+        sqlite3_finalize(statement);
+        if (success == SQLITE_ERROR) {
+            NSLog(@"select NG");
+        }
+        [rootArr addObject:sum];
+    }
+    return rootArr;
+
 }
 #pragma mark - ShiKiChiContacts 数据查询
+
 -(NSMutableArray*)selectL_ShiKiChiContacts:(NSString *)userid
 {
     sqlite3_stmt *statement;

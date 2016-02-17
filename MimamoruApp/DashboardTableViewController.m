@@ -33,7 +33,6 @@
     int graphtype;
     NSString*dateString4;
     NSString*machNameself;
-    
     NSArray* visibleCells;
     
 }
@@ -50,7 +49,8 @@
     //刷新数据
     [[DataBaseTool sharedDB]openDB];
     
-
+    NSArray *arr = [[DataBaseTool sharedDB]selectL_SensorDayData:@"00000001" Sensorid:@"000001001"];
+    NSLog(@"arr= %@",arr);
     NSString * login = @"login";
     [[NSUserDefaults standardUserDefaults]setObject:login forKey:@"type"];
 

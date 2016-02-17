@@ -400,11 +400,11 @@ hA
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="mycell1" id="0GI-1f-XS1">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="mycell1" id="0GI-1f-XS1">
                                 <rect key="frame" x="0.0" y="92" width="320" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0GI-1f-XS1" id="0WV-YL-oy0">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="79"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -913,16 +913,8 @@ hA
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qHo-ZG-oHn">
-                                                    <rect key="frame" x="320" y="0.0" width="30" height="30"/>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <state key="normal" title="追加"/>
-                                                    <connections>
-                                                        <action selector="addContacts:" destination="N5Y-nQ-ggS" eventType="touchUpInside" id="btL-5a-Hoh"/>
-                                                    </connections>
-                                                </button>
                                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QAa-x0-ecT">
-                                                    <rect key="frame" x="5" y="28" width="310" height="116"/>
+                                                    <rect key="frame" x="5" y="5" width="310" height="139"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <prototypes>
                                                         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="mycell" selectionStyle="default" indentationWidth="10" reuseIdentifier="mycell" textLabel="Drz-Rz-lA3" detailTextLabel="14Y-5a-TGY" style="IBUITableViewCellStyleSubtitle" id="7ku-di-dwt">
@@ -958,11 +950,8 @@ hA
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="QAa-x0-ecT" secondAttribute="bottom" constant="5" id="N08-5E-Dv0"/>
                                                 <constraint firstAttribute="trailing" secondItem="QAa-x0-ecT" secondAttribute="trailing" constant="5" id="TCu-iu-KDf"/>
-                                                <constraint firstItem="qHo-ZG-oHn" firstAttribute="leading" secondItem="3Oc-pM-h3s" secondAttribute="leading" constant="320" id="VVE-pX-aDb"/>
                                                 <constraint firstItem="QAa-x0-ecT" firstAttribute="leading" secondItem="3Oc-pM-h3s" secondAttribute="leading" constant="5" id="dJE-uf-bz6"/>
-                                                <constraint firstItem="qHo-ZG-oHn" firstAttribute="top" secondItem="3Oc-pM-h3s" secondAttribute="top" id="xDj-gU-An1"/>
-                                                <constraint firstAttribute="bottom" secondItem="qHo-ZG-oHn" secondAttribute="bottom" constant="119" id="z85-cr-DVX"/>
-                                                <constraint firstItem="QAa-x0-ecT" firstAttribute="top" secondItem="3Oc-pM-h3s" secondAttribute="top" constant="28" id="zGm-LE-htk"/>
+                                                <constraint firstItem="QAa-x0-ecT" firstAttribute="top" secondItem="3Oc-pM-h3s" secondAttribute="top" constant="5" id="zGm-LE-htk"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
