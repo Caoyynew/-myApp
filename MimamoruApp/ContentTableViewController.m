@@ -130,6 +130,83 @@ enum ActionTypes{
 
 #pragma mark - 紧急联系人mytableview datasource
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] init];
+    
+    UILabel *label =[[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 20)];
+    
+    label.backgroundColor = [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1];
+    
+    [view addSubview:label];
+    
+    
+    
+    if (section ==0){
+        
+        [label setText:@"   氏名"];
+        
+    }else if(section ==1){
+        
+        [label setText:@"   性别"];
+        
+    }else if(section ==2){
+        
+        [label setText:@"   誕生日"];
+        
+    }else if(section ==3){
+        
+        [label setText:@"   現住所"];
+        
+    }else if(section ==4){
+        
+        [label setText:@"   かかりつけ医"];
+        
+    }else if(section ==5){
+        
+        [label setText:@"   服薬情報"];
+        
+    }else if(section ==6){
+        
+        [label setText:@"   健康診断結果"];
+        
+    }else if(section ==7){
+        
+        [label setText:@"   その他お願い事項"];
+        
+    }else if(section ==8){
+        
+        [label setText:@"   緊急通報先"];
+        
+        UIButton *Button =[[UIButton alloc] initWithFrame:CGRectMake(self.tableView.frame.size.width*0.9, 0, 20, 20)];
+        
+        [Button setTitle: @"＋" forState: UIControlStateNormal];
+        
+        Button.titleLabel.font = [UIFont systemFontOfSize: 20.0];
+        
+        Button.titleLabel.textColor = [UIColor blackColor];
+        
+        Button.backgroundColor = [UIColor lightGrayColor];
+        
+        [Button addTarget:self action:@selector(addContacts) forControlEvents:UIControlEventTouchUpInside];
+        
+        [view addSubview:Button];
+        
+    }else if(section ==9){
+        
+        [label setText:@"   最終更新日付"];
+        
+    }else if(section ==10){
+        
+        [label setText:@"   最終更新者名"];
+        
+    }
+    return view;
+    
+}
+
+
+
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     NSString *title = [NSString new];
@@ -239,7 +316,7 @@ enum ActionTypes{
             }
 }
 #pragma mark - 添加紧急联系人
-- (IBAction)addContacts:(id)sender {
+- (void)addContacts{
     
     [self performSegueWithIdentifier:@"addcontact" sender:self];
 }
