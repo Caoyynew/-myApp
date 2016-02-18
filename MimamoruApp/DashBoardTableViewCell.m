@@ -113,88 +113,88 @@
     
     if ([self.hhh isEqualToString:@"ドア"]) {
         if ([self.rrr isEqualToString:@"1"]) {
-            chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 15, [UIScreen mainScreen].bounds.size.width-10
-                                                                           , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle withid:@"1"];
+            chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 5, [UIScreen mainScreen].bounds.size.width-10
+                                                                           , 155) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle withid:@"1"];
             
-            chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+5, 15, [UIScreen mainScreen].bounds.size.width-10
-                                                                            , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle withid:@"2"];
+            chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+5, 5, [UIScreen mainScreen].bounds.size.width-10
+                                                                            , 155) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle withid:@"2"];
             
-            chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width)*2+5, 15, [UIScreen mainScreen].bounds.size.width-10
-                                                                            , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle withid:@"3"];
+            chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width)*2+5, 5, [UIScreen mainScreen].bounds.size.width-10
+                                                                            , 155) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle withid:@"3"];
         }else{
             chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 15, [UIScreen mainScreen].bounds.size.width-10
-                                                                           , 130) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle withid:@"1"];
+                                                                           , 155) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle withid:@"1"];
             
-            chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+5, 15, [UIScreen mainScreen].bounds.size.width-10
-                                                                            , 130) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle withid:@"2"];
+            chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+5, 5, [UIScreen mainScreen].bounds.size.width-10
+                                                                            , 155) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle withid:@"2"];
             
-            chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width)*2+5, 15, [UIScreen mainScreen].bounds.size.width-10
-                                                                            , 130) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle withid:@"3"];
+            chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width)*2+5, 5, [UIScreen mainScreen].bounds.size.width-10
+                                                                            , 155) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle withid:@"3"];
         }
     }else if([self.hhh isEqualToString:@"電気使用量"]){
 
         if ([self.rrr isEqualToString:@"1"]) {
-            chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 15, [UIScreen mainScreen].bounds.size.width-10
-                                                                           , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle withid:@"1"];
+            chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 5, [UIScreen mainScreen].bounds.size.width-10
+                                                                           , 155) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle withid:@"1"];
             
-            chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+5, 15, [UIScreen mainScreen].bounds.size.width-10
-                                                                            , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle withid:@"2"];
+            chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+5, 5, [UIScreen mainScreen].bounds.size.width-10
+                                                                            , 155) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle withid:@"2"];
             
-            chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width)*2+5, 15, [UIScreen mainScreen].bounds.size.width-10
-                                                                            , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle withid:@"3"];
+            chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width)*2+5, 5, [UIScreen mainScreen].bounds.size.width-10
+                                                                            , 155) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle withid:@"3"];
         }else{
-            chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 15, [UIScreen mainScreen].bounds.size.width-10
-                                                                           , 130) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle withid:@"1"];
+            chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 5, [UIScreen mainScreen].bounds.size.width-10
+                                                                           , 155) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle withid:@"1"];
             
-            chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+5, 15, [UIScreen mainScreen].bounds.size.width-10
-                                                                            , 130) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle withid:@"2"];
+            chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+5, 5, [UIScreen mainScreen].bounds.size.width-10
+                                                                            , 155) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle withid:@"2"];
             
-            chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width)*2+5, 15, [UIScreen mainScreen].bounds.size.width-10
-                                                                            , 130) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle withid:@"3"];
+            chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width)*2+5, 5, [UIScreen mainScreen].bounds.size.width-10
+                                                                            , 155) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle withid:@"3"];
             
         }
     }else if([self.hhh isEqualToString:@"マット"]){
 
         if ([self.rrr isEqualToString:@"1"]) {
-            chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 15, [UIScreen mainScreen].bounds.size.width-10
-                                                                           , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle withid:@"1"];
+            chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 5, [UIScreen mainScreen].bounds.size.width-10
+                                                                           , 155) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle withid:@"1"];
             
-            chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+5, 15, [UIScreen mainScreen].bounds.size.width-10
-                                                                            , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle withid:@"2"];
+            chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+5, 5, [UIScreen mainScreen].bounds.size.width-10
+                                                                            , 155) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle withid:@"2"];
             
-            chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width)*2+5, 15, [UIScreen mainScreen].bounds.size.width-10
-                                                                            , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle withid:@"3"];
+            chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width)*2+5, 5, [UIScreen mainScreen].bounds.size.width-10
+                                                                            , 155) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle withid:@"3"];
         }else{
-            chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 15, [UIScreen mainScreen].bounds.size.width-10
-                                                                           , 130) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle withid:@"1"];
+            chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 5, [UIScreen mainScreen].bounds.size.width-10
+                                                                           , 155) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle withid:@"1"];
             
-            chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+5, 15, [UIScreen mainScreen].bounds.size.width-10
-                                                                            , 130) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle withid:@"2"];
+            chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+5, 5, [UIScreen mainScreen].bounds.size.width-10
+                                                                            , 155) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle withid:@"2"];
             
-            chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width)*2+5, 15, [UIScreen mainScreen].bounds.size.width-10
-                                                                            , 130) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle withid:@"3"];
+            chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width)*2+5, 5, [UIScreen mainScreen].bounds.size.width-10
+                                                                            , 155) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle withid:@"3"];
             
         }
     }else if([self.hhh isEqualToString:@"照度"]){
 
         if ([self.rrr isEqualToString:@"1"]) {
-            chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 15, [UIScreen mainScreen].bounds.size.width-10
-                                                                           , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle withid:@"1"];
+            chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 5, [UIScreen mainScreen].bounds.size.width-10
+                                                                           , 155) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle withid:@"1"];
             
-            chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+5, 15, [UIScreen mainScreen].bounds.size.width-10
-                                                                            , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle withid:@"2"];
+            chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+5, 5, [UIScreen mainScreen].bounds.size.width-10
+                                                                            , 155) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle withid:@"2"];
             
-            chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width)*2+5, 15, [UIScreen mainScreen].bounds.size.width-10
-                                                                            , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle withid:@"3"];
+            chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width)*2+5, 5, [UIScreen mainScreen].bounds.size.width-10
+                                                                            , 155) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle withid:@"3"];
         }else{
-            chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 15, [UIScreen mainScreen].bounds.size.width-10
-                                                                           , 130) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle withid:@"1"];
+            chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 5, [UIScreen mainScreen].bounds.size.width-10
+                                                                           , 155) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle withid:@"1"];
             
-            chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+5, 15, [UIScreen mainScreen].bounds.size.width-10
-                                                                            , 130) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle withid:@"2"];
+            chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+5, 5, [UIScreen mainScreen].bounds.size.width-10
+                                                                            , 155) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle withid:@"2"];
             
-            chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width)*2+5, 15, [UIScreen mainScreen].bounds.size.width-10
-                                                                            , 130) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle withid:@"3"];
+            chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width)*2+5, 5, [UIScreen mainScreen].bounds.size.width-10
+                                                                            , 155) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle withid:@"3"];
             
         }
     }
