@@ -509,15 +509,47 @@
     NSMutableArray* rootArr= [[NSMutableArray alloc]init];
     
     NSDate * senddate=[NSDate date];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *comps;
+    comps = [calendar components:(NSWeekCalendarUnit | NSWeekdayCalendarUnit |NSWeekdayOrdinalCalendarUnit) fromDate:senddate];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"EEEE"];
+    NSString *yobi=[formatter stringFromDate:senddate];
+    int now = 0;
+    if ([yobi isEqualToString:@"Sunday"]) {
+        now = 0;
+    }
+    if ([yobi isEqualToString:@"Saturday"]) {
+        now = 1;
+    }
+    if ([yobi isEqualToString:@"Friday"]) {
+        now = 2;
+    }
+    if ([yobi isEqualToString:@"Thursday"]) {
+        now = 3;
+    }
+    if ([yobi isEqualToString:@"Wednesday"]) {
+        now = 4;
+    }
+    if ([yobi isEqualToString:@"Tuesday"]) {
+        now = 5;
+    }
+    if ([yobi isEqualToString:@"Monday"]) {
+        now = 6;
+    }
+    //测试数据
+    //now = 6;
+    NSString *nowStr = [NSString stringWithFormat:@"%d",now];
+    [rootArr addObject:nowStr];
     NSMutableArray *count = [[NSMutableArray alloc]init];
-    for (int i = 0; i<21; i++) {
+    for (int i = 0; i<(21-now); i++) {
         NSDate *day = [[NSDate alloc]initWithTimeIntervalSinceReferenceDate:([senddate timeIntervalSinceReferenceDate] - i*24*3600)];
         NSDateFormatter *dateformatter=[[NSDateFormatter alloc] init];
         [dateformatter setDateFormat:@"yyyy-MM-dd"];
         NSString *dateStr = [dateformatter stringFromDate:day];
         [count addObject:dateStr];
     }
-    for (int i=0; i<21; i++) {
+    for (int i=0; i<(21-now); i++) {
         sqlite3_stmt *statement;
         char *sql = "select value from L_SensorData where userid0=? and date=? and sensorid=?";
         NSInteger sqlReturn = sqlite3_prepare_v2(database, sql, -1, &statement, nil);
@@ -544,7 +576,9 @@
         }
         [rootArr addObject:sum];
     }
+    NSLog(@"rootArr=%@",rootArr);
     return rootArr;
+    
 }
 //3月数据
 -(NSMutableArray*)selectL_SensorMounthData:(NSString *)userid Sensorid:(NSString *)sensorid
@@ -552,15 +586,71 @@
     NSMutableArray* rootArr= [[NSMutableArray alloc]init];
     
     NSDate * senddate=[NSDate date];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSUInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    NSDateComponents *dateComponent = [calendar components:unitFlags fromDate:senddate];
+    long month = [dateComponent month];
+    long year = [dateComponent year];
+    long day = [dateComponent day];
+    NSLog(@"%ld",month);
+    int monthday = 0;
+    
+    if (month==1) {
+        monthday =31;
+    }
+    //只粗略判断了能被4整除的年份为闰年
+    if (month==2) {
+        if (year%4==0) {
+            monthday = 29;
+        }else{
+            monthday =28;
+        }
+    }
+    if (month==3) {
+        monthday =31;
+    }
+    if (month==4) {
+        monthday =30;
+    }
+    if (month==5) {
+        monthday =31;
+    }
+    if (month==6) {
+        monthday =30;
+    }
+    if (month==7) {
+        monthday =31;
+    }
+    if (month==8) {
+        monthday =31;
+    }
+    if (month==9) {
+        monthday =30;
+    }
+    if (month==10) {
+        monthday =31;
+    }
+    if (month==11) {
+        monthday =30;
+    }
+    if (month==12) {
+        monthday =31;
+    }
+    NSString *monthStr = [NSString stringWithFormat:@"%ld",month];
+    NSString *todayStr = [NSString stringWithFormat:@"%ld",day];
+    NSString *yearStr = [NSString stringWithFormat:@"%ld",year];
+    [rootArr addObject:monthStr];
+    [rootArr addObject:todayStr];
+    [rootArr addObject:yearStr];
     NSMutableArray *count = [[NSMutableArray alloc]init];
-    for (int i = 0; i<89; i++) {
+    for (int i = 0; i<92; i++) {
         NSDate *day = [[NSDate alloc]initWithTimeIntervalSinceReferenceDate:([senddate timeIntervalSinceReferenceDate] - i*24*3600)];
         NSDateFormatter *dateformatter=[[NSDateFormatter alloc] init];
         [dateformatter setDateFormat:@"yyyy-MM-dd"];
         NSString *dateStr = [dateformatter stringFromDate:day];
         [count addObject:dateStr];
     }
-    for (int i=0; i<89; i++) {
+    for (int i=0; i<92; i++) {
         sqlite3_stmt *statement;
         char *sql = "select value from L_SensorData where userid0=? and date=? and sensorid=?";
         NSInteger sqlReturn = sqlite3_prepare_v2(database, sql, -1, &statement, nil);

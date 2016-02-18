@@ -96,38 +96,122 @@
     weekArr1 = [[NSMutableArray alloc]init];
     weekArr2 = [[NSMutableArray alloc]init];
     weekArr3 = [[NSMutableArray alloc]init];
+    NSMutableArray* weekArr20 = [[NSMutableArray alloc]init];
+    NSMutableArray* weekArr30 = [[NSMutableArray alloc]init];
     NSArray *weekArr = [[DataBaseTool sharedDB]selectL_SensorWeekData:@"00000001" Sensorid:@"000001001"];
-    for (int i=0; i<weekArr.count; i++) {
+    int m =0;
+    m = [weekArr[0]intValue];
+    for (int i=1; i<weekArr.count; i++) {
         NSString *day = [weekArr objectAtIndex:i];
-        if (i<7) {
+        if (i< 8-m) {
             [weekArr1 addObject:day];
         }
-        if (i>6 && i<14) {
-            [weekArr2 addObject:day];
+        if (i>(7-m) && i<(15-m)) {
+            [weekArr20 addObject:day];
         }
-        if (i>13) {
-            [weekArr3 addObject:day];
+        if (i>(14-m)) {
+            [weekArr30 addObject:day];
         }
     }
-    
+    //先周 先先周 反序输出
+    for (NSString *str in [weekArr20 reverseObjectEnumerator]) {
+        [weekArr2 addObject:str];
+    }
+    for (NSString *str in [weekArr30 reverseObjectEnumerator]) {
+        [weekArr3 addObject:str];
+    }
     //月数据
     monthArr1 = [[NSMutableArray alloc]init];
     monthArr2 = [[NSMutableArray alloc]init];
     monthArr3 = [[NSMutableArray alloc]init];
+    NSMutableArray* monthArr20 = [[NSMutableArray alloc]init];
+    NSMutableArray* monthArr30 = [[NSMutableArray alloc]init];
     NSArray *monthArr = [[DataBaseTool sharedDB]selectL_SensorMounthData:@"00000001" Sensorid:@"000001001"];
-    for (int i = 0; i<monthArr.count; i++) {
+    int monthday = 0;
+    int dayInt = 0;
+    int yearInt = 0;
+    dayInt = [monthArr[1]intValue]; //当天日期
+    monthday = [monthArr[0]intValue];//当月月数
+    yearInt = [monthArr[2]intValue];//当年年份
+    int backmonth = 0;
+    int backbackmonth = 0;
+    for (int i = 3; i<monthArr.count; i++) {
         NSString *day = [monthArr objectAtIndex:i];
-        if (i<30) {
+        if (i<dayInt+3) {
             [monthArr1 addObject:day];
         }
-        if (i>29 && i <60) {
-            [monthArr2 addObject:day];
+        if (monthday==1) {
+            backmonth = 31;
+            backbackmonth = 30;
         }
-        if (i>59) {
-            [monthArr3 addObject:day];
+        if (monthday==2) {
+            backmonth = 31;
+            backbackmonth = 31;
+        }
+        if (monthday==3) {
+            if (yearInt%4==0) {
+                backmonth = 29;
+            }else{
+                backmonth = 28;
+            }
+            backbackmonth = 31;
+        }
+        if (monthday==4) {
+            backmonth = 31;
+            if (yearInt%4==0) {
+                backbackmonth = 29;
+            }else{
+                backbackmonth = 28;
+            }
+        }
+        if (monthday==5) {
+            backmonth =30;
+            backbackmonth = 31;
+        }
+        if (monthday==6) {
+            backmonth = 31;
+            backbackmonth = 30;
+        }
+        if (monthday==7) {
+            backmonth = 30;
+            backbackmonth = 31;
+        }
+        if (monthday==8) {
+            backmonth = 31;
+            backbackmonth = 30;
+        }
+        if (monthday==9) {
+            backmonth = 31;
+            backbackmonth = 31;
+        }
+        if (monthday==10) {
+            backmonth = 30;
+            backbackmonth = 31;
+        }
+        if (monthday==11) {
+            backmonth = 31;
+            backbackmonth = 30;
+        }
+        if (monthday==12) {
+            backmonth = 30;
+            backbackmonth =31;
+        }
+        
+        if (i>dayInt+2 && i <dayInt+backmonth+3) {
+            [monthArr20 addObject:day];
+        }
+        if (i>dayInt+backmonth+2 && i < dayInt+backmonth+3+backbackmonth) {
+            [monthArr30 addObject:day];
         }
     }
-    NSLog(@"1=%@ 2=%@ 3=%@",dayArr1,dayArr2,dayArr3);
+    //先月 先先月反序输出
+    for (NSString *str in [monthArr20 reverseObjectEnumerator]) {
+        [monthArr2 addObject:str];
+    }
+    for (NSString *str in [monthArr30 reverseObjectEnumerator]) {
+        [monthArr3 addObject:str];
+    }
+    NSLog(@"1=%@ 2=%@ 3=%@",monthArr1,monthArr2,monthArr3);
     
 }
 
@@ -237,7 +321,6 @@
             cell.danwei.text = @"kwh";
         }
         [cell configUI:indexPath type:2 unit:xNum day1:dayArr3 week1:weekArr3 month1:monthArr3 day2:dayArr2 week2:weekArr2 month2:monthArr2 day3:dayArr1 week3:weekArr1 month3:monthArr1];
-        NSLog(@"333=%@",monthArr3);
         
     }else if ([sectionArr[indexPath.section]isEqualToString:@"照度"]) {
         cell.rrr = @"1";

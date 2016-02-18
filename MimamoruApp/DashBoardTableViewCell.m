@@ -112,8 +112,6 @@
     [self.contentView addSubview:_scoll];
     
     if ([self.hhh isEqualToString:@"ドア"]) {
-
-        
         if ([self.rrr isEqualToString:@"1"]) {
             chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 15, [UIScreen mainScreen].bounds.size.width-10
                                                                            , 130) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle withid:@"1"];
@@ -211,8 +209,6 @@
 //    //设置显示当前区域位置 2*width
 //    _scoll.contentOffset =CGPointMake([UIScreen mainScreen].bounds.size.width*2, 0);
 //    _scoll.pagingEnabled =YES;
-    
-    
     
 }
 
