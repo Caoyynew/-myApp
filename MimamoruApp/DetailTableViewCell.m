@@ -69,7 +69,9 @@
 }
 -(NSArray*)UUChart_yValueArray:(UUChart *)chart
 {
-    
+    if (dayarr.count == 0) {
+        dayarr = @[@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0];
+    }
     return @[dayarr];
 }
 

@@ -27,12 +27,13 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    userid0 = @"00000001";
+    userid0 = [[NSUserDefaults standardUserDefaults]valueForKey:@"userid0"];
     dayarray =[[DataBaseTool sharedDB]selectL_SensorTodayData:userid0 Sensorid:self.sensorid];
     contactsArr = [[DataBaseTool sharedDB]selectL_ShiKiChiContacts:userid0];
     if (contactsArr.count==0) {
         contactsArr = [[NSMutableArray alloc]init];
     }
+    
 }
 
 
@@ -61,31 +62,38 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   
-    return 1;
+    long sectionNo;
+    if (section == 0) {
+        sectionNo = 1;
+    }else if (section == 1){
+        
+        sectionNo = contactsArr.count;
+    }
+    return sectionNo;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell * cell;
+
     if (indexPath.section == 0 ) {
-        
         DetailTableViewCell* cell1 = [tableView dequeueReusableCellWithIdentifier:@"detailcell" forIndexPath:indexPath];
         cell1.selectionStyle = UITableViewCellEditingStyleNone;
         [[[NSBundle mainBundle]loadNibNamed:@"DetailTableViewCell" owner:nil options:nil]firstObject];
-        if ([self.titlename isEqualToString:@"電気使用量"]) {
+        if ([self.titlename isEqualToString:@"電気使用量"] && [self.titlename isEqualToString:@"照度"]) {
             [cell1 configUI:indexPath type:1 day:dayarray];
         }else{
-            [cell1 configUI:indexPath type:2 day:dayarray2];
+            [cell1 configUI:indexPath type:2 day:dayarray];
         }
-        cell = cell1;
-    }
-    if (indexPath.section ==1){
-        cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+        return cell1;
+    }else{
+       UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellEditingStyleNone;
-        cell.textLabel.text = @"山田";
-        cell.detailTextLabel.text = @"mytell@163.com";
+        NSDictionary *shikichi = [[NSDictionary alloc]init];
+        shikichi = [contactsArr objectAtIndex:indexPath.row];
+        cell.textLabel.text = [shikichi valueForKey:@"abnname"];
+        cell.detailTextLabel.text = [shikichi valueForKey:@"abnemail"];
+        return cell;
     }
-    return cell;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     CGRect frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 40);

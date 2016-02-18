@@ -78,7 +78,7 @@
     CGFloat chartCavanHeight = self.frame.size.height - UULabelHeight*3;
     CGFloat levelHeight = chartCavanHeight /4.0;
     
-    for (int i=0; i<2; i++) {
+    for (int i=0; i<_yValueMax; i++) {
         UUChartLabel * label = [[UUChartLabel alloc] initWithFrame:CGRectMake(0.0,chartCavanHeight-i*levelHeight+5, UUYLabelwidth, UULabelHeight)];
 		label.text = [NSString stringWithFormat:@"%d",[[NSString stringWithFormat:@"%.1f",level * i+_yValueMin]intValue]];
 		[self addSubview:label];
