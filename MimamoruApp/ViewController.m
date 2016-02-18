@@ -10,6 +10,7 @@
 #import "LeafNotification.h"
 #import "AppDelegate.h"
 #import "MBProgressHUD.h"
+#import "DataBaseTool.h"
 
 @interface ViewController ()<UITextFieldDelegate>
 {
@@ -58,6 +59,9 @@
     if ([value isEqualToString:@""]) {
        dispatch_async(dispatch_get_main_queue(), ^{
            [MBProgressHUD hideHUDForView:self.view animated:YES];
+           //登陆成功下载数据
+           [[NSUserDefaults standardUserDefaults]setValue:_userID.text forKey:@"userid0"];
+           [[DataBaseTool sharedDB]openDB];
            [self performSegueWithIdentifier:@"gotomain" sender:self];
        });
     }else {

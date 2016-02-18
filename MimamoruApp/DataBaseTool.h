@@ -40,12 +40,14 @@
 //查询3月数据
 -(NSMutableArray*)selectL_SensorMounthData:(NSString*)userid Sensorid:(NSString*)sensorid;
 
-//L_ShiKiChiMaster数据查询
--(NSMutableArray*)selectL_ShiKiChiMaster:(NSString *)userid; //用于进入B-2页面 获取用户传感器个数和图表显示类型
+//L_SensorMaster数据查询
+-(NSMutableArray*)selectL_SensorMaster:(NSString *)userid; //用于进入B-2页面 获取用户传感器个数和图表显示类型
 
 //L_SensoridData 查询当天数据
 -(NSMutableArray*)selectL_SensorTodayData:(NSString *)userid Sensorid:(NSString *)sensorid;
 //L_ShiKiChiContacts 查询数据
 -(NSMutableArray*)selectL_ShiKiChiContacts:(NSString*)userid;
+
+
 
 @end

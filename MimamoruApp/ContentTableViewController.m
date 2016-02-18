@@ -99,7 +99,7 @@ enum ActionTypes{
 -(void)viewWillAppear:(BOOL)animated
 {
     //获取紧急联系人
-    userid0 = @"00000001";
+    userid0 = [[NSUserDefaults standardUserDefaults]valueForKey:@"userid0"];
     emergencyArr = [[DataBaseTool sharedDB]selectL_EmergencyContactsTableuserid:userid0];
     NSLog(@"emergencycount=%lu",(unsigned long)emergencyArr.count);
     [myTableView reloadData];

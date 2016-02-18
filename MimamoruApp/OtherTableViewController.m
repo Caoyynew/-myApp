@@ -75,6 +75,7 @@
     [alert addAction:[UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSString *type = @"logout";
         [[NSUserDefaults standardUserDefaults]setObject:type forKey:@"type"];
+        [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"userid0"];
         [self dismissViewControllerAnimated:YES completion:nil];
        //[self performSegueWithIdentifier:@"back" sender:self];
     }]];

@@ -56,7 +56,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     
-    userid0 = @"00000001";
+    userid0 = [[NSUserDefaults standardUserDefaults]valueForKey:@"userid0"];
     [self reloadContact];
     [self settingEmail];
     [_button setEmptyButtonPressing:YES];

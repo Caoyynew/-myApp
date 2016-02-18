@@ -12,6 +12,8 @@
 #import "DataBaseTool.h"
 @interface DashboardTableViewController() <UIScrollViewDelegate,UIGestureRecognizerDelegate>{
     
+    
+    NSString *userid0;
     //显示传感器个数和图表显示类型
     NSMutableArray * sensorArr;
     //显示section标题
@@ -76,22 +78,12 @@
     
 }
 #pragma mark - 刷新数据
--(void)reloadData{
+-(void)reloadDataSensorid:(NSString*)sensorid{
     
-    //传感器个数和图表显示类型
-    sensorArr = [[DataBaseTool sharedDB]selectL_ShiKiChiMaster:@"00000001"];
-    if (sensorArr.count == 0) {
-        sensorArr = [[NSMutableArray alloc]init];
-    }
-    
-    //电气使用量数据
     //日数据
-    NSArray *dayArr = [[DataBaseTool sharedDB]selectL_SensorDayData:@"00000001" Sensorid:@"000001001"];
+    NSArray *dayArr = [[DataBaseTool sharedDB]selectL_SensorDayData:userid0 Sensorid:sensorid];
     
     dayArr1 = [[NSArray alloc]initWithArray:dayArr[0]];
-//    if (dayArr1.count==0) {
-//        dayArr1 = @[@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0"];
-//    }
     dayArr2 = [[NSArray alloc]initWithArray:dayArr[1]];
     dayArr3 = [[NSArray alloc]initWithArray:dayArr[2]];
    
@@ -102,7 +94,7 @@
     NSMutableArray* weekArr10 = [[NSMutableArray alloc]init];
     NSMutableArray* weekArr20 = [[NSMutableArray alloc]init];
     NSMutableArray* weekArr30 = [[NSMutableArray alloc]init];
-    NSArray *weekArr = [[DataBaseTool sharedDB]selectL_SensorWeekData:@"00000001" Sensorid:@"000001001"];
+    NSArray *weekArr = [[DataBaseTool sharedDB]selectL_SensorWeekData:userid0 Sensorid:sensorid];
     int m =0;
     m = [weekArr[0]intValue];
     for (int i=1; i<weekArr.count; i++) {
@@ -134,7 +126,7 @@
     NSMutableArray* monthArr10 = [[NSMutableArray alloc]init];
     NSMutableArray* monthArr20 = [[NSMutableArray alloc]init];
     NSMutableArray* monthArr30 = [[NSMutableArray alloc]init];
-    NSArray *monthArr = [[DataBaseTool sharedDB]selectL_SensorMounthData:@"00000001" Sensorid:@"000001001"];
+    NSArray *monthArr = [[DataBaseTool sharedDB]selectL_SensorMounthData:userid0 Sensorid:sensorid];
     int monthday = 0;
     int dayInt = 0;
     int yearInt = 0;
@@ -248,12 +240,13 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     
+    userid0 = [[NSUserDefaults standardUserDefaults]valueForKey:@"userid0"];
+    
     //从服务器下载数据
-    [[DataBaseTool sharedDB]openDB];
-    //从本地刷新数据
-    [self reloadData];
+    //[[DataBaseTool sharedDB]openDB];
     //获取传感器个数类型
     [self getTaisetsuPeople];
+    //从本地刷新数据
     
     NSDate *pickerDate = [NSDate date];
     NSDateFormatter *pickerFormatter = [[NSDateFormatter alloc] init];
@@ -300,7 +293,16 @@
     
 }
 
+#pragma mark - 获取本地L_SensorMaster
+
 -(void)getTaisetsuPeople{
+    
+    //传感器个数和图表显示类型
+    sensorArr = [[DataBaseTool sharedDB]selectL_SensorMaster:userid0];
+    if (sensorArr.count == 0) {
+        sensorArr = [[NSMutableArray alloc]init];
+    }
+
     if (!sectionArr) {
         sectionArr = [[NSMutableArray alloc]initWithCapacity:0];
     }
@@ -310,7 +312,7 @@
         NSDictionary *sensorDic = [[NSDictionary alloc]init];
         sensorDic = [sensorArr objectAtIndex:i];
         NSString *sensorid = [sensorDic valueForKey:@"sensorid"];
-        NSString *graphtype = [sensorDic valueForKey:@"graphtype"];
+       // NSString *sensorname = [sensorDic valueForKey:@"sensorname"];
         if ([sensorid isEqualToString:@"000002001"]) {
             NSString * t1 = @"電気使用量";
             [sectionArr addObject:t1];
@@ -328,9 +330,7 @@
             [sectionArr addObject:t4];
         }
     }
-    
-    
-    
+    NSLog(@"sectionArr=%@",sectionArr);
     
 }
 
@@ -374,18 +374,24 @@
         }else if(xNum == 2){
             cell.danwei.text = @"kwh";
         }
+        [self reloadDataSensorid:@"000002001"];
         [cell configUI:indexPath type:2 unit:xNum day1:dayArr3 week1:weekArr3 month1:monthArr3 day2:dayArr2 week2:weekArr2 month2:monthArr2 day3:dayArr1 week3:weekArr1 month3:monthArr1 sendNmonth:nowmonth Bmonth:backmonth BBmonth:backbackmonth];
         
     }else if ([sectionArr[indexPath.section]isEqualToString:@"照度"]) {
-        cell.rrr = @"1";
+        cell.rrr = @"0";
         cell.danwei.text = @"lux";
-        
-     //   [cell configUI:indexPath type:2 unit:xNum day:dayarray week:weekarray month:montharray ];
-        
-    }else{
+        [self reloadDataSensorid:@"000002002"];
+     [cell configUI:indexPath type:2 unit:xNum day1:dayArr3 week1:weekArr3 month1:monthArr3 day2:dayArr2 week2:weekArr2 month2:monthArr2 day3:dayArr1 week3:weekArr1 month3:monthArr1 sendNmonth:nowmonth Bmonth:backmonth BBmonth:backbackmonth];
+    }else if([sensorArr[indexPath.section]isEqualToString:@"マット"]){
         cell.rrr = @"1";
         cell.danwei.text = @"回数";
-      //  [cell configUI:indexPath type:2 unit:xNum day:dayarray2 week:weekarray2 month:montharray2 ];
+        [self reloadDataSensorid:@"000001002"];
+      [cell configUI:indexPath type:2 unit:xNum day1:dayArr3 week1:weekArr3 month1:monthArr3 day2:dayArr2 week2:weekArr2 month2:monthArr2 day3:dayArr1 week3:weekArr1 month3:monthArr1 sendNmonth:nowmonth Bmonth:backmonth BBmonth:backbackmonth];
+    }else if ([sectionArr[indexPath.section]isEqualToString:@"ドア"]){
+        cell.rrr = @"1";
+        cell.danwei.text = @"回数";
+        [self reloadDataSensorid:@"000001001"];
+        [cell configUI:indexPath type:2 unit:xNum day1:dayArr3 week1:weekArr3 month1:monthArr3 day2:dayArr2 week2:weekArr2 month2:monthArr2 day3:dayArr1 week3:weekArr1 month3:monthArr1 sendNmonth:nowmonth Bmonth:backmonth BBmonth:backbackmonth];
     }
     cell.scoll.tag = indexPath.row;
     
