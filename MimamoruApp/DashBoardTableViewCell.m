@@ -27,6 +27,10 @@
     NSMutableArray *monthArr3;
     UIPageControl* _page;
  
+    //当月 上月 上上月 天数
+    int nowmonth;
+    int backmonth;
+    int backbackmonth;
     
 }
 
@@ -42,7 +46,7 @@
     
 }
 
--(void)configUI:(NSIndexPath*)indexPath type:(int)styletype unit:(int)segmentunitnum day1:(NSArray*)day1 week1:(NSMutableArray*)week1 month1:(NSMutableArray*)month1 day2:(NSArray*)day2 week2:(NSMutableArray*)week2 month2:(NSMutableArray*)month2 day3:(NSArray*)day3 week3:(NSMutableArray*)week3 month3:(NSMutableArray*)month3{
+-(void)configUI:(NSIndexPath*)indexPath type:(int)styletype unit:(int)segmentunitnum day1:(NSArray*)day1 week1:(NSMutableArray*)week1 month1:(NSMutableArray*)month1 day2:(NSArray*)day2 week2:(NSMutableArray*)week2 month2:(NSMutableArray*)month2 day3:(NSArray*)day3 week3:(NSMutableArray*)week3 month3:(NSMutableArray*)month3 sendNmonth:(int)Nmonth Bmonth:(int)Bmonth BBmonth:(int)BBmonth{
     if (self.scoll != nil) {
         [chartview removeFromSuperview];
         [chartview2 removeFromSuperview];
@@ -76,39 +80,41 @@
         monthArr3 = [[NSMutableArray alloc]init];
     }
     
-    if (chartview) {
-        [chartview removeFromSuperview];
-        chartview =nil;
-    }
-    NSLog(@"hh=%@",_hhh);
+    nowmonth = Nmonth;
+    backmonth = Bmonth;
+    backbackmonth = BBmonth;
+    
+    
     path = indexPath;
     type = styletype;
     xnum = segmentunitnum;
+    
     dayArr1 = day1;
-    dayArr2 = day2;
-    dayArr3 = day3;
     weekArr1 = week1;
-    weekArr2 = week2;
-    weekArr3 = week3;
     monthArr1 = month1;
+    
+    dayArr2 = day2;
+    weekArr2 = week2;
     monthArr2 = month2;
+    
+    dayArr3 = day3;
+    weekArr3 = week3;
     monthArr3 = month3;
-    NSLog(@"month= %@",monthArr1);
+    
     path = indexPath;
     type = styletype;
     xnum = segmentunitnum;
     
     CGRect frame = CGRectMake(0, self.fff.frame.size.height-13, self.frame.size.width, self.frame.size.height);
     _scoll.frame = frame;
-    _scoll.userInteractionEnabled = YES;
-    _scoll.showsHorizontalScrollIndicator = NO;
-    
-    _scoll.contentSize = CGSizeMake(([UIScreen mainScreen].bounds.size.width)*3, 140);
-    
-    _scoll.contentOffset = CGPointMake(([UIScreen mainScreen].bounds.size.width)*2, 0);
+//    _scoll.userInteractionEnabled = YES;
+//    _scoll.showsHorizontalScrollIndicator = NO;
+//    
+//    _scoll.contentSize = CGSizeMake(([UIScreen mainScreen].bounds.size.width)*3, 155);
+//    
+//    _scoll.contentOffset = CGPointMake(([UIScreen mainScreen].bounds.size.width)*2, 0);
     
     _scoll.pagingEnabled =YES;
-    //_scoll.gestureRecognizers
     [self.contentView addSubview:_scoll];
     
     if ([self.hhh isEqualToString:@"ドア"]) {
@@ -203,12 +209,12 @@
     [chartview2 showInView:_scoll];
     [chartview3 showInView:_scoll];
 
-//    [_scoll setShowsHorizontalScrollIndicator:NO];
-//    //设置可滑动的宽度 3*width
-//    _scoll.contentSize = CGSizeMake(([UIScreen mainScreen].bounds.size.width)*3, 0);
-//    //设置显示当前区域位置 2*width
-//    _scoll.contentOffset =CGPointMake([UIScreen mainScreen].bounds.size.width*2, 0);
-//    _scoll.pagingEnabled =YES;
+    [_scoll setShowsHorizontalScrollIndicator:NO];
+    //设置可滑动的宽度 3*width
+    _scoll.contentSize = CGSizeMake(([UIScreen mainScreen].bounds.size.width)*3, 0);
+    //设置显示当前区域位置 2*width
+    _scoll.contentOffset =CGPointMake([UIScreen mainScreen].bounds.size.width*2, 0);
+    _scoll.pagingEnabled =YES;
     
 }
 
@@ -300,20 +306,20 @@
     
 }
 
-
-
+#pragma mark - x坐标设置
 -(NSArray*)getXTitles:(int)num{
     NSMutableArray *xTitles = [[NSMutableArray alloc]initWithCapacity:0];
     
-    for (int i =1; i<=num; i++) {
-        if (num >8&&num<24) {
-            NSString *str = [NSString stringWithFormat:@"%d",i];
-            [xTitles addObject:str];
-        }else{
+    if (num>7 && num<26) {
+        for (int i = 0; i<num-1; i++) {
             NSString *str = [NSString stringWithFormat:@"%d",i];
             [xTitles addObject:str];
         }
-        
+    }else{
+        for (int i = 1; i<num+1; i++) {
+        NSString *str = [NSString stringWithFormat:@"%d",i];
+        [xTitles addObject:str];
+        }
     }
     return xTitles;
     
@@ -322,11 +328,11 @@
 - (NSArray *)UUChart_xLableArray:(UUChart *)chart{
     switch (xnum) {
         case 0:
-            return [self getXTitles:24];
+            return [self getXTitles:25];
         case 1:
             return [self getXTitles:7];
         case 2:
-            return [self getXTitles:30];
+            return [self getXTitles:backbackmonth];
             
         default:
             break;
@@ -336,11 +342,11 @@
 - (NSArray *)UUChart_xLableArray2:(UUChart *)chart{
     switch (xnum) {
         case 0:
-            return [self getXTitles:24];
+            return [self getXTitles:25];
         case 1:
             return [self getXTitles:7];
         case 2:
-            return [self getXTitles:30];
+            return [self getXTitles:backmonth];
             
         default:
             break;
@@ -350,11 +356,11 @@
 - (NSArray *)UUChart_xLableArray3:(UUChart *)chart{
     switch (xnum) {
         case 0:
-            return [self getXTitles:24];
+            return [self getXTitles:25];
         case 1:
             return [self getXTitles:7];
         case 2:
-            return [self getXTitles:30];
+            return [self getXTitles:nowmonth];
             
         default:
             break;
@@ -372,7 +378,7 @@
             return @[weekArr1];
             
         case 2:
-            return @[monthArr2];
+            return @[monthArr1];
             
         default:
             break;

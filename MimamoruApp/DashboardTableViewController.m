@@ -12,16 +12,15 @@
 #import "DataBaseTool.h"
 @interface DashboardTableViewController() <UIScrollViewDelegate,UIGestureRecognizerDelegate>{
     
-
+    //显示传感器个数和图表显示类型
+    NSMutableArray * sensorArr;
+    //显示section标题
+    NSMutableArray *sectionArr;
     int xNum;//0:1~24時 1:1~7日 2:１〜３０日 　3:１〜１２月
-//    NSArray *dayarray;
-//    NSArray *weekarray;
-//    NSArray *montharray;
-//    NSArray *yeararray;
-//    NSArray *dayarray2;
-//    NSArray *weekarray2;
-//    NSArray *montharray2;
-//    NSArray *yeararray2;
+    //当月 上月 上上月 天数
+    int backmonth;
+    int backbackmonth;
+    int nowmonth;
     //1:今天，这周，这月
     //2:昨天，上周，上月
     //3:前天，上上周，上上月
@@ -35,16 +34,13 @@
     NSMutableArray *monthArr2;
     NSMutableArray *monthArr3;
     
-    NSMutableArray *sectionArr;
-    NSMutableArray *sectionArr2;
+    
     NSString*dateString;
     NSString*dateString2;
     NSString*dateString3;
     
     NSMutableDictionary *itemDict;
     
-    int graphtype;
-    NSString*dateString4;
     NSString*machNameself;
     NSArray* visibleCells;
     
@@ -60,9 +56,9 @@
     [super viewDidLoad];
     
     //刷新数据
-    [[DataBaseTool sharedDB]openDB];
     
-        NSString * login = @"login";
+    
+    NSString * login = @"login";
     [[NSUserDefaults standardUserDefaults]setObject:login forKey:@"type"];
 
     
@@ -81,6 +77,13 @@
 }
 #pragma mark - 刷新数据
 -(void)reloadData{
+    
+    //传感器个数和图表显示类型
+    sensorArr = [[DataBaseTool sharedDB]selectL_ShiKiChiMaster:@"00000001"];
+    if (sensorArr.count == 0) {
+        sensorArr = [[NSMutableArray alloc]init];
+    }
+    
     //电气使用量数据
     //日数据
     NSArray *dayArr = [[DataBaseTool sharedDB]selectL_SensorDayData:@"00000001" Sensorid:@"000001001"];
@@ -96,6 +99,7 @@
     weekArr1 = [[NSMutableArray alloc]init];
     weekArr2 = [[NSMutableArray alloc]init];
     weekArr3 = [[NSMutableArray alloc]init];
+    NSMutableArray* weekArr10 = [[NSMutableArray alloc]init];
     NSMutableArray* weekArr20 = [[NSMutableArray alloc]init];
     NSMutableArray* weekArr30 = [[NSMutableArray alloc]init];
     NSArray *weekArr = [[DataBaseTool sharedDB]selectL_SensorWeekData:@"00000001" Sensorid:@"000001001"];
@@ -104,7 +108,7 @@
     for (int i=1; i<weekArr.count; i++) {
         NSString *day = [weekArr objectAtIndex:i];
         if (i< 8-m) {
-            [weekArr1 addObject:day];
+            [weekArr10 addObject:day];
         }
         if (i>(7-m) && i<(15-m)) {
             [weekArr20 addObject:day];
@@ -114,6 +118,9 @@
         }
     }
     //先周 先先周 反序输出
+    for (NSString *str in [weekArr10 reverseObjectEnumerator]) {
+        [weekArr1 addObject:str];
+    }
     for (NSString *str in [weekArr20 reverseObjectEnumerator]) {
         [weekArr2 addObject:str];
     }
@@ -124,6 +131,7 @@
     monthArr1 = [[NSMutableArray alloc]init];
     monthArr2 = [[NSMutableArray alloc]init];
     monthArr3 = [[NSMutableArray alloc]init];
+    NSMutableArray* monthArr10 = [[NSMutableArray alloc]init];
     NSMutableArray* monthArr20 = [[NSMutableArray alloc]init];
     NSMutableArray* monthArr30 = [[NSMutableArray alloc]init];
     NSArray *monthArr = [[DataBaseTool sharedDB]selectL_SensorMounthData:@"00000001" Sensorid:@"000001001"];
@@ -133,22 +141,32 @@
     dayInt = [monthArr[1]intValue]; //当天日期
     monthday = [monthArr[0]intValue];//当月月数
     yearInt = [monthArr[2]intValue];//当年年份
-    int backmonth = 0;
-    int backbackmonth = 0;
+    //当月 上月 上上月 天数
+    nowmonth = 0;
+    backmonth = 0;
+    backbackmonth = 0;
+    
     for (int i = 3; i<monthArr.count; i++) {
         NSString *day = [monthArr objectAtIndex:i];
         if (i<dayInt+3) {
-            [monthArr1 addObject:day];
+            [monthArr10 addObject:day];
         }
         if (monthday==1) {
+            nowmonth = 31;
             backmonth = 31;
             backbackmonth = 30;
         }
         if (monthday==2) {
+            if (yearInt%4==0) {
+                nowmonth = 29;
+            }else{
+                nowmonth = 28;
+            }
             backmonth = 31;
             backbackmonth = 31;
         }
         if (monthday==3) {
+            nowmonth = 31;
             if (yearInt%4==0) {
                 backmonth = 29;
             }else{
@@ -157,6 +175,7 @@
             backbackmonth = 31;
         }
         if (monthday==4) {
+            nowmonth = 30;
             backmonth = 31;
             if (yearInt%4==0) {
                 backbackmonth = 29;
@@ -165,34 +184,42 @@
             }
         }
         if (monthday==5) {
+            nowmonth = 31;
             backmonth =30;
             backbackmonth = 31;
         }
         if (monthday==6) {
+            nowmonth = 30;
             backmonth = 31;
             backbackmonth = 30;
         }
         if (monthday==7) {
+            nowmonth = 31;
             backmonth = 30;
             backbackmonth = 31;
         }
         if (monthday==8) {
+            nowmonth = 31;
             backmonth = 31;
             backbackmonth = 30;
         }
         if (monthday==9) {
+            nowmonth = 30;
             backmonth = 31;
             backbackmonth = 31;
         }
         if (monthday==10) {
+            nowmonth = 31;
             backmonth = 30;
             backbackmonth = 31;
         }
         if (monthday==11) {
+            nowmonth = 30;
             backmonth = 31;
             backbackmonth = 30;
         }
         if (monthday==12) {
+            nowmonth = 31;
             backmonth = 30;
             backbackmonth =31;
         }
@@ -205,27 +232,34 @@
         }
     }
     //先月 先先月反序输出
+    for (NSString *str in [monthArr10 reverseObjectEnumerator]) {
+        [monthArr1 addObject:str];
+    }
     for (NSString *str in [monthArr20 reverseObjectEnumerator]) {
         [monthArr2 addObject:str];
     }
     for (NSString *str in [monthArr30 reverseObjectEnumerator]) {
         [monthArr3 addObject:str];
     }
-    NSLog(@"1=%@ 2=%@ 3=%@",monthArr1,monthArr2,monthArr3);
+    //NSLog(@"1=%@ 2=%@ 3=%@",monthArr1,monthArr2,monthArr3);
     
 }
 
 
 -(void)viewWillAppear:(BOOL)animated{
     
+    //从服务器下载数据
+    [[DataBaseTool sharedDB]openDB];
     //从本地刷新数据
     [self reloadData];
+    //获取传感器个数类型
+    [self getTaisetsuPeople];
     
     NSDate *pickerDate = [NSDate date];
     NSDateFormatter *pickerFormatter = [[NSDateFormatter alloc] init];
     [pickerFormatter setDateFormat:@"yyyy年MM月dd日"];
     dateString = [pickerFormatter stringFromDate:pickerDate];
-    NSLog(@"%@",dateString);
+   // NSLog(@"%@",dateString);
     
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"yyyy年MM月dd日"];
@@ -233,7 +267,7 @@
     NSDate *date = [format dateFromString:dateString];
     NSDate *newDate = [[NSDate alloc] initWithTimeIntervalSinceReferenceDate:([date timeIntervalSinceReferenceDate] - 24*3600)];
     dateString2 = [format stringFromDate:newDate];
-    NSLog(@"%@",dateString2);
+   // NSLog(@"%@",dateString2);
     
     NSDateFormatter *format2 = [[NSDateFormatter alloc] init];
     [format2 setDateFormat:@"yyyy年MM月dd日"];
@@ -241,9 +275,9 @@
     NSDate *date2 = [format dateFromString:dateString];
     NSDate *newDate2 = [[NSDate alloc] initWithTimeIntervalSinceReferenceDate:([date2 timeIntervalSinceReferenceDate] - 48*3600)];
     dateString3 = [format stringFromDate:newDate2];
-    NSLog(@"%@",dateString3);
+   // NSLog(@"%@",dateString3);
     
-    [self getTaisetsuPeople];
+    
     self.tableView.tableFooterView = [[UIView alloc]init];
     
     [self.tableView reloadData];
@@ -271,13 +305,33 @@
         sectionArr = [[NSMutableArray alloc]initWithCapacity:0];
     }
     [sectionArr removeAllObjects];
- //   [itemDict removeAllObjects];
-    NSString * t1 = @"電気使用量";
-    NSString * t2 = @"マット";
-    NSString * t3 = @"ドア";
-    [sectionArr addObject:t1];
-    [sectionArr addObject:t2];
-    [sectionArr addObject:t3];
+    
+    for (int i = 0 ; i< sensorArr.count; i++) {
+        NSDictionary *sensorDic = [[NSDictionary alloc]init];
+        sensorDic = [sensorArr objectAtIndex:i];
+        NSString *sensorid = [sensorDic valueForKey:@"sensorid"];
+        NSString *graphtype = [sensorDic valueForKey:@"graphtype"];
+        if ([sensorid isEqualToString:@"000002001"]) {
+            NSString * t1 = @"電気使用量";
+            [sectionArr addObject:t1];
+        }
+        if ([sensorid isEqualToString:@"000001002"]) {
+            NSString * t2 = @"マット";
+            [sectionArr addObject:t2];
+        }
+        if ([sensorid isEqualToString:@"000001001"]) {
+            NSString * t3 = @"ドア";
+            [sectionArr addObject:t3];
+        }
+        if ([sensorid isEqualToString:@"000002002"]) {
+            NSString *t4 = @"照度";
+            [sectionArr addObject:t4];
+        }
+    }
+    
+    
+    
+    
 }
 
 #pragma mark - Table view data source
@@ -320,7 +374,7 @@
         }else if(xNum == 2){
             cell.danwei.text = @"kwh";
         }
-        [cell configUI:indexPath type:2 unit:xNum day1:dayArr3 week1:weekArr3 month1:monthArr3 day2:dayArr2 week2:weekArr2 month2:monthArr2 day3:dayArr1 week3:weekArr1 month3:monthArr1];
+        [cell configUI:indexPath type:2 unit:xNum day1:dayArr3 week1:weekArr3 month1:monthArr3 day2:dayArr2 week2:weekArr2 month2:monthArr2 day3:dayArr1 week3:weekArr1 month3:monthArr1 sendNmonth:nowmonth Bmonth:backmonth BBmonth:backbackmonth];
         
     }else if ([sectionArr[indexPath.section]isEqualToString:@"照度"]) {
         cell.rrr = @"1";
@@ -510,9 +564,7 @@
             
             [cell.scoll setContentOffset:cell1.scoll.contentOffset];
         }
-        
     }
-    
 }
 - (void)subscribeBtnClicked:(UITapGestureRecognizer*)sender{
     CGPoint point = [sender locationInView:self.tableView];
@@ -551,6 +603,7 @@
     if([segue.identifier isEqualToString:@"img2Push"])
     {
         DetailTableViewController *detail = segue.destinationViewController;
+        detail.sensorid = @"000001001";
         detail.titlename = machNameself;
     }
 }

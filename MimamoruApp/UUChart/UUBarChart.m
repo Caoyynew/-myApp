@@ -107,7 +107,7 @@
         UUChartLabel * label = [[UUChartLabel alloc] initWithFrame:CGRectMake((i *  _xLabelWidth ), self.frame.size.height - UULabelHeight, _xLabelWidth, UULabelHeight)];
         label.text = xLabels[i];
         
-        if (xLabels.count >25) {
+        if (xLabels.count >26) {
             if ([label.text intValue] >1 && [label.text intValue] <7) {
                 label.text = @"";
             }else if([label.text intValue] >7 && [label.text intValue] <13){

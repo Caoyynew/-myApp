@@ -8,11 +8,13 @@
 
 #import "DetailTableViewCell.h"
 #import "UUChart.h"
+#import "DataBaseTool.h"
 @interface DetailTableViewCell()<UUChartDataSource>
 {
     UUChart *chartview;
     NSIndexPath *path ;
     int type;
+    
     NSArray *dayarr;
 }
 @end
@@ -22,6 +24,7 @@
 
 - (void)awakeFromNib {
    
+    
 }
 
 -(void)configUI:(NSIndexPath *)indexPath type:(int)styletype day:(NSArray *)day
@@ -36,15 +39,15 @@
     path = indexPath;
     type = styletype;
     dayarr = day;
-//    if (type ==1) {
-//        self.danwei.text =@"wh";
-//        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 30, [UIScreen mainScreen].bounds.size.width-10
-//                                                                       , 120) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
-//    }else if (type ==2){
-//        self.danwei.text = @"回数";
-//        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 30, [UIScreen mainScreen].bounds.size.width-10
-//                                                                   , 120) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle];
-//    }
+    if (type ==1) {
+        self.danwei.text =@"wh";
+        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 20, [UIScreen mainScreen].bounds.size.width-10
+                                                                       , 155) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle withid:@"1"];
+    }else if (type ==2){
+        self.danwei.text = @"回数";
+        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 20, [UIScreen mainScreen].bounds.size.width-10
+                                                                       , 155) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle withid:@"1"];
+    }
     NSDate *date  = [NSDate date];
     NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
     [dateformatter setDateFormat:@"yyyy年MM月dd日"];
@@ -58,7 +61,7 @@
 -(NSArray*)UUChart_xLableArray:(UUChart *)chart
 {
     NSMutableArray *xTitles = [[NSMutableArray alloc]initWithCapacity:24];
-    for (int i = 1; i<25; i++) {
+    for (int i = 0; i<24; i++) {
         NSString *str = [NSString stringWithFormat:@"%d",i];
         [xTitles addObject:str];
     }
@@ -66,6 +69,7 @@
 }
 -(NSArray*)UUChart_yValueArray:(UUChart *)chart
 {
+    
     return @[dayarr];
 }
 

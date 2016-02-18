@@ -28,6 +28,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     userid0 = @"00000001";
+    dayarray =[[DataBaseTool sharedDB]selectL_SensorTodayData:userid0 Sensorid:self.sensorid];
     contactsArr = [[DataBaseTool sharedDB]selectL_ShiKiChiContacts:userid0];
     if (contactsArr.count==0) {
         contactsArr = [[NSMutableArray alloc]init];
@@ -38,29 +39,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
     UIView *clear = [[UIView alloc]init];
     clear.backgroundColor = [UIColor clearColor];
     [self.tableView setTableFooterView:clear];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"DetailTableViewCell" bundle:nil] forCellReuseIdentifier:@"detailcell"];
-    [self getPlistWithName:@"testdata1"];
-    [self getPlistWithName:@"testdata2"];
+
 }
 
-
--(void)getPlistWithName:(NSString*)name{
-    NSBundle *bundle = [NSBundle mainBundle];
-    NSString *plistPath = [bundle pathForResource:name ofType:@"plist"];
-    NSDictionary *dict = [[NSDictionary alloc]initWithContentsOfFile:plistPath];
-    if ([name isEqualToString:@"testdata1"]) {
-        dayarray =[[NSArray alloc]initWithArray:[dict objectForKey:@"day"]];
-        
-    }else if([name isEqualToString:@"testdata2"]){
-        dayarray2=[[NSArray alloc]initWithArray:[dict objectForKey:@"day"]];
-    }
-    
-}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -121,7 +107,7 @@
 {
     int height;
     if (indexPath.section == 0) {
-        height = 160;
+        height = 180;
     }else{
         height = 60;
     }

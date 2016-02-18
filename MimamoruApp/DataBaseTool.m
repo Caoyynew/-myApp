@@ -66,7 +66,7 @@
         [self createL_EmergencyContactsTable];
         [self createL_SensorDataTable];
         [self createL_UserInfoTable];
-        
+        [self createL_ShiKiChiMasterTable];
         return YES;
     }
     return NO;
@@ -143,6 +143,18 @@
     }else{
         //code
         [self startRequest:@"userinfo"];
+        return YES;
+    }
+}
+-(BOOL)createL_ShiKiChiMasterTable
+{
+    char *sql= "create table if not exists L_ShiKiChiMaster(id INTEGER PRIMARY KEY AUTOINCREMENT,userid0 TEXT,sensorid TEXT,graphtype TEXT)";
+    sqlite3_stmt *statement;
+    NSInteger sqlReturn = sqlite3_prepare(database, sql, -1, &statement, nil);
+    if (sqlReturn !=SQLITE_OK) {
+        return NO;
+    }else{
+        [self startRequest:@"shikichimaster"];
         return YES;
     }
 }
@@ -287,9 +299,30 @@
                 
             }
         }
-        
     }
-    
+    if ([table isEqualToString:@"shikichimaster"]) {
+        NSArray *itemArr = [dic valueForKey:@"shikichimaster"];
+        for (int i = 0 ; i<itemArr.count; i++) {
+            sqlite3_stmt *statement;
+            char *sql = "insert into L_ShiKiChiMaster(userid0,sensorid,graphtype) values(?,?,?)";
+            NSInteger sqlReturn = sqlite3_prepare_v2(database, sql, -1, &statement, nil);
+            if (sqlReturn !=SQLITE_OK) {
+                
+            }
+            NSDictionary *itemDict = [itemArr objectAtIndex:i];
+            NSString *sensorid = [itemDict valueForKey:@"sensorid"];
+            NSString *graphtype = [itemDict valueForKey:@"graphtype"];
+            sqlite3_bind_text(statement, 1, [userid0 UTF8String], -1, SQLITE_TRANSIENT);
+            sqlite3_bind_text(statement, 2, [sensorid UTF8String], -1, SQLITE_TRANSIENT);
+            sqlite3_bind_text(statement, 3, [graphtype UTF8String], -1, SQLITE_TRANSIENT);
+            
+            int success = sqlite3_step(statement);
+            sqlite3_finalize(statement);
+            if (success == SQLITE_ERROR) {
+                
+            }
+        }
+    }
 }
 
 #pragma mark - L_UserInfoTable 更新和查询
@@ -501,7 +534,7 @@
         [rootArr addObject:contactArr];
     }
     return rootArr;
-
+    
 }
 //21天数据
 -(NSMutableArray*)selectL_SensorWeekData:(NSString *)userid Sensorid:(NSString *)sensorid
@@ -576,7 +609,7 @@
         }
         [rootArr addObject:sum];
     }
-    NSLog(@"rootArr=%@",rootArr);
+    //NSLog(@"rootArr=%@",rootArr);
     return rootArr;
     
 }
@@ -677,8 +710,72 @@
         [rootArr addObject:sum];
     }
     return rootArr;
-
+    
 }
+
+#pragma mark - 查询用户传感器个数和图表显示类型
+-(NSMutableArray*)selectL_ShiKiChiMaster:(NSString *)userid
+{
+    sqlite3_stmt *statement;
+    char *sql = "select sensorid,graphtype from L_ShiKiChiMaster where userid0=?";
+    NSInteger sqlReturn = sqlite3_prepare_v2(database, sql, -1, &statement, nil);
+    if (sqlReturn !=SQLITE_OK) {
+        NSLog(@"sql error!");
+    }
+    sqlite3_bind_text(statement, 1, [userid UTF8String], -1, SQLITE_TRANSIENT);
+    NSMutableArray *contactArr = [[NSMutableArray alloc]init];
+    while (sqlite3_step(statement)==SQLITE_ROW) {
+        char *sensorid = (char*) sqlite3_column_text(statement, 0);
+        char *graphtype = (char*) sqlite3_column_text(statement, 1);
+        NSMutableDictionary *value = [[NSMutableDictionary alloc]init];
+        [value setValue:[NSString stringWithUTF8String:sensorid] forKey:@"sensorid"];
+        [value setValue:[NSString stringWithUTF8String:graphtype] forKey:@"graphtype"];
+        [contactArr addObject:value];
+    }
+    int success = sqlite3_step(statement);
+    sqlite3_finalize(statement);
+    if (success == SQLITE_ERROR) {
+        NSLog(@"select NG");
+    }
+    return contactArr;
+}
+
+
+#pragma mark - 查询当天数据 显示在B-3页面
+
+-(NSMutableArray*)selectL_SensorTodayData:(NSString *)userid Sensorid:(NSString *)sensorid
+{
+    NSMutableArray* rootArr= [[NSMutableArray alloc]init];
+    
+    NSDate * senddate=[NSDate date];
+    NSDateFormatter *dateformatter=[[NSDateFormatter alloc] init];
+    [dateformatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *dateStr = [dateformatter stringFromDate:senddate];
+    sqlite3_stmt *statement;
+    char *sql = "select value from L_SensorData where userid0=? and date=? and sensorid=? order by time";
+    NSInteger sqlReturn = sqlite3_prepare_v2(database, sql, -1, &statement, nil);
+    if (sqlReturn !=SQLITE_OK) {
+        NSLog(@"sql error!");
+    }
+    sqlite3_bind_text(statement, 1, [userid UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(statement, 2, [dateStr UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(statement, 3, [sensorid UTF8String], -1, SQLITE_TRANSIENT);
+    while (sqlite3_step(statement)==SQLITE_ROW) {
+
+        char *value = (char*) sqlite3_column_text(statement, 0);
+        NSString* valueStr = [NSString stringWithUTF8String:value];
+        [rootArr addObject:valueStr];
+    }
+    int success = sqlite3_step(statement);
+    sqlite3_finalize(statement);
+    if (success == SQLITE_ERROR) {
+        NSLog(@"select NG");
+    }
+    return rootArr;
+    
+}
+
+
 #pragma mark - ShiKiChiContacts 数据查询
 
 -(NSMutableArray*)selectL_ShiKiChiContacts:(NSString *)userid
