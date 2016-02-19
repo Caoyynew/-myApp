@@ -23,13 +23,16 @@
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:161.0/255.0 green:199.0/255.0 blue:166.0/255.0 alpha:1]];
     [[UINavigationBar appearance]setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:20]}];
                       
-//    BOOL islogin;
-//    NSString *type = [[NSUserDefaults standardUserDefaults]valueForKey:@"type"];
-//    if ([type isEqualToString:@"login"]) {
-//        islogin = YES;
-//    }else{
-//        islogin = NO;
-//    }
+    BOOL islogin;
+    NSString *typea = [[NSUserDefaults standardUserDefaults]valueForKey:@"types"];
+    if ([typea isEqualToString:@"logout"]) {
+        islogin = NO;
+    }else{
+        islogin = YES;
+    }
+    NSString *segueId = islogin ? @"life" : @"login";
+    
+    self.window.rootViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:segueId];
     
     
     _locationManager = [[CLLocationManager alloc]init];

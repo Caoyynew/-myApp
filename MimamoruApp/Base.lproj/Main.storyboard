@@ -9,7 +9,7 @@
         <!--ログイン-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="login" id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -1106,7 +1106,7 @@ hA
         <!--Navigation Controller-->
         <scene sceneID="1vp-DG-kBU">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lqa-g2-x7W" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="login" automaticallyAdjustsScrollViewInsets="NO" id="lqa-g2-x7W" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8vK-qh-kr5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1124,7 +1124,7 @@ hA
         <!--生活-->
         <scene sceneID="keE-ZN-2Jv">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1Xh-Cf-ieP" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="life" automaticallyAdjustsScrollViewInsets="NO" id="1Xh-Cf-ieP" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="生活" id="97H-W4-K4h"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="h7v-1G-aNN">

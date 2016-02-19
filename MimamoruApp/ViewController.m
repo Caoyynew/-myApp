@@ -83,11 +83,6 @@
         _passWord.text = @"";
         
     }
-//    else{
-//        
-//        [self performSegueWithIdentifier:@"gotomain" sender:self];
-//        
-//    }
 }
 
 - (void)viewDidLoad {
