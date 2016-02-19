@@ -9,7 +9,7 @@
 #import "DataBaseTool.h"
 #include <sqlite3.h>
 
-#define Filename @"mydb.db" //本地db名称
+#define Filename @"Mydb.db" //本地db名称
 @interface DataBaseTool(){
     
     sqlite3 *database;
@@ -172,9 +172,10 @@
 {
     
     NSString *updatedate = @"2000-2-1 9:30:00";
+    
     userid0 = [[NSUserDefaults standardUserDefaults]valueForKey:@"userid0"];
     
-    nitid = @"12345678900100000001";
+    //nitid = @"12345678900100000001";
     NSURL *url = [NSURL URLWithString:@"http://mimamorihz.azurewebsites.net/mimamonanenuUpdate.php"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"post"];
@@ -200,6 +201,9 @@
         if (sqlReturn !=SQLITE_OK) {
         }
         NSArray *arr = [dic valueForKey:@"userinfo"];
+        if (arr.count != 0) {
+            
+        
         NSDictionary *itemDict = [arr objectAtIndex:0];
         
         NSString *username = [itemDict valueForKey:@"username"];
@@ -228,6 +232,7 @@
         int success = sqlite3_step(statement);
         sqlite3_finalize(statement);
         if (success == SQLITE_ERROR) {
+        }
         }
     }
     

@@ -61,7 +61,7 @@
            [MBProgressHUD hideHUDForView:self.view animated:YES];
            //登陆成功下载数据
            [[NSUserDefaults standardUserDefaults]setValue:_userID.text forKey:@"userid0"];
-           [[DataBaseTool sharedDB]openDB];
+           //[[DataBaseTool sharedDB]openDB];
            [self performSegueWithIdentifier:@"gotomain" sender:self];
        });
     }else {
@@ -76,17 +76,18 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    NSString *type= [[NSUserDefaults standardUserDefaults]valueForKey:@"type"];
+    NSString *type= [[NSUserDefaults standardUserDefaults]valueForKey:@"types"];
     
     if ([type isEqualToString:@"logout"]) {
         
         _passWord.text = @"";
         
-    }else{
-        
-        [self performSegueWithIdentifier:@"gotomain" sender:self];
-        
     }
+//    else{
+//        
+//        [self performSegueWithIdentifier:@"gotomain" sender:self];
+//        
+//    }
 }
 
 - (void)viewDidLoad {

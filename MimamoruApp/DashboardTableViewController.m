@@ -62,7 +62,7 @@
     
     
     NSString * login = @"login";
-    [[NSUserDefaults standardUserDefaults]setObject:login forKey:@"type"];
+    [[NSUserDefaults standardUserDefaults]setObject:login forKey:@"types"];
 
     
     _dashcell = [[DashBoardTableViewCell alloc]init];
