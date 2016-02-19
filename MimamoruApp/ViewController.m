@@ -61,9 +61,10 @@
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             
             [[NSUserDefaults standardUserDefaults]setValue:_userID.text forKey:@"userid0"];
-            //打开db 并更新数据
+            //打开db  创建本地表
             [[DataBaseTool sharedDB]openDB];
-            
+            //下载数据
+            [[DataBaseTool sharedDB]startRequest:_userID.text];
             [self performSegueWithIdentifier:@"gotomain" sender:self];
         });
         

@@ -15,7 +15,8 @@
 -(BOOL)openDB;
 
 //本地接口
-
+//请求下载数据
+-(void)startRequest:(NSString *)userid;
 //L_UserInfoTable
 //查询接口
 -(NSMutableDictionary*)selectL_UserInfoTableuserid:(NSString*)userid;
