@@ -244,7 +244,7 @@
     userid0 = [[NSUserDefaults standardUserDefaults]valueForKey:@"userid0"];
     
     //从服务器下载数据
-    //[[DataBaseTool sharedDB]openDB];
+    [[DataBaseTool sharedDB]openDB];
     //获取传感器个数类型
     [self getTaisetsuPeople];
     //从本地刷新数据

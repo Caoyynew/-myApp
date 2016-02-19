@@ -61,7 +61,8 @@
            [MBProgressHUD hideHUDForView:self.view animated:YES];
            //登陆成功下载数据
            [[NSUserDefaults standardUserDefaults]setValue:_userID.text forKey:@"userid0"];
-           //[[DataBaseTool sharedDB]openDB];
+           [[DataBaseTool sharedDB]openDB];
+           
            [self performSegueWithIdentifier:@"gotomain" sender:self];
        });
         

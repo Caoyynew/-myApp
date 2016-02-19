@@ -175,7 +175,6 @@
     
     userid0 = [[NSUserDefaults standardUserDefaults]valueForKey:@"userid0"];
     
-    //nitid = @"12345678900100000001";
     NSURL *url = [NSURL URLWithString:@"http://mimamorihz.azurewebsites.net/mimamonanenuUpdate.php"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"post"];
