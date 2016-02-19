@@ -66,21 +66,20 @@
             [self performSegueWithIdentifier:@"gotomain" sender:self];
         });
         
-    }
-    if ([value isEqualToString:@"connetNG"]){
+    }else if ([value isEqualToString:@"connectNG"]){
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             [LeafNotification showInController:self withText:@"ネットワークエラー、接続失敗"];
         });
-    }
-    if ([value isEqualToString:@"useridNG"]) {
+    }else
+   // if ([value isEqualToString:@"useridNG"] && [value isEqualToString:@"confirmNG"]) {
         {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                 [LeafNotification showInController:self withText:@"ユーザーID or パスワードエラー"];
             });
         }
-    }
+  //  }
 
 }
 
@@ -93,15 +92,13 @@
         _passWord.text = @"";
         
     }else{
-        [self performSegueWithIdentifier:@"gotomain" sender:self];
+      //  [self performSegueWithIdentifier:@"gotomain" sender:self];
     }
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-  
-
     
+    [super viewDidLoad];
 }
 
 - (IBAction)loginAction:(id)sender {

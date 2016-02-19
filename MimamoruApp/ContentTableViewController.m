@@ -108,6 +108,7 @@ enum ActionTypes{
 {
     //获取紧急联系人
     userid0 = [[NSUserDefaults standardUserDefaults]valueForKey:@"userid0"];
+    
     emergencyArr = [[DataBaseTool sharedDB]selectL_EmergencyContactsTableuserid:userid0];
     NSLog(@"emergencycount=%lu",(unsigned long)emergencyArr.count);
     [myTableView reloadData];
@@ -302,7 +303,7 @@ enum ActionTypes{
         NSLog(@"%@",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
         //异步回调方法
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-        NSLog(@"%@",dict);
+       // NSLog(@"%@",dict);
         [self reloaddate:dict];
     }];
     [MBProgressHUD showHUDAddedTo:myTableView animated:YES];
