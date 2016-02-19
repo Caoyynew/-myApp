@@ -20,6 +20,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSString * login = @"login";
+    [[NSUserDefaults standardUserDefaults]setObject:login forKey:@"types"];
+
     if (!Arr) {
         Arr = [[NSMutableArray alloc]init];
     }
@@ -77,7 +81,6 @@
         [[NSUserDefaults standardUserDefaults]setObject:type forKey:@"types"];
         [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"userid0"];
         [self dismissViewControllerAnimated:YES completion:nil];
-     //  [self performSegueWithIdentifier:@"back" sender:self];
     }]];
     [alert addAction:[UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         

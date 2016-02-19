@@ -61,9 +61,7 @@
     //刷新数据
     
     
-    NSString * login = @"login";
-    [[NSUserDefaults standardUserDefaults]setObject:login forKey:@"types"];
-
+    
     
     _dashcell = [[DashBoardTableViewCell alloc]init];
     _dashcell.currentNo = 2;
