@@ -33,7 +33,7 @@
 #pragma mark - 从本地数据库获取数据
 -(void)viewWillAppear:(BOOL)animated
 {
-    userid0 = @"00000001";
+    userid0 = [[NSUserDefaults standardUserDefaults]valueForKey:@"userid0"];
     emergencyContacts = [[DataBaseTool sharedDB]selectL_EmergencyContactsTableuserid:userid0];
     NSLog(@"emergencycount=%lu",(unsigned long)emergencyContacts.count);
     [self.tableView reloadData];
