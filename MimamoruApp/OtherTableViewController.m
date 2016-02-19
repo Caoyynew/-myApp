@@ -8,7 +8,8 @@
 
 #import "OtherTableViewController.h"
 #import "EgySettingTableViewController.h"
-
+#import "AppDelegate.h"
+#import "ViewController.h"
 @interface OtherTableViewController ()
 {
     NSMutableArray *Arr;
@@ -80,6 +81,11 @@
         NSString *type = @"logout";
         [[NSUserDefaults standardUserDefaults]setObject:type forKey:@"types"];
         [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"userid0"];
+//        AppDelegate *app = [[AppDelegate alloc]init];
+//        if (app.window.rootViewController ==[app.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"tablebar"]) {
+//           // [self.navigationController popToViewController:[[UIViewController alloc]init] animated:YES];
+//            [self.navigationController popToRootViewControllerAnimated:YES];
+//        }
         [self dismissViewControllerAnimated:YES completion:nil];
     }]];
     [alert addAction:[UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {

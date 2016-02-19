@@ -57,30 +57,32 @@
     NSString *value = [date valueForKey:@"code"];
     
     if ([value isEqualToString:@""]) {
-       dispatch_async(dispatch_get_main_queue(), ^{
-           [MBProgressHUD hideHUDForView:self.view animated:YES];
-           //登陆成功下载数据
-           [[NSUserDefaults standardUserDefaults]setValue:_userID.text forKey:@"userid0"];
-           [[DataBaseTool sharedDB]openDB];
-           
-           [self performSegueWithIdentifier:@"gotomain" sender:self];
-       });
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            //登陆成功下载数据
+            [[NSUserDefaults standardUserDefaults]setValue:_userID.text forKey:@"userid0"];
+            [[DataBaseTool sharedDB]openDB];
+            
+            [self performSegueWithIdentifier:@"gotomain" sender:self];
+        });
         
-    }else if ([value isEqualToString:@"connetNG"]){
+    }
+    if ([value isEqualToString:@"connetNG"]){
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             [LeafNotification showInController:self withText:@"ネットワークエラー、接続失敗"];
-            });
-    }
-    else {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [LeafNotification showInController:self withText:@"ユーザーID or パスワードエラー"];
         });
     }
+    if ([value isEqualToString:@"useridNG"]) {
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [LeafNotification showInController:self withText:@"ユーザーID or パスワードエラー"];
+            });
+        }
+    }
+
 }
-
-
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -90,6 +92,8 @@
         
         _passWord.text = @"";
         
+    }else{
+        [self performSegueWithIdentifier:@"gotomain" sender:self];
     }
 }
 
