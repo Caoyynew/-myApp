@@ -16,16 +16,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MimamoruApp/DataBaseTool.m"
-            timestampString = "477557017.500104"
+            filePath = "MimamoruApp/DashboardTableViewController.m"
+            timestampString = "477560653.111441"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "344"
-            endingLineNumber = "344"
-            landmarkName = "-addtoDBname:backData:"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "-reloadDataSensorid:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -36,12 +36,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MimamoruApp/DataBaseTool.m"
-            timestampString = "477556827.913825"
+            timestampString = "477560715.718518"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "244"
-            endingLineNumber = "244"
-            landmarkName = "-addtoDBname:backData:"
+            startingLineNumber = "533"
+            endingLineNumber = "533"
+            landmarkName = "-selectL_SensorDayData:Sensorid:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MimamoruApp/DataBaseTool.m"
+            timestampString = "477560818.128561"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "568"
+            endingLineNumber = "568"
+            landmarkName = "-selectL_SensorDayData:Sensorid:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -51,13 +67,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MimamoruApp/ContentTableViewController.m"
-            timestampString = "477558666.531458"
+            filePath = "MimamoruApp/DataBaseTool.m"
+            timestampString = "477561186.390114"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
-            landmarkName = "-viewWillAppear:"
+            startingLineNumber = "550"
+            endingLineNumber = "550"
+            landmarkName = "-selectL_SensorDayData:Sensorid:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

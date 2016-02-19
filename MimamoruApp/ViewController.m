@@ -59,8 +59,9 @@
     if ([value isEqualToString:@""]) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.view animated:YES];
-            //登陆成功下载数据
+            
             [[NSUserDefaults standardUserDefaults]setValue:_userID.text forKey:@"userid0"];
+            //打开db 并更新数据
             [[DataBaseTool sharedDB]openDB];
             
             [self performSegueWithIdentifier:@"gotomain" sender:self];

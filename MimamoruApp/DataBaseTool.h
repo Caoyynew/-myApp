@@ -22,6 +22,8 @@
 //更新接口
 -(void)updateL_UserInfoTable:(NSDictionary*)itemDict userid:(NSString*)userid;
 
+//更新L_SensorData
+-(BOOL)createL_SensorDataTable;
 //L_EmergencyContactsTable
 //查询接口
 -(NSMutableArray*)selectL_EmergencyContactsTableuserid:(NSString *)userid;

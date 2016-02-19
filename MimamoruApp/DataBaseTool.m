@@ -64,7 +64,7 @@
         type = 0;
         [self createL_ShiKiChiContactsTable];
         [self createL_EmergencyContactsTable];
-        [self createL_SensorDataTable];
+        //[self createL_SensorDataTable];
         [self createL_UserInfoTable];
         [self createL_SensorMasterTable];
         return YES;
