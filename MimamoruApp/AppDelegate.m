@@ -30,7 +30,7 @@
     }else{
         islogin = YES;
     }
-    NSString *segueId = islogin ? @"life" : @"login";
+    NSString *segueId = islogin ? @"tablebar" : @"login";
     
     self.window.rootViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:segueId];
     

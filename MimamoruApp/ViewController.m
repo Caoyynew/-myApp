@@ -64,7 +64,14 @@
            //[[DataBaseTool sharedDB]openDB];
            [self performSegueWithIdentifier:@"gotomain" sender:self];
        });
-    }else {
+        
+    }else if ([value isEqualToString:@"connetNG"]){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [LeafNotification showInController:self withText:@"ネットワークエラー、接続失敗"];
+            });
+    }
+    else {
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             [LeafNotification showInController:self withText:@"ユーザーID or パスワードエラー"];

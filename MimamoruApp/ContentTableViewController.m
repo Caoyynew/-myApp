@@ -9,6 +9,7 @@
 #import "ContentTableViewController.h"
 #import "DataBaseTool.h"
 #import "MBProgressHUD.h"
+#import "LeafNotification.h"
 enum ActionTypes{
     
     QUERY,      //查询
@@ -43,6 +44,7 @@ enum ActionTypes{
     
     //post 提交修改
     NSDate *  senddate=[NSDate date];
+    _updateName.text = _name.text;
     NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
     [dateformatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     _update.text=[dateformatter stringFromDate:senddate];
@@ -89,6 +91,12 @@ enum ActionTypes{
             [MBProgressHUD hideHUDForView:self.tableView animated:YES];
             [self.navigationController popViewControllerAnimated:YES];
         });
+    }
+    if ([code isEqualToString:@"connectNG"]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [LeafNotification showInController:self withText:@"ネットワークエラー、接続失敗"];
+        });
+
     }
     
 }
