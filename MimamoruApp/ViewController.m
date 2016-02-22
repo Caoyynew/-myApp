@@ -65,7 +65,12 @@
             [[DataBaseTool sharedDB]openDB];
             //下载数据
             [[DataBaseTool sharedDB]startRequest:_userID.text];
-            [self performSegueWithIdentifier:@"gotomain" sender:self];
+//            NSDictionary *dict = [[DataBaseTool sharedDB]backdic];
+//            if ([[dict valueForKey:@"code"]isEqualToString:@""]) {
+            
+                [self performSegueWithIdentifier:@"gotomain" sender:self];
+        //    }
+            
         });
         
     }else if ([value isEqualToString:@"connectNG"]){
@@ -74,14 +79,12 @@
             [LeafNotification showInController:self withText:@"ネットワークエラー、接続失敗"];
         });
     }else
-   // if ([value isEqualToString:@"useridNG"] && [value isEqualToString:@"confirmNG"]) {
         {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                 [LeafNotification showInController:self withText:@"ユーザーID or パスワードエラー"];
             });
         }
-  //  }
 
 }
 
@@ -94,7 +97,7 @@
         _passWord.text = @"";
         
     }else{
-      //  [self performSegueWithIdentifier:@"gotomain" sender:self];
+        [self performSegueWithIdentifier:@"gotomain" sender:self];
     }
 }
 

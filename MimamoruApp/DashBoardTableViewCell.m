@@ -128,7 +128,7 @@
             chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width)*2+5, 5, [UIScreen mainScreen].bounds.size.width-10
                                                                             , 155) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle withid:@"3"];
         }else{
-            chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 15, [UIScreen mainScreen].bounds.size.width-10
+            chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 5, [UIScreen mainScreen].bounds.size.width-10
                                                                            , 155) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle withid:@"1"];
             
             chartview2 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake([UIScreen mainScreen].bounds.size.width+5, 5, [UIScreen mainScreen].bounds.size.width-10

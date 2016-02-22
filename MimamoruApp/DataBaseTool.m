@@ -14,11 +14,12 @@
     
     sqlite3 *database;
     
-    NSString *userid0;
-    NSString *nitid;
+//    NSString *userid0;
+//    NSString *nitid;
     int usertype;
     int password;
     int type;  // 0:第一次下载数据 1:已有本地表，定时更新数据
+    
 }
 @property(strong, nonatomic)NSMutableDictionary *userDic;
 @end
@@ -61,6 +62,7 @@
     int result = sqlite3_open([path UTF8String], &database);
     if (result ==SQLITE_OK) {
         //code
+        
         [self createL_ShiKiChiContactsTable];
         [self createL_EmergencyContactsTable];
         [self createL_SensorDataTable];
@@ -171,7 +173,6 @@
 {
     
     NSString *updatedate = @"2000-2-1 9:30:00";
-    
     //userid0 = [[NSUserDefaults standardUserDefaults]valueForKey:@"userid0"];
     NSURL *url = [NSURL URLWithString:@"http://mimamorihz.azurewebsites.net/dataupdateR.php"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -182,7 +183,8 @@
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
          NSLog(@"dict=%@",dic);
-        
+        _userDic = [[NSMutableDictionary alloc]initWithDictionary:dic];
+        [self backdic];
         [self addtoDBL_SensorData:dic];
         [self addtoDBL_ShiKiChiContacts:dic];
         [self addtoDBL_EmergencyContacts:dic];
@@ -205,10 +207,19 @@
 //    [task resume];
     
 }
+#pragma mark - 检验是否取回数据
+-(NSDictionary*)backdic
+{
+    NSDictionary *backDic = _userDic;
+    return backDic;
+}
+
+
 
 #pragma mark - L_SensorData更新
 -(void)addtoDBL_SensorData:(NSDictionary*)dic
 {
+    
     NSArray *itemArr = [dic valueForKey:@"sensordata"];
     for (int i = 0; i <itemArr.count; i++) {
         sqlite3_stmt *statement;
@@ -217,12 +228,13 @@
         if (sqlReturn !=SQLITE_OK) {
         }
         NSDictionary *itemDict = [itemArr objectAtIndex:i];
+        NSString *userid = [itemDict valueForKey:@"userid0"];
         NSString *date = [itemDict valueForKey:@"date"];
         NSString *time = [itemDict valueForKey:@"time"];
         NSString *sensorid = [itemDict valueForKey:@"sensorid"];
         NSString *value = [itemDict valueForKey:@"value"];
         
-        sqlite3_bind_text(statement, 1, [userid0 UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 1, [userid UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_bind_text(statement, 2, [date UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_bind_text(statement, 3, [time UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_bind_text(statement, 4, [sensorid UTF8String], -1, SQLITE_TRANSIENT);
@@ -247,10 +259,11 @@
             NSLog(@"sql error!");
         }
         NSDictionary *itemDict = [itemArr objectAtIndex:i];
+        NSString *userid = [itemDict valueForKey:@"userid0"];
         NSString *sensorid = [itemDict valueForKey:@"sensorid"];
         NSString *abnname = [itemDict valueForKey:@"abnname"];
         NSString *abnemail = [itemDict valueForKey:@"abnemail"];
-        sqlite3_bind_text(statement, 1, [userid0 UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 1, [userid UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_bind_text(statement, 2, [sensorid UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_bind_text(statement, 3, [abnname UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_bind_text(statement, 4, [abnemail UTF8String], -1, SQLITE_TRANSIENT);
@@ -275,9 +288,10 @@
             
         }
         NSDictionary *itemDict = [itemArr objectAtIndex:i];
+        NSString *userid = [itemDict valueForKey:@"userid0"];
         NSString *contact = [itemDict valueForKey:@"contact"];
         NSString *nickname = [itemDict valueForKey:@"nickname"];
-        sqlite3_bind_text(statement, 1, [userid0 UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 1, [userid UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_bind_text(statement, 2, [contact UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_bind_text(statement, 3, [nickname UTF8String], -1, SQLITE_TRANSIENT);
         
@@ -302,7 +316,7 @@
     if (arr.count != 0) {
         
         NSDictionary *itemDict = [arr objectAtIndex:0];
-        
+        NSString *userid = [itemDict valueForKey:@"userid0"];
         NSString *username = [itemDict valueForKey:@"username"];
         NSString *sex = [itemDict valueForKey:@"sex"];
         NSString *birthday = [itemDict valueForKey:@"birthday"];
@@ -314,7 +328,7 @@
         NSString *updatetime = [itemDict valueForKey:@"updatetime"];
         NSString *updatename = [itemDict valueForKey:@"updatename"];
         
-        sqlite3_bind_text(statement, 1, [userid0 UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 1, [userid UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_bind_text(statement, 2, [username UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_bind_text(statement, 3, [sex UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_bind_text(statement, 4, [birthday UTF8String], -1, SQLITE_TRANSIENT);
@@ -347,9 +361,10 @@
             
         }
         NSDictionary *itemDict = [itemArr objectAtIndex:i];
+        NSString *userid = [itemDict valueForKey:@"userid0"];
         NSString *sensorid = [itemDict valueForKey:@"sensorid"];
         NSString *sensorname = [itemDict valueForKey:@"sensorname"];
-        sqlite3_bind_text(statement, 1, [userid0 UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 1, [userid UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_bind_text(statement, 2, [sensorid UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_bind_text(statement, 3, [sensorname UTF8String], -1, SQLITE_TRANSIENT);
         
@@ -700,7 +715,8 @@
         NSString *dateStr = [dateformatter stringFromDate:day];
         [count addObject:dateStr];
     }
-    
+    NSArray * countTest =[[NSArray alloc]init];
+    countTest = @[@"2016-02-16",@"2016-02-15",@"2016-02-14"];
     for (int i=0; i<3; i++) {
         sqlite3_stmt *statement;
         char *sql = "select value,time from L_SensorData where userid0=? and date=? and sensorid=? order by time";
@@ -709,7 +725,8 @@
             NSLog(@"sql error!");
         }
         sqlite3_bind_text(statement, 1, [userid UTF8String], -1, SQLITE_TRANSIENT);
-        sqlite3_bind_text(statement, 2, [[count objectAtIndex:i] UTF8String], -1, SQLITE_TRANSIENT);
+        //sqlite3_bind_text(statement, 2, [[count objectAtIndex:i] UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 2, [[countTest objectAtIndex:i] UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_bind_text(statement, 3, [sensorid UTF8String], -1, SQLITE_TRANSIENT);
         
         //   NSMutableDictionary *contactDic = [[NSMutableDictionary alloc]init];
@@ -828,7 +845,7 @@
     long month = [dateComponent month];
     long year = [dateComponent year];
     long day = [dateComponent day];
-    NSLog(@"%ld",month);
+    NSLog(@"当月月份%ld",month);
     int monthday = 0;
     
     if (month==1) {

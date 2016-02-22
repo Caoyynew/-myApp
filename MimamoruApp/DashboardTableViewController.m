@@ -58,10 +58,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    NSString * login = @"login";
+    [[NSUserDefaults standardUserDefaults]setObject:login forKey:@"types"];
     //刷新数据
-    
-    
-    
     
     _dashcell = [[DashBoardTableViewCell alloc]init];
     _dashcell.currentNo = 2;
@@ -87,13 +87,14 @@
     dayArr3 = [[NSArray alloc]initWithArray:dayArr[2]];
    
     //周数据
+    NSArray *weekArr = [[DataBaseTool sharedDB]selectL_SensorWeekData:userid0 Sensorid:sensorid];
     weekArr1 = [[NSMutableArray alloc]init];
     weekArr2 = [[NSMutableArray alloc]init];
     weekArr3 = [[NSMutableArray alloc]init];
     NSMutableArray* weekArr10 = [[NSMutableArray alloc]init];
     NSMutableArray* weekArr20 = [[NSMutableArray alloc]init];
     NSMutableArray* weekArr30 = [[NSMutableArray alloc]init];
-    NSArray *weekArr = [[DataBaseTool sharedDB]selectL_SensorWeekData:userid0 Sensorid:sensorid];
+    
     int m =0;
     m = [weekArr[0]intValue];
     for (int i=1; i<weekArr.count; i++) {
@@ -119,13 +120,14 @@
         [weekArr3 addObject:str];
     }
     //月数据
+    NSArray *monthArr = [[DataBaseTool sharedDB]selectL_SensorMounthData:userid0 Sensorid:sensorid];
     monthArr1 = [[NSMutableArray alloc]init];
     monthArr2 = [[NSMutableArray alloc]init];
     monthArr3 = [[NSMutableArray alloc]init];
     NSMutableArray* monthArr10 = [[NSMutableArray alloc]init];
     NSMutableArray* monthArr20 = [[NSMutableArray alloc]init];
     NSMutableArray* monthArr30 = [[NSMutableArray alloc]init];
-    NSArray *monthArr = [[DataBaseTool sharedDB]selectL_SensorMounthData:userid0 Sensorid:sensorid];
+    
     int monthday = 0;
     int dayInt = 0;
     int yearInt = 0;
@@ -232,7 +234,7 @@
     for (NSString *str in [monthArr30 reverseObjectEnumerator]) {
         [monthArr3 addObject:str];
     }
-    //NSLog(@"1=%@ 2=%@ 3=%@",monthArr1,monthArr2,monthArr3);
+   // NSLog(@"1=%@ 2=%@ 3=%@",monthArr1,monthArr2,monthArr3);
     
 }
 
@@ -366,8 +368,8 @@
     DashBoardTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"dashboardCell"];
     cell.hhh = sectionArr[indexPath.section];
     NSLog(@"%@",sectionArr[indexPath.section]);
-    for (int i =0; i<sectionArr.count; i++) {
-        NSString *titleName = [sectionArr objectAtIndex:i];
+   // for (int i =0; i<sectionArr.count; i++) {
+        NSString *titleName = sectionArr[indexPath.section];
         if ([titleName isEqualToString:@"電気使用量"]) {
             cell.rrr = @"0";
             if (xNum == 0) {
@@ -398,7 +400,7 @@
             [self reloadDataSensorid:@"000001001"];
             [cell configUI:indexPath type:2 unit:xNum day1:dayArr3 week1:weekArr3 month1:monthArr3 day2:dayArr2 week2:weekArr2 month2:monthArr2 day3:dayArr1 week3:weekArr1 month3:monthArr1 sendNmonth:nowmonth Bmonth:backmonth BBmonth:backbackmonth];
         }
-    }
+ //   }
 
     cell.scoll.tag = indexPath.row;
     

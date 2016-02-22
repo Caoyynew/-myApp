@@ -22,6 +22,8 @@
 -(NSMutableDictionary*)selectL_UserInfoTableuserid:(NSString*)userid;
 //更新接口
 -(void)updateL_UserInfoTable:(NSDictionary*)itemDict userid:(NSString*)userid;
+//检验是否取回数据
+-(NSDictionary*)backdic;
 
 //更新L_SensorData
 -(BOOL)createL_SensorDataTable;

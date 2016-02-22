@@ -73,12 +73,25 @@
         _yValueMax = _chooseRange.max;
         _yValueMin = _chooseRange.min;
     }
-
-    float level = (_yValueMax-_yValueMin) /4.0;
+    int m = 0;
+    float level = 0;
+    CGFloat levelHeight = 0;
     CGFloat chartCavanHeight = self.frame.size.height - UULabelHeight*3;
-    CGFloat levelHeight = chartCavanHeight /4.0;
+    if (_yValueMax < 3) {
+        m = 3;
+        level = 1;
+        levelHeight = chartCavanHeight /2.1;
+    }else{
+        m = _yValueMax;
+        level = (_yValueMax-_yValueMin) /4.0;
+        levelHeight = chartCavanHeight /4.1;
+    }
     
-    for (int i=0; i<_yValueMax; i++) {
+   // float level = (_yValueMax-_yValueMin) /4.0;
+   // CGFloat chartCavanHeight = self.frame.size.height - UULabelHeight*3;
+   // CGFloat levelHeight = chartCavanHeight /4.0;
+    
+    for (int i=0; i<=m; i++) {
         UUChartLabel * label = [[UUChartLabel alloc] initWithFrame:CGRectMake(0.0,chartCavanHeight-i*levelHeight+5, UUYLabelwidth, UULabelHeight)];
 		label.text = [NSString stringWithFormat:@"%d",[[NSString stringWithFormat:@"%.1f",level * i+_yValueMin]intValue]];
 		[self addSubview:label];
@@ -175,7 +188,7 @@
             float value = [valueString floatValue];
             float grade = ((float)value-_yValueMin) / ((float)_yValueMax-_yValueMin);
             
-            UUBar * bar = [[UUBar alloc] initWithFrame:CGRectMake((j+(_yValues.count==1?0.1:0.05))*_xLabelWidth +i*_xLabelWidth * 0.47,0, _xLabelWidth * (_yValues.count==1?0.8:0.45), chartCavanHeight*1.11)];
+            UUBar * bar = [[UUBar alloc] initWithFrame:CGRectMake((j+(_yValues.count==1?0.1:0.05))*_xLabelWidth +i*_xLabelWidth * 0.47,5, _xLabelWidth * (_yValues.count==1?0.8:0.45), chartCavanHeight*1.11)];
             bar.barColor = [_colors objectAtIndex:i];
             bar.grade = grade;
             [myScrollView addSubview:bar];
