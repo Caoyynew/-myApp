@@ -40,13 +40,17 @@
     type = styletype;
     dayarr = day;
     if (type ==1) {
-        self.danwei.text =@"wh";
+        self.danwei.text =@"回数";
         chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 20, [UIScreen mainScreen].bounds.size.width-10
-                                                                       , 155) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle withid:@"1"];
+                                                                       , 155) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle withid:@"1"];
     }else if (type ==2){
-        self.danwei.text = @"回数";
+        self.danwei.text = @"wh";
         chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 20, [UIScreen mainScreen].bounds.size.width-10
-                                                                       , 155) withSource:self withStyle:type==2?UUChartBarStyle:UUChartLineStyle withid:@"1"];
+                                                                       , 155) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle withid:@"1"];
+    }else if (type ==3){
+        self.danwei.text = @"lux";
+        chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 20, [UIScreen mainScreen].bounds.size.width-10
+                                                                       , 155) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle withid:@"1"];
     }
     NSDate *date  = [NSDate date];
     NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];

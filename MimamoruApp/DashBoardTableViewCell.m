@@ -137,7 +137,7 @@
             chartview3 =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width)*2+5, 5, [UIScreen mainScreen].bounds.size.width-10
                                                                             , 155) withSource:self withStyle:type==1?UUChartBarStyle:UUChartLineStyle withid:@"3"];
         }
-    }else if([self.hhh isEqualToString:@"電気使用量"]){
+    }else if([self.hhh isEqualToString:@"電気"]){
 
         if ([self.rrr isEqualToString:@"1"]) {
             chartview =[[UUChart alloc]initwithUUChartDataFrame:CGRectMake(5, 5, [UIScreen mainScreen].bounds.size.width-10

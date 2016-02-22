@@ -29,7 +29,7 @@
 {
     //post 提交修改
     usertype = @"0";
-    NSURL *url = [NSURL URLWithString:@"http://mimamorihz.azurewebsites.net/login.php"];
+    NSURL *url = [NSURL URLWithString:@"http://mimamori.azurewebsites.net/login.php"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     //
     [request setHTTPMethod:@"post"];
@@ -40,37 +40,49 @@
     //任务
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         NSLog(@"%@",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
-        //异步回调方法
+        
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         NSLog(@"%@",dict);
+        //异步回调方法
         [self checkdate:dict];
     }];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [task resume];
     
 }
+//判断是否跳转
 
+-(void)gotoMain{
+    
+    NSDictionary *dict = [[DataBaseTool sharedDB]backdic];
+    
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([[dict valueForKey:@"code"]isEqualToString:@""]) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self performSegueWithIdentifier:@"gotomain" sender:self];
+            }
+        });
+    
+}
 //判断是否成功
 
+#pragma mark - 异步回调方法，判断是否成功
 -(void)checkdate:(NSDictionary*)date{
     
     NSString *value = [date valueForKey:@"code"];
     
     if ([value isEqualToString:@""]) {
+        [[NSUserDefaults standardUserDefaults]setValue:_userID.text forKey:@"userid0"];
+        //打开db  创建本地表
+        [[DataBaseTool sharedDB]openDB];
+        //下载数据
+        [[DataBaseTool sharedDB]startRequest:_userID.text];
+
         dispatch_async(dispatch_get_main_queue(), ^{
+            
             [MBProgressHUD hideHUDForView:self.view animated:YES];
-            
-            [[NSUserDefaults standardUserDefaults]setValue:_userID.text forKey:@"userid0"];
-            //打开db  创建本地表
-            [[DataBaseTool sharedDB]openDB];
-            //下载数据
-            [[DataBaseTool sharedDB]startRequest:_userID.text];
-//            NSDictionary *dict = [[DataBaseTool sharedDB]backdic];
-//            if ([[dict valueForKey:@"code"]isEqualToString:@""]) {
-            
-                [self performSegueWithIdentifier:@"gotomain" sender:self];
-        //    }
-            
+            [self performSegueWithIdentifier:@"gotomain" sender:self];
+          //  [self gotoMain];
         });
         
     }else if ([value isEqualToString:@"connectNG"]){
@@ -117,7 +129,7 @@
     }
     //进行服务器请求，判断
     [self startRequest:_userID.text password:_passWord.text];
-
+    
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField

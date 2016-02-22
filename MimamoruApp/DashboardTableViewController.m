@@ -243,7 +243,8 @@
     
     userid0 = [[NSUserDefaults standardUserDefaults]valueForKey:@"userid0"];
     
-    [[DataBaseTool sharedDB]createL_SensorDataTable];
+    //[[DataBaseTool sharedDB]createL_SensorDataTable];
+    [self.tableView reloadData];
     //从服务器下载数据
     //[[DataBaseTool sharedDB]openDB];
     //获取传感器个数类型
@@ -274,8 +275,6 @@
     
     
     self.tableView.tableFooterView = [[UIView alloc]init];
-    
-    [self.tableView reloadData];
     
 }
 
@@ -317,7 +316,7 @@
         NSString *sensorid = [sensorDic valueForKey:@"sensorid"];
        // NSString *sensorname = [sensorDic valueForKey:@"sensorname"];
         if ([sensorid isEqualToString:@"000002001"]) {
-            NSString * t1 = @"電気使用量";
+            NSString * t1 = @"電気";
             [sectionArr addObject:t1];
         }
         if ([sensorid isEqualToString:@"000001002"]) {
@@ -370,7 +369,7 @@
     NSLog(@"%@",sectionArr[indexPath.section]);
    // for (int i =0; i<sectionArr.count; i++) {
         NSString *titleName = sectionArr[indexPath.section];
-        if ([titleName isEqualToString:@"電気使用量"]) {
+        if ([titleName isEqualToString:@"電気"]) {
             cell.rrr = @"0";
             if (xNum == 0) {
                 cell.danwei.text = @"wh";
@@ -588,7 +587,7 @@
     //这里获得了indexpath.row
     machNameself = sectionArr[indexPath.section];
     NSString *sensorId = sectionArr[indexPath.section];
-    if ([sensorId isEqualToString:@"電気使用量"]) {
+    if ([sensorId isEqualToString:@"電気"]) {
         sensor = @"000002001";
     }
     if ([sensorId isEqualToString:@"マット"]) {

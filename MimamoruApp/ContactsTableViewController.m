@@ -83,7 +83,7 @@
 
 -(void)startRequest:(NSString *)getid Contact:(NSString*)contact{
     //post 提交修改
-    NSURL *url = [NSURL URLWithString:@"http://mimamorihz.azurewebsites.net/emergencyDelete.php"];
+    NSURL *url = [NSURL URLWithString:@"http://mimamori.azurewebsites.net/emergencyDelete.php"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     //
     [request setHTTPMethod:@"post"];

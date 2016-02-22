@@ -45,7 +45,7 @@
 
 -(void)startRequest:(NSString *)getid{
     //post 提交修改
-    NSURL *url = [NSURL URLWithString:@"http://mimamorihz.azurewebsites.net/emergencyInsert.php"];
+    NSURL *url = [NSURL URLWithString:@"http://mimamori.azurewebsites.net/emergencyInsert.php"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     //
     [request setHTTPMethod:@"post"];

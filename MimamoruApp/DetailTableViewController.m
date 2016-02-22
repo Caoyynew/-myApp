@@ -79,10 +79,13 @@
         DetailTableViewCell* cell1 = [tableView dequeueReusableCellWithIdentifier:@"detailcell" forIndexPath:indexPath];
         cell1.selectionStyle = UITableViewCellEditingStyleNone;
         [[[NSBundle mainBundle]loadNibNamed:@"DetailTableViewCell" owner:nil options:nil]firstObject];
-        if ([self.titlename isEqualToString:@"電気使用量"] && [self.titlename isEqualToString:@"照度"]) {
-            [cell1 configUI:indexPath type:1 day:dayarray];
-        }else{
+        if ([self.titlename isEqualToString:@"電気"]) {
             [cell1 configUI:indexPath type:2 day:dayarray];
+        }else if ([self.titlename isEqualToString:@"照度"]) {
+            [cell1 configUI:indexPath type:3 day:dayarray];
+        }
+        else{
+            [cell1 configUI:indexPath type:1 day:dayarray];
         }
         return cell1;
     }else{
