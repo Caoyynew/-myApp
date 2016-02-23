@@ -344,16 +344,16 @@
 		E9453D8B1C4337E900210852 /* OtherGroup */ = {
 			isa = PBXGroup;
 			children = (
-				E99E975A1C3FC0340019D2CC /* ContentTableViewController.h */,
-				E99E975B1C3FC0340019D2CC /* ContentTableViewController.m */,
-				E99E97651C3FC0340019D2CC /* EgySettingTableViewController.h */,
-				E99E97661C3FC0340019D2CC /* EgySettingTableViewController.m */,
 				E99E97821C3FC0340019D2CC /* OtherTableViewController.h */,
 				E99E97831C3FC0340019D2CC /* OtherTableViewController.m */,
+				E99E975A1C3FC0340019D2CC /* ContentTableViewController.h */,
+				E99E975B1C3FC0340019D2CC /* ContentTableViewController.m */,
 				E96D6AE91C4CBE8200095613 /* ContactsTableViewController.h */,
 				E96D6AEA1C4CBE8200095613 /* ContactsTableViewController.m */,
 				E96D6ADF1C4CB46D00095613 /* AddTableViewController.h */,
 				E96D6AE01C4CB46D00095613 /* AddTableViewController.m */,
+				E99E97651C3FC0340019D2CC /* EgySettingTableViewController.h */,
+				E99E97661C3FC0340019D2CC /* EgySettingTableViewController.m */,
 			);
 			name = OtherGroup;
 			sourceTree = "<group>";

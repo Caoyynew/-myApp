@@ -83,7 +83,7 @@
     //日数据
     NSArray *dayArr = [[DataBaseTool sharedDB]selectL_SensorDayData:userid0 Sensorid:sensorid];
     
-    NSLog(@"%@",dayArr);
+    //NSLog(@"%@",dayArr);
     
     NSMutableDictionary *dayMDic = [[NSMutableDictionary alloc]init];
     [dayMDic setValue:@"0" forKey:@"0"];
@@ -367,13 +367,13 @@
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    NSLog(@"view touch began");
+   // NSLog(@"view touch began");
 }
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-    NSLog(@"view touch ended");
+   // NSLog(@"view touch ended");
 }
 -(void)scrollViewTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event whichView:(id)scrollView{
-    NSLog(@"scrollView  touch ended");
+   // NSLog(@"scrollView  touch ended");
     
 }
 

@@ -161,15 +161,13 @@
 }
 
 #pragma mark - Requrest(请求服务器)
--(void)startRequest:(NSString *)userid
+-(void)startRequest:(NSString *)userid date:(NSString*)updatetime
 {
-    
-    NSString *updatedate = @"";
-    //userid0 = [[NSUserDefaults standardUserDefaults]valueForKey:@"userid0"];
+
     NSURL *url = [NSURL URLWithString:@"http://mimamori.azurewebsites.net/dataupdateR.php"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"post"];
-    NSString *content = [NSString stringWithFormat:@"userid=%@&updatedate=%@",userid,updatedate];
+    NSString *content = [NSString stringWithFormat:@"userid=%@&updatedate=%@",userid,updatetime];
     [request setHTTPBody:[content dataUsingEncoding:NSUTF8StringEncoding]];
     NSURLSession *session = [NSURLSession sharedSession];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -177,12 +175,14 @@
          NSLog(@"dict=%@",dic);
         _userDic = [[NSMutableDictionary alloc]initWithDictionary:dic];
         [self backdic];
-        [self addtoDBL_SensorData:dic];
-        [self addtoDBL_ShiKiChiContacts:dic];
-        [self addtoDBL_EmergencyContacts:dic];
-        [self addtoDBL_UserInfo:dic];
-        [self addtoDBL_SensorMaster:dic];
-        
+        NSString *code = [dic valueForKey:@"code"];
+        if ([code isEqualToString:@""]) {
+            [self addtoDBL_SensorData:dic];
+            [self addtoDBL_ShiKiChiContacts:dic];
+            [self addtoDBL_EmergencyContacts:dic];
+            [self addtoDBL_UserInfo:dic];
+            [self addtoDBL_SensorMaster:dic];
+        }
     }];
     [task resume];
     
@@ -316,7 +316,7 @@
         sqlite3_bind_text(statement, 7, [drug UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_bind_text(statement, 8, [health UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_bind_text(statement, 9, [other UTF8String], -1, SQLITE_TRANSIENT);
-        sqlite3_bind_text(statement, 10, [[updatetime valueForKey:@"date"] UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 10, [updatetime UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_bind_text(statement, 11, [updatename UTF8String], -1, SQLITE_TRANSIENT);
         
         int success = sqlite3_step(statement);
@@ -441,6 +441,13 @@
 }
 
 #pragma mark - L_EmergencyContacts 新增，更新，查询，删除
+
+//-(void)L_EmergencyContactTableUpdate:(NSDictionary*)itemDict userid:(NSString*)userid
+//{
+//    
+//}
+
+
 //----------------------------新增-------------------------
 -(void)insertL_EmergencyContactsTable:(NSDictionary *)itemDict userid:(NSString *)userid
 {
@@ -480,7 +487,6 @@
         if (success == SQLITE_ERROR) {
             NSLog(@"insert NG");
         }
-        
     }
 }
 //----------------------------查询--------------------------

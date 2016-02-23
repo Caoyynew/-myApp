@@ -16,7 +16,7 @@
 
 //本地接口
 //请求下载数据
--(void)startRequest:(NSString *)userid;
+-(void)startRequest:(NSString *)userid date:(NSString*)updatetime;
 //L_UserInfoTable
 //查询接口
 -(NSMutableDictionary*)selectL_UserInfoTableuserid:(NSString*)userid;

@@ -59,14 +59,11 @@
     [dayMDic setValue:@"0" forKey:@"23"];
     
     
-    
-    
-    
     NSMutableArray *chart = [[NSMutableArray alloc]init];
     NSArray *arr = root;
-    for (int i = 0; i<arr.count; i++) {
-        NSDictionary *viewDic = [arr objectAtIndex:i];
-        NSArray *keys = [viewDic allKeys];
+    NSDictionary *viewDic = arr[0];
+    NSArray *keys = [viewDic allKeys];
+    for (int i = 0; i<keys.count; i++) {
         NSString *key1 = keys[i];
         NSArray *valueArr = [dayMDic allKeys];
         for (int j = 0; j<24; j++) {

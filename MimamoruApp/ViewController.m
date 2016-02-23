@@ -71,33 +71,37 @@
     
     NSString *value = [date valueForKey:@"code"];
     
-    if ([value isEqualToString:@""]) {
+    if ([value isEqualToString:@"200"]) {
         [[NSUserDefaults standardUserDefaults]setValue:_userID.text forKey:@"userid0"];
         //打开db  创建本地表
         [[DataBaseTool sharedDB]openDB];
         //下载数据
-        [[DataBaseTool sharedDB]startRequest:_userID.text];
-
+        [[DataBaseTool sharedDB]startRequest:_userID.text date:@""];
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             [self performSegueWithIdentifier:@"gotomain" sender:self];
-          //  [self gotoMain];
+            //  [self gotoMain];
         });
         
-    }else if ([value isEqualToString:@"connectNG"]){
+    }else if ([value isEqualToString:@"500"]){
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [LeafNotification showInController:self withText:@"ネットワークエラー、接続失敗"];
+            [LeafNotification showInController:self withText:@"ネットワークには繋がりません"];
         });
-    }else
-        {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
-                [LeafNotification showInController:self withText:@"ユーザーID or パスワードエラー"];
-            });
-        }
-
+    }else if([value isEqualToString:@"501"]){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [LeafNotification showInController:self withText:@"ユーザが存在していません"];
+        });
+    }else if ([value isEqualToString:@"502"]){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [LeafNotification showInController:self withText:@"正しいパスワードを入力してください"];
+        });
+    }
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated

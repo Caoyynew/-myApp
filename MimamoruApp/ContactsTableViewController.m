@@ -8,6 +8,7 @@
 
 #import "ContactsTableViewController.h"
 #include "DataBaseTool.h"
+#import "LeafNotification.h"
 @interface ContactsTableViewController ()
 {
     NSMutableArray *emergencyContacts;
@@ -107,10 +108,16 @@
 -(void)reloaddate:(NSDictionary*)dic
 {
     NSString *code = [dic valueForKey:@"code"];
-    if ([code isEqualToString:@"deleteOK"]) {
+    if ([code isEqualToString:@"216"]) {
         NSMutableDictionary *deleteDic = [[NSMutableDictionary alloc]init];
         [deleteDic setValue:indexRowContact forKey:@"contact"];
         [[DataBaseTool sharedDB]deleteL_EmergencyContactsTable:deleteDic userid:userid0];
+    }else if ([code isEqualToString:@"535"]){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [LeafNotification showInController:self withText:@"削除することができません"];
+            
+        });
     }
 }
 

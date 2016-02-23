@@ -68,7 +68,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row==0) {
-        [self performSegueWithIdentifier:@"gotoemergencysetting" sender:self];
+        //[self performSegueWithIdentifier:@"gotoemergencysetting" sender:self];
+        [self performSegueWithIdentifier:@"gotocontent" sender:self];
     }else if (indexPath.row ==1){
         [self cancellation];
     }

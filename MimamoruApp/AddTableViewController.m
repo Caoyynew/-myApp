@@ -69,8 +69,8 @@
 -(void)reloaddate:(NSDictionary*)dic
 {
     NSString *OK = [dic valueForKey:@"code"];
-    
-    if ([OK isEqualToString:@"updateOK"]) {
+    //更新
+    if ([OK isEqualToString:@"209"]) {
         NSMutableDictionary *updateDic = [[NSMutableDictionary alloc]init];
         [updateDic setValue:name forKey:@"nickname"];
         [updateDic setValue:email forKey:@"contact"];
@@ -79,18 +79,21 @@
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             [self.navigationController popViewControllerAnimated:YES];
         });
-        
-    }
-    if ([OK isEqualToString:@"insertOK"]) {
-        NSMutableDictionary *insertDic = [[NSMutableDictionary alloc]init];
-        [insertDic setValue:name forKey:@"nickname"];
-        [insertDic setValue:email forKey:@"contact"];
-        [[DataBaseTool sharedDB]insertL_EmergencyContactsTable:insertDic userid:userid0];
+    //新增
+    }else if ([OK isEqualToString:@"210"]){
+        NSMutableDictionary *updateDic = [[NSMutableDictionary alloc]init];
+        [updateDic setValue:name forKey:@"nickname"];
+        [updateDic setValue:email forKey:@"contact"];
+        [[DataBaseTool sharedDB]insertL_EmergencyContactsTable:updateDic userid:userid0];
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             [self.navigationController popViewControllerAnimated:YES];
         });
-        
+    }else if ([OK isEqualToString:@"525"]||[OK isEqualToString:@"526"]){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [LeafNotification showInController:self.navigationController withText:@"追加/更新することができません"];
+        });
     }
 }
 
@@ -104,7 +107,7 @@
         [self startRequest:userid0];
         
     }else{
-        [LeafNotification showInController:self withText:@"add your name and email"];
+        [LeafNotification showInController:self.navigationController withText:@"氏名とメールアドレスを入力してください"];
         return;
     }
     
@@ -140,7 +143,11 @@
 #pragma mark - iphone add content
 - (void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact{
     self.nameText.text =[NSString stringWithFormat:@"%@ %@",contact.familyName,contact.givenName];
+    if ([[NSString stringWithFormat:@"%@",[contact.emailAddresses firstObject].value]isEqualToString:@"(null)"]) {
+        self.eamilText.text = @"";
+    }else{
      self.eamilText.text = [NSString stringWithFormat:@"%@",[contact.emailAddresses firstObject].value];
+    }
     
 }
 

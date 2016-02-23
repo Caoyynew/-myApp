@@ -384,12 +384,12 @@ hA
                     </tableView>
                     <navigationItem key="navigationItem" title="設定" id="y23-aq-36W"/>
                     <connections>
-                        <segue destination="8cL-HE-aqa" kind="push" identifier="gotoemergencysetting" id="1Ny-NZ-PrX"/>
+                        <segue destination="N5Y-nQ-ggS" kind="push" identifier="gotocontent" id="2rj-FD-hjo"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fMr-JG-bj5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1980" y="1326"/>
+            <point key="canvasLocation" x="2018" y="1326"/>
         </scene>
         <!--緊急通報の設定-->
         <scene sceneID="ODc-F2-Ooo">
@@ -401,7 +401,7 @@ hA
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="mycell1" id="0GI-1f-XS1">
-                                <rect key="frame" x="0.0" y="92" width="320" height="80"/>
+                                <rect key="frame" x="0.0" y="28" width="320" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0GI-1f-XS1" id="0WV-YL-oy0">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
@@ -417,14 +417,10 @@ hA
                     <navigationItem key="navigationItem" title="緊急通報の設定" id="pi4-R5-wrG">
                         <barButtonItem key="backBarButtonItem" title="戻る" id="R8u-iL-kcD"/>
                     </navigationItem>
-                    <connections>
-                        <segue destination="N5Y-nQ-ggS" kind="push" identifier="gotocontent" id="Vch-uH-U42"/>
-                        <segue destination="5Mr-L8-jTf" kind="push" identifier="gotomessage" id="PnV-ba-VUy"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RU9-yy-jVd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2717" y="1326"/>
+            <point key="canvasLocation" x="2863" y="1334"/>
         </scene>
         <!--緊急通報先の設定-->
         <scene sceneID="3Vy-B0-dzX">
@@ -436,7 +432,7 @@ hA
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="mycelladd" textLabel="2TG-0j-u32" detailTextLabel="dSF-WM-OTu" rowHeight="80" style="IBUITableViewCellStyleSubtitle" id="bs9-DD-glE">
-                                <rect key="frame" x="0.0" y="92" width="320" height="80"/>
+                                <rect key="frame" x="0.0" y="28" width="320" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bs9-DD-glE" id="cJD-Gb-Pg0">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
@@ -473,13 +469,10 @@ hA
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <segue destination="GWx-ck-euD" kind="push" identifier="addcontacts" id="JGm-Il-xOd"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ybh-eI-hc1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3189" y="1326"/>
+            <point key="canvasLocation" x="3229" y="1334"/>
         </scene>
         <!--緊急通報先の入力-->
         <scene sceneID="u6n-QW-BC3">
@@ -602,7 +595,7 @@ hA
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="alL-E3-6Yi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3197" y="2169"/>
+            <point key="canvasLocation" x="2435" y="2065"/>
         </scene>
         <!--緊急通報情報の設定-->
         <scene sceneID="OBt-a8-EwK">
@@ -1057,7 +1050,7 @@ hA
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qk7-qg-qFK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2260" y="2139"/>
+            <point key="canvasLocation" x="2018" y="2065"/>
         </scene>
         <!--Profile Table View Controller-->
         <scene sceneID="lo5-pz-843">
@@ -1249,7 +1242,4 @@ hA
     <resources>
         <image name="emergencybtn.png" width="128" height="128"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="ozP-Dq-PPg"/>
-    </inferredMetricsTieBreakers>
 </document>

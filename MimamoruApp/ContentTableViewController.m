@@ -73,7 +73,7 @@ enum ActionTypes{
 {
     NSLog(@"%@",res);
     NSString *code = [res valueForKey:@"code"];
-    if ([code isEqualToString:@"updateOK"]) {
+    if ([code isEqualToString:@"203"] ||[code isEqualToString:@"204"]) {
         NSMutableDictionary *updateDic = [[NSMutableDictionary alloc]init];
         [updateDic setValue:_name.text forKey:@"username"];
         [updateDic setValue:_sex.text forKey:@"sex"];
@@ -91,12 +91,15 @@ enum ActionTypes{
             [MBProgressHUD hideHUDForView:self.tableView animated:YES];
             [self.navigationController popViewControllerAnimated:YES];
         });
-    }
-    if ([code isEqualToString:@"connectNG"]) {
+    }else if ([code isEqualToString:@"500"]) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [LeafNotification showInController:self withText:@"ネットワークエラー、接続失敗"];
+            [LeafNotification showInController:self withText:@"サーバに接続することができません"];
         });
 
+    }else if ([code isEqualToString:@"513"] ||[code isEqualToString:@"514"]){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [LeafNotification showInController:self withText:@"追加/更新することができません"];
+        });
     }
     
 }
@@ -320,7 +323,8 @@ enum ActionTypes{
 -(void)reloaddate:(NSDictionary*)dic
 {
     NSString *code = [dic valueForKey:@"code"];
-    if ([code isEqualToString:@"deleteOK"]) {
+    //success
+    if ([code isEqualToString:@"216"]) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:myTableView animated:YES];
             [myTableView reloadData];
@@ -328,7 +332,13 @@ enum ActionTypes{
         NSMutableDictionary *deleteDic = [[NSMutableDictionary alloc]init];
         [deleteDic setValue:indexRowContact forKey:@"contact"];
         [[DataBaseTool sharedDB]deleteL_EmergencyContactsTable:deleteDic userid:userid0];
-            }
+    //error
+    }else if ([code isEqualToString:@"537"]){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:myTableView animated:YES];
+            [LeafNotification showInController:self withText:@"削除することができません"];
+        });
+    }
 }
 #pragma mark - 添加紧急联系人
 - (void)addContacts{

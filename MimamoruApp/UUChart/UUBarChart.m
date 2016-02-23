@@ -80,11 +80,11 @@
     if (_yValueMax < 3) {
         m = 3;
         level = 1;
-        levelHeight = chartCavanHeight /2.1;
+        levelHeight = chartCavanHeight /2.0;
     }else{
         m = _yValueMax;
         level = (_yValueMax-_yValueMin) /4.0;
-        levelHeight = chartCavanHeight /4.1;
+        levelHeight = chartCavanHeight /4.0;
     }
     
    // float level = (_yValueMax-_yValueMin) /4.0;
