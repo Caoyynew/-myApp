@@ -164,7 +164,7 @@
 -(void)startRequest:(NSString *)userid
 {
     
-    NSString *updatedate = @"2000-2-1 9:30:00";
+    NSString *updatedate = @"";
     //userid0 = [[NSUserDefaults standardUserDefaults]valueForKey:@"userid0"];
     NSURL *url = [NSURL URLWithString:@"http://mimamori.azurewebsites.net/dataupdateR.php"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -569,8 +569,8 @@
             [contactDic setValue:valueStr forKey:timeStr];
             
             
-            [contactArr addObject:valueStr];
-         //   [contactArr addObject:contactDic];
+          //  [contactArr addObject:valueStr];
+            [contactArr addObject:contactDic];
         }
         
         int success = sqlite3_step(statement);
@@ -578,7 +578,7 @@
         if (success == SQLITE_ERROR) {
             NSLog(@"select NG");
         }
-      //  [rootArr addObject:contactDic];
+        //[rootArr addObject:contactDic];
         [rootArr addObject:contactArr];
     }
     return rootArr;

@@ -86,6 +86,8 @@
 //           // [self.navigationController popToViewController:[[UIViewController alloc]init] animated:YES];
 //            [self.navigationController popToRootViewControllerAnimated:YES];
 //        }
+        //删除本地sqlite
+        [self deleteMydb];
         [self dismissViewControllerAnimated:YES completion:nil];
     }]];
     [alert addAction:[UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -94,6 +96,20 @@
     [self presentViewController:alert animated:true completion:nil];
 }
 
+#pragma mark - 删除本地db
+-(void)deleteMydb{
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSFileManager *fileMgr = [NSFileManager defaultManager];
+    NSString *MapLayerDataPath = [documentsDirectory stringByAppendingPathComponent:@"Mydb.db"];
+    BOOL bRet = [fileMgr fileExistsAtPath:MapLayerDataPath];
+    if (bRet) {
+        //
+        NSError *err;
+        [fileMgr removeItemAtPath:MapLayerDataPath error:&err];
+    }
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

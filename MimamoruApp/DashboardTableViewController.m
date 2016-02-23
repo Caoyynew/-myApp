@@ -82,10 +82,92 @@
     //日数据
     NSArray *dayArr = [[DataBaseTool sharedDB]selectL_SensorDayData:userid0 Sensorid:sensorid];
     
-    dayArr1 = [[NSArray alloc]initWithArray:dayArr[0]];
-    dayArr2 = [[NSArray alloc]initWithArray:dayArr[1]];
-    dayArr3 = [[NSArray alloc]initWithArray:dayArr[2]];
-   
+    NSLog(@"%@",dayArr);
+    
+    NSMutableDictionary *dayMDic = [[NSMutableDictionary alloc]init];
+    [dayMDic setValue:@"0" forKey:@"0"];
+    [dayMDic setValue:@"0" forKey:@"1"];
+    [dayMDic setValue:@"0" forKey:@"2"];
+    [dayMDic setValue:@"0" forKey:@"3"];
+    [dayMDic setValue:@"0" forKey:@"4"];
+    [dayMDic setValue:@"0" forKey:@"5"];
+    [dayMDic setValue:@"0" forKey:@"6"];
+    [dayMDic setValue:@"0" forKey:@"7"];
+    [dayMDic setValue:@"0" forKey:@"8"];
+    [dayMDic setValue:@"0" forKey:@"9"];
+    [dayMDic setValue:@"0" forKey:@"10"];
+    [dayMDic setValue:@"0" forKey:@"11"];
+    [dayMDic setValue:@"0" forKey:@"12"];
+    [dayMDic setValue:@"0" forKey:@"13"];
+    [dayMDic setValue:@"0" forKey:@"14"];
+    [dayMDic setValue:@"0" forKey:@"15"];
+    [dayMDic setValue:@"0" forKey:@"16"];
+    [dayMDic setValue:@"0" forKey:@"17"];
+    [dayMDic setValue:@"0" forKey:@"18"];
+    [dayMDic setValue:@"0" forKey:@"19"];
+    [dayMDic setValue:@"0" forKey:@"20"];
+    [dayMDic setValue:@"0" forKey:@"21"];
+    [dayMDic setValue:@"0" forKey:@"22"];
+    [dayMDic setValue:@"0" forKey:@"23"];
+    
+    
+    NSMutableArray *rootArr = [[NSMutableArray alloc]init];
+    
+    for (int m = 0; m <3; m++) {
+        NSMutableArray *chart = [[NSMutableArray alloc]init];
+        NSArray *arr = dayArr[m];
+        for (int i = 0; i<arr.count; i++) {
+            NSDictionary *viewDic = [arr objectAtIndex:i];
+            NSArray *keys = [viewDic allKeys];
+            NSString *key1 = keys[i];
+            NSArray *valueArr = [dayMDic allKeys];
+            for (int j = 0; j<24; j++) {
+                NSString *key2 = valueArr[j];
+                if ([key1 isEqualToString:key2]) {
+                    [dayMDic setValue:[viewDic valueForKey:key1] forKey:key2];
+                }
+            }
+            
+        }
+        if (arr.count == 0) {
+            
+            chart = [NSMutableArray arrayWithObjects:@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0", nil];
+
+        }else{
+            chart[0] = [dayMDic valueForKey:@"0"];
+            chart[1] = [dayMDic valueForKey:@"1"];
+            chart[2] = [dayMDic valueForKey:@"2"];
+            chart[3] = [dayMDic valueForKey:@"3"];
+            chart[4] = [dayMDic valueForKey:@"4"];
+            chart[5] = [dayMDic valueForKey:@"5"];
+            chart[6] = [dayMDic valueForKey:@"6"];
+            chart[7] = [dayMDic valueForKey:@"7"];
+            chart[8] = [dayMDic valueForKey:@"8"];
+            chart[9] = [dayMDic valueForKey:@"9"];
+            chart[10] = [dayMDic valueForKey:@"10"];
+            chart[11] = [dayMDic valueForKey:@"11"];
+            chart[12] = [dayMDic valueForKey:@"12"];
+            chart[13] = [dayMDic valueForKey:@"13"];
+            chart[14] = [dayMDic valueForKey:@"14"];
+            chart[15] = [dayMDic valueForKey:@"15"];
+            chart[16] = [dayMDic valueForKey:@"16"];
+            chart[17] = [dayMDic valueForKey:@"17"];
+            chart[18] = [dayMDic valueForKey:@"18"];
+            chart[19] = [dayMDic valueForKey:@"19"];
+            chart[20] = [dayMDic valueForKey:@"20"];
+            chart[21] = [dayMDic valueForKey:@"21"];
+            chart[22] = [dayMDic valueForKey:@"22"];
+            chart[23] = [dayMDic valueForKey:@"23"];
+
+        }
+        
+        
+        [rootArr addObject:chart];
+    }
+    dayArr1 = rootArr[0];
+    dayArr2 = rootArr[1];
+    dayArr3 = rootArr[2];
+    
     //周数据
     NSArray *weekArr = [[DataBaseTool sharedDB]selectL_SensorWeekData:userid0 Sensorid:sensorid];
     weekArr1 = [[NSMutableArray alloc]init];
