@@ -133,6 +133,12 @@ enum ActionTypes{
 - (void)viewDidLoad {
     [super viewDidLoad];
     UIView *view = [[UIView alloc]init];
+    
+    
+    _kusili.layer.borderColor = [UIColor colorWithRed:155.0/255.0 green:155.0/255.0 blue:155.0/255.0 alpha:0.7].CGColor;;
+    _health.layer.borderColor = [UIColor colorWithRed:155.0/255.0 green:155.0/255.0 blue:155.0/255.0 alpha:0.7].CGColor;;
+    _otherthing.layer.borderColor = [UIColor colorWithRed:155.0/255.0 green:155.0/255.0 blue:155.0/255.0 alpha:0.7].CGColor;;
+    
     view.backgroundColor = [UIColor clearColor];
     [self.tableView setTableFooterView:view];
 }

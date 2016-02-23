@@ -144,7 +144,7 @@
 //L_SensorMaster
 -(BOOL)createL_SensorMasterTable
 {
-    char *sql = "create table if not exists L_SensorMaster(id INTEGER PRIMARY KEY AUTOINCREMENT,userid0 TEXT,sensorid TEXT,sensorname TEXT)";
+    char *sql = "create table if not exists L_SensorMaster(id INTEGER PRIMARY KEY AUTOINCREMENT,userid0 TEXT,sensorid TEXT,sensorname TEXT,sensortype TEXT)";
     sqlite3_stmt *statement;
     NSInteger sqlReturn = sqlite3_prepare_v2(database, sql, -1, &statement, nil);
     if (sqlReturn != SQLITE_OK) {
@@ -334,7 +334,7 @@
     NSArray *itemArr = [dic valueForKey:@"sensormaster"];
     for (int i = 0; i <itemArr.count; i++) {
         sqlite3_stmt *statement;
-        char *sql = "insert into L_SensorMaster(userid0,sensorid,sensorname) values(?,?,?)";
+        char *sql = "insert into L_SensorMaster(userid0,sensorid,sensorname,sensortype) values(?,?,?,?)";
         NSInteger sqlReturn = sqlite3_prepare_v2(database, sql, -1, &statement, nil);
         if (sqlReturn !=SQLITE_OK) {
             
@@ -343,9 +343,11 @@
         NSString *userid = [itemDict valueForKey:@"userid0"];
         NSString *sensorid = [itemDict valueForKey:@"sensorid"];
         NSString *sensorname = [itemDict valueForKey:@"sensorname"];
+        NSString *sensortype = [itemDict valueForKey:@"sensortype"];
         sqlite3_bind_text(statement, 1, [userid UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_bind_text(statement, 2, [sensorid UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_bind_text(statement, 3, [sensorname UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 4, [sensortype UTF8String], -1, SQLITE_TRANSIENT);
         
         int success = sqlite3_step(statement);
         sqlite3_finalize(statement);
@@ -772,7 +774,7 @@
     [dateformatter setDateFormat:@"yyyy/MM/dd"];
     NSString *dateStr = [dateformatter stringFromDate:senddate];
     sqlite3_stmt *statement;
-    char *sql = "select value from L_SensorData where userid0=? and date=? and sensorid=? order by time";
+    char *sql = "select value,time from L_SensorData where userid0=? and date=? and sensorid=? order by time";
     NSInteger sqlReturn = sqlite3_prepare_v2(database, sql, -1, &statement, nil);
     if (sqlReturn !=SQLITE_OK) {
         NSLog(@"sql error!");
@@ -783,12 +785,17 @@
     //测试代码
     //sqlite3_bind_text(statement, 2, [@"2016-02-16" UTF8String], -1, SQLITE_TRANSIENT);
     sqlite3_bind_text(statement, 3, [sensorid UTF8String], -1, SQLITE_TRANSIENT);
+    NSMutableDictionary * viewDic = [[NSMutableDictionary alloc]init];
     while (sqlite3_step(statement)==SQLITE_ROW) {
         
         char *value = (char*) sqlite3_column_text(statement, 0);
-        NSString* valueStr = [NSString stringWithUTF8String:value];
-        [rootArr addObject:valueStr];
+        char *timechar = (char*) sqlite3_column_text(statement, 1);
+        NSString * valueStr = [NSString stringWithUTF8String:value];
+        NSString * timeStr = [NSString stringWithUTF8String:timechar];
+        [viewDic setValue:valueStr forKey:timeStr];
+        
     }
+    [rootArr addObject:viewDic];
     int success = sqlite3_step(statement);
     sqlite3_finalize(statement);
     if (success == SQLITE_ERROR) {
@@ -833,7 +840,7 @@
 -(NSMutableArray*)selectL_SensorMaster:(NSString *)userid
 {
     sqlite3_stmt *statement;
-    char *sql = "select sensorid,sensorname from L_SensorMaster where userid0=?";
+    char *sql = "select sensorid,sensorname,sensortype from L_SensorMaster where userid0=?";
     NSInteger sqlReturn = sqlite3_prepare_v2(database, sql, -1, &statement, nil);
     if (sqlReturn !=SQLITE_OK) {
         NSLog(@"sql error!");
@@ -843,9 +850,11 @@
     while (sqlite3_step(statement)==SQLITE_ROW) {
         char *sensorid = (char*) sqlite3_column_text(statement, 0);
         char *sensorname = (char*) sqlite3_column_text(statement, 1);
+        char *sensortype = (char*) sqlite3_column_text(statement, 2);
         NSMutableDictionary *value = [[NSMutableDictionary alloc]init];
         [value setValue:[NSString stringWithUTF8String:sensorid] forKey:@"sensorid"];
         [value setValue:[NSString stringWithUTF8String:sensorname] forKey:@"sensorname"];
+        [value setValue:[NSString stringWithUTF8String:sensortype] forKey:@"sensortype"];
         [contactArr addObject:value];
     }
     int success = sqlite3_step(statement);

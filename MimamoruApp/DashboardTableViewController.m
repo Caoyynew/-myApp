@@ -45,6 +45,7 @@
     //
     NSString*machNameself;
     NSString *sensor;
+    NSString *sensortypes;
     NSArray* visibleCells;
     
 }
@@ -69,7 +70,7 @@
     CGRect farme = self.segmentControl.frame;
     farme.size.height = 40;
     self.segmentControl.frame = farme;
-   
+    
     [self.tableView registerNib:[UINib nibWithNibName:@"DashBoardTableViewCell" bundle:nil] forCellReuseIdentifier:@"dashboardCell"];
     xNum = 0;
     //Get test data from plist files
@@ -132,7 +133,7 @@
         if (arr.count == 0) {
             
             chart = [NSMutableArray arrayWithObjects:@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0", nil];
-
+            
         }else{
             chart[0] = [dayMDic valueForKey:@"0"];
             chart[1] = [dayMDic valueForKey:@"1"];
@@ -158,7 +159,7 @@
             chart[21] = [dayMDic valueForKey:@"21"];
             chart[22] = [dayMDic valueForKey:@"22"];
             chart[23] = [dayMDic valueForKey:@"23"];
-
+            
         }
         
         
@@ -316,7 +317,7 @@
     for (NSString *str in [monthArr30 reverseObjectEnumerator]) {
         [monthArr3 addObject:str];
     }
-   // NSLog(@"1=%@ 2=%@ 3=%@",monthArr1,monthArr2,monthArr3);
+    // NSLog(@"1=%@ 2=%@ 3=%@",monthArr1,monthArr2,monthArr3);
     
 }
 
@@ -337,7 +338,7 @@
     NSDateFormatter *pickerFormatter = [[NSDateFormatter alloc] init];
     [pickerFormatter setDateFormat:@"yyyy年MM月dd日"];
     dateString = [pickerFormatter stringFromDate:pickerDate];
-   // NSLog(@"%@",dateString);
+    // NSLog(@"%@",dateString);
     
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"yyyy年MM月dd日"];
@@ -345,7 +346,7 @@
     NSDate *date = [format dateFromString:dateString];
     NSDate *newDate = [[NSDate alloc] initWithTimeIntervalSinceReferenceDate:([date timeIntervalSinceReferenceDate] - 24*3600)];
     dateString2 = [format stringFromDate:newDate];
-   // NSLog(@"%@",dateString2);
+    // NSLog(@"%@",dateString2);
     
     NSDateFormatter *format2 = [[NSDateFormatter alloc] init];
     [format2 setDateFormat:@"yyyy年MM月dd日"];
@@ -353,7 +354,7 @@
     NSDate *date2 = [format dateFromString:dateString];
     NSDate *newDate2 = [[NSDate alloc] initWithTimeIntervalSinceReferenceDate:([date2 timeIntervalSinceReferenceDate] - 48*3600)];
     dateString3 = [format stringFromDate:newDate2];
-   // NSLog(@"%@",dateString3);
+    // NSLog(@"%@",dateString3);
     
     
     self.tableView.tableFooterView = [[UIView alloc]init];
@@ -386,7 +387,7 @@
     if (sensorArr.count == 0) {
         sensorArr = [[NSMutableArray alloc]init];
     }
-
+    
     if (!sectionArr) {
         sectionArr = [[NSMutableArray alloc]initWithCapacity:0];
     }
@@ -395,21 +396,21 @@
     for (int i = 0 ; i< sensorArr.count; i++) {
         NSDictionary *sensorDic = [[NSDictionary alloc]init];
         sensorDic = [sensorArr objectAtIndex:i];
-        NSString *sensorid = [sensorDic valueForKey:@"sensorid"];
-       // NSString *sensorname = [sensorDic valueForKey:@"sensorname"];
-        if ([sensorid isEqualToString:@"000002001"]) {
+        NSString *sensortype = [sensorDic valueForKey:@"sensortype"];
+        // NSString *sensorname = [sensorDic valueForKey:@"sensorname"];
+        if ([sensortype isEqualToString:@"3"]) {
             NSString * t1 = @"電気";
             [sectionArr addObject:t1];
         }
-        if ([sensorid isEqualToString:@"000001002"]) {
+        if ([sensortype isEqualToString:@"4"]) {
             NSString * t2 = @"マット";
             [sectionArr addObject:t2];
         }
-        if ([sensorid isEqualToString:@"000001001"]) {
+        if ([sensortype isEqualToString:@"1"]) {
             NSString * t3 = @"ドア";
             [sectionArr addObject:t3];
         }
-        if ([sensorid isEqualToString:@"000002002"]) {
+        if ([sensortype isEqualToString:@"2"]) {
             NSString *t4 = @"照度";
             [sectionArr addObject:t4];
         }
@@ -422,7 +423,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
-    return sectionArr.count;
+    return sensorArr.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -445,44 +446,46 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
- 
+    
     DashBoardTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"dashboardCell"];
     cell.hhh = sectionArr[indexPath.section];
     NSLog(@"%@",sectionArr[indexPath.section]);
-   // for (int i =0; i<sectionArr.count; i++) {
-        NSString *titleName = sectionArr[indexPath.section];
-        if ([titleName isEqualToString:@"電気"]) {
-            cell.rrr = @"0";
-            if (xNum == 0) {
-                cell.danwei.text = @"wh";
-            }else if(xNum == 1){
-                cell.danwei.text = @"kwh";
-            }else if(xNum == 2){
-                cell.danwei.text = @"kwh";
-            }
-            [self reloadDataSensorid:@"000002001"];
-            [cell configUI:indexPath type:2 unit:xNum day1:dayArr3 week1:weekArr3 month1:monthArr3 day2:dayArr2 week2:weekArr2 month2:monthArr2 day3:dayArr1 week3:weekArr1 month3:monthArr1 sendNmonth:nowmonth Bmonth:backmonth BBmonth:backbackmonth];
+    NSDictionary *dic = [[NSDictionary alloc]init];
+    dic = sensorArr[indexPath.row];
+    NSString *sensortype = [dic valueForKey:@"sensortype"];
+    NSString *sensorid = [dic valueForKey:@"sensorid"];
+    if ([sensortype isEqualToString:@"3"]) {
+        cell.rrr = @"0";
+        if (xNum == 0) {
+            cell.danwei.text = @"wh";
+        }else if(xNum == 1){
+            cell.danwei.text = @"kwh";
+        }else if(xNum == 2){
+            cell.danwei.text = @"kwh";
         }
-        if ([titleName isEqualToString:@"照度"]) {
-            cell.rrr = @"0";
-            cell.danwei.text = @"lux";
-            [self reloadDataSensorid:@"000002002"];
-            [cell configUI:indexPath type:2 unit:xNum day1:dayArr3 week1:weekArr3 month1:monthArr3 day2:dayArr2 week2:weekArr2 month2:monthArr2 day3:dayArr1 week3:weekArr1 month3:monthArr1 sendNmonth:nowmonth Bmonth:backmonth BBmonth:backbackmonth];
-        }
-        if ([titleName isEqualToString:@"マット"]) {
-            cell.rrr = @"1";
-            cell.danwei.text = @"回数";
-            [self reloadDataSensorid:@"000001002"];
-            [cell configUI:indexPath type:2 unit:xNum day1:dayArr3 week1:weekArr3 month1:monthArr3 day2:dayArr2 week2:weekArr2 month2:monthArr2 day3:dayArr1 week3:weekArr1 month3:monthArr1 sendNmonth:nowmonth Bmonth:backmonth BBmonth:backbackmonth];
-        }
-        if ([titleName isEqualToString:@"ドア"]) {
-            cell.rrr = @"1";
-            cell.danwei.text = @"回数";
-            [self reloadDataSensorid:@"000001001"];
-            [cell configUI:indexPath type:2 unit:xNum day1:dayArr3 week1:weekArr3 month1:monthArr3 day2:dayArr2 week2:weekArr2 month2:monthArr2 day3:dayArr1 week3:weekArr1 month3:monthArr1 sendNmonth:nowmonth Bmonth:backmonth BBmonth:backbackmonth];
-        }
- //   }
-
+        [self reloadDataSensorid:sensorid];
+        [cell configUI:indexPath type:2 unit:xNum day1:dayArr3 week1:weekArr3 month1:monthArr3 day2:dayArr2 week2:weekArr2 month2:monthArr2 day3:dayArr1 week3:weekArr1 month3:monthArr1 sendNmonth:nowmonth Bmonth:backmonth BBmonth:backbackmonth];
+    }
+    if ([sensortype isEqualToString:@"2"]) {
+        cell.rrr = @"0";
+        cell.danwei.text = @"lux";
+        [self reloadDataSensorid:sensorid];
+        [cell configUI:indexPath type:2 unit:xNum day1:dayArr3 week1:weekArr3 month1:monthArr3 day2:dayArr2 week2:weekArr2 month2:monthArr2 day3:dayArr1 week3:weekArr1 month3:monthArr1 sendNmonth:nowmonth Bmonth:backmonth BBmonth:backbackmonth];
+    }
+    if ([sensortype isEqualToString:@"4"]) {
+        cell.rrr = @"1";
+        cell.danwei.text = @"回数";
+        [self reloadDataSensorid:sensorid];
+        [cell configUI:indexPath type:2 unit:xNum day1:dayArr3 week1:weekArr3 month1:monthArr3 day2:dayArr2 week2:weekArr2 month2:monthArr2 day3:dayArr1 week3:weekArr1 month3:monthArr1 sendNmonth:nowmonth Bmonth:backmonth BBmonth:backbackmonth];
+    }
+    if ([sensortype isEqualToString:@"1"]) {
+        cell.rrr = @"1";
+        cell.danwei.text = @"回数";
+        [self reloadDataSensorid:sensorid];
+        [cell configUI:indexPath type:2 unit:xNum day1:dayArr3 week1:weekArr3 month1:monthArr3 day2:dayArr2 week2:weekArr2 month2:monthArr2 day3:dayArr1 week3:weekArr1 month3:monthArr1 sendNmonth:nowmonth Bmonth:backmonth BBmonth:backbackmonth];
+    }
+    
+    
     cell.scoll.tag = indexPath.row;
     
     UITapGestureRecognizer *singleTap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(subscribeBtnClicked:)];
@@ -667,20 +670,25 @@
     NSIndexPath * indexPath = [self.tableView indexPathForRowAtPoint:point];
     
     //这里获得了indexpath.row
+    
+    NSDictionary *dic = sensorArr[indexPath.row];
+    sensor = [dic valueForKey:@"sensorid"];
+    //machNameself = [dic valueForKey:@""]
     machNameself = sectionArr[indexPath.section];
-    NSString *sensorId = sectionArr[indexPath.section];
-    if ([sensorId isEqualToString:@"電気"]) {
-        sensor = @"000002001";
-    }
-    if ([sensorId isEqualToString:@"マット"]) {
-        sensor = @"000001002";
-    }
-    if ([sensorId isEqualToString:@"ドア"]) {
-        sensor = @"000001001";
-    }
-    if ([sensorId isEqualToString:@"照度"]) {
-        sensor = @"000002002";
-    }
+    sensortypes = [dic valueForKey:@"sensortype"];
+//    NSString *sensorId = sectionArr[indexPath.section];
+//    if ([sensorId isEqualToString:@"電気"]) {
+//        sensor = @"000002001";
+//    }
+//    if ([sensorId isEqualToString:@"マット"]) {
+//        sensor = @"000001002";
+//    }
+//    if ([sensorId isEqualToString:@"ドア"]) {
+//        sensor = @"000001001";
+//    }
+//    if ([sensorId isEqualToString:@"照度"]) {
+//        sensor = @"000002002";
+//    }
     [self performSegueWithIdentifier:@"img2Push" sender:self];
     
 }
@@ -706,7 +714,7 @@
         xNum = 2;
     }
     [self.tableView reloadData];
-
+    
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqualToString:@"img2Push"])
@@ -714,6 +722,7 @@
         DetailTableViewController *detail = segue.destinationViewController;
         detail.sensorid = sensor;
         detail.titlename = machNameself;
+        detail.sensortype = sensortypes;
     }
 }
 

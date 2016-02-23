@@ -11,4 +11,5 @@
 @interface DetailTableViewController : UITableViewController
 @property (strong, nonatomic) NSString *titlename;
 @property(strong, nonatomic)NSString *sensorid;
+@property(strong, nonatomic)NSString *sensortype;
 @end
