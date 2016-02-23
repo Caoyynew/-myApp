@@ -25,6 +25,13 @@
 //检验是否取回数据
 -(NSDictionary*)backdic;
 
+-(void)addtoDBL_SensorData:(NSDictionary*)dic;
+-(void)addtoDBL_ShiKiChiContacts:(NSDictionary*)dic;
+-(void)addtoDBL_EmergencyContacts:(NSDictionary*)dic;
+-(void)addtoDBL_UserInfo:(NSDictionary*)dic;
+-(void)addtoDBL_SensorMaster:(NSDictionary*)dic;
+
+
 //更新L_SensorData
 -(BOOL)createL_SensorDataTable;
 //L_EmergencyContactsTable

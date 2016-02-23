@@ -52,16 +52,14 @@
 }
 //判断是否跳转
 
--(void)gotoMain{
-    
-    NSDictionary *dict = [[DataBaseTool sharedDB]backdic];
-    
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if ([[dict valueForKey:@"code"]isEqualToString:@""]) {
+-(void)gotoMain:(NSString*)code
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([code isEqualToString:@""]) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             [self performSegueWithIdentifier:@"gotomain" sender:self];
-            }
-        });
+        }
+    });
     
 }
 //判断是否成功
@@ -72,18 +70,12 @@
     NSString *value = [date valueForKey:@"code"];
     
     if ([value isEqualToString:@"200"]) {
+        
         [[NSUserDefaults standardUserDefaults]setValue:_userID.text forKey:@"userid0"];
         //打开db  创建本地表
         [[DataBaseTool sharedDB]openDB];
         //下载数据
-        [[DataBaseTool sharedDB]startRequest:_userID.text date:@""];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [self performSegueWithIdentifier:@"gotomain" sender:self];
-            //  [self gotoMain];
-        });
+        [self startRequest:_userID.text date:@""];
         
     }else if ([value isEqualToString:@"500"]){
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -101,6 +93,32 @@
             [LeafNotification showInController:self withText:@"正しいパスワードを入力してください"];
         });
     }
+    
+}
+
+#pragma mark - Requrest(请求服务器)
+-(void)startRequest:(NSString *)userid date:(NSString*)updatetime
+{
+    NSURL *url = [NSURL URLWithString:@"http://mimamori.azurewebsites.net/dataupdateR.php"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"post"];
+    NSString *content = [NSString stringWithFormat:@"userid=%@&updatedate=%@",userid,updatetime];
+    [request setHTTPBody:[content dataUsingEncoding:NSUTF8StringEncoding]];
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+        NSLog(@"dict=%@",dic);
+        NSString *code = [dic valueForKey:@"code"];
+        if ([code isEqualToString:@""]) {
+            [[DataBaseTool sharedDB]addtoDBL_SensorData:dic];
+            [[DataBaseTool sharedDB]addtoDBL_ShiKiChiContacts:dic];
+            [[DataBaseTool sharedDB]addtoDBL_EmergencyContacts:dic];
+            [[DataBaseTool sharedDB]addtoDBL_UserInfo:dic];
+            [[DataBaseTool sharedDB]addtoDBL_SensorMaster:dic];
+        }
+        [self gotoMain:code];
+    }];
+    [task resume];
     
 }
 
