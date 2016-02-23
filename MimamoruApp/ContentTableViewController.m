@@ -157,9 +157,7 @@ enum ActionTypes{
     label.backgroundColor = [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1];
     
     [view addSubview:label];
-    
-    
-    
+
     if (section ==0){
         
         [label setText:@"   氏名"];
@@ -222,7 +220,6 @@ enum ActionTypes{
     return view;
     
 }
-
 
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -291,8 +288,6 @@ enum ActionTypes{
         indexRowContact = [value valueForKey:@"contact"];
         [self startRequest:userid0 Contact:indexRowContact];
         [emergencyArr removeObjectAtIndex:indexPath.row];
-        
-
     }
 }
 #pragma mark -  紧急联系人删除的request事件
