@@ -93,10 +93,9 @@
             [LeafNotification showInController:self withText:@"正しいパスワードを入力してください"];
         });
     }
-    
 }
 
-#pragma mark - Requrest(请求服务器)
+#pragma mark - Requrest(请求服务器下载数据)
 -(void)startRequest:(NSString *)userid date:(NSString*)updatetime
 {
     NSURL *url = [NSURL URLWithString:@"http://mimamori.azurewebsites.net/dataupdateR.php"];
@@ -105,6 +104,7 @@
     NSString *content = [NSString stringWithFormat:@"userid=%@&updatedate=%@",userid,updatetime];
     [request setHTTPBody:[content dataUsingEncoding:NSUTF8StringEncoding]];
     NSURLSession *session = [NSURLSession sharedSession];
+
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         NSLog(@"dict=%@",dic);
@@ -119,7 +119,6 @@
         [self gotoMain:code];
     }];
     [task resume];
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -163,7 +162,6 @@
 - (void)didReceiveMemoryWarning {
     
     [super didReceiveMemoryWarning];
-
 }
 
 

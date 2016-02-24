@@ -21,7 +21,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self.tableView reloadData];
+   // [self.tableView reloadData];
 }
 
 - (void)viewDidLoad {
@@ -44,7 +44,7 @@
         [self performSegueWithIdentifier:@"gotocontent" sender:self];
     }else if (indexPath.row ==1){
         [self cancellation];
-        [self.tableView reloadData];
+     //   [self.tableView reloadData];
     }
 }
 
